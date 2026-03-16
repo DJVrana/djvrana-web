@@ -6,12 +6,11 @@ import "../../styles.css";
 import "./home.scss";
 import { Link } from "react-router";
 
-import aboutImg from '../../assets/images/about.png'
+import aboutImg from '../../assets/images/about.webp'
 import serviceImg01 from '../../assets/images/service01.webp'
 import serviceImg02 from '../../assets/images/service02.webp'
 import serviceImg03 from '../../assets/images/service03.webp'
 import serviceImg04 from '../../assets/images/service04.webp'
-import serviceImg05 from '../../assets/images/service05.webp'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -25,8 +24,8 @@ import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/fre
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "DJ Vrana - Premium DJ Usluge Zagreb" },
-    { name: "description", content: "Profesionalni DJ za vjenanja i evente u Zagrebu" },
+    { title: "DJ Vrana - DJ za vjenčanja i proslave" },
+    { name: "description", content: "Profesionalni DJ za vjenčanja u Zagrebu i okolici" },
   ];
 }
 
@@ -57,16 +56,15 @@ export default function Home() {
           <div className="hero-bg-img relative min-h-screen h-64 overflow-hidden flex flex-col items-center justify-center pt-32 px-4 pb-20 font-sans">
             <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto mt-12">
               <header className="flex flex-col items-center text-center">
-                <div className="hero-badge">PREMIUM DJ USLUGE</div>
+                <div className="hero-badge">DJ ZA VJENČANJA I PROSLAVE</div>
                 <h1 className="text-6xl md:text-[5rem] font-bold tracking-tight leading-[1.05]">
-                  <span className="text-[#f4f4f5]">Pretvorite Svaki Event u </span>
-                  <span className="hero-highlight">Nezaboravno Iskustvo</span>
+                  <span className="text-[#f4f4f5]">Profesionalni DJ za vjenčanja u </span>
+                  <span className="hero-highlight">Zagrebu i okolici</span>
                 </h1>
                 
                 <p className="text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-10 leading-relaxed">
-                  Profesionalni DJ sa vrhunskom opremom i strašću prema glazbi.
-                  Specializiran za vjenčanja, korporativne događaje i ekskluzivne
-                  proslave.
+                  Specijaliziran za svadbe, privatne proslave i korporativne evente, 
+                  s ciljem stvaranja vrhunske atmosfere i nezaboravnog plesnog podija.
                 </p>
               </header>
 
@@ -76,14 +74,14 @@ export default function Home() {
                   onClick={() => window.scrollTo(0, 0)}
                   to='/kontakt'
                 >
-                    Rezerviraj Termin
+                    Rezervirajte Termin
                 </Link>
                 <button
                   className="btn btn-secondary"
                   type="button"
-                  onClick={() => scrollToSection("paketi")}
+                  onClick={() => scrollToSection("video-nastup")}
                 >
-                  Pogledaj Pakete
+                  Pogledajte Video
                 </button>
               </div>
             </div>
@@ -136,39 +134,39 @@ export default function Home() {
               <div className="py-[20px]">
                 <header className="scroll-animate">
                   <span className="inline-block text-[12px] tracking-[3px] uppercase text-[#d4af37] font-semibold mb-[20px] py-[8px] px-[20px] bg-[rgba(212,175,55,0.1)] border border-[rgba(212,175,55,0.2)] rounded-[30px]">
-                    Premium DJ Usluge
+                    O MENI
                   </span>
                   
                   <h2 className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-bold leading-[1.1] mb-[20px] bg-gradient-to-br from-[#ffffff] to-[#d4af37] text-transparent bg-clip-text">
-                    Ivan Vraneša
+                    DJ Vrana
                   </h2>
                   
                   <p className="text-[1.1rem] sm:text-[1.3rem] lg:text-[1.5rem] text-[#cccccc] mb-[30px] font-light">
-                    DJ | House, Techno & Electronic
+                    DJ za svadbe | Evente | Privatne proslave
                   </p>
                   
                   <p className="text-[1rem] lg:text-[1.1rem] leading-[1.8] text-[#cccccc] mb-[35px]">
-                    S više od 10 godina iskustva na sceni elektronske glazbe, stvaram jedinstvene glazbene doživljaje koji ostavljaju nezaboravan dojam. Od intimnih klubskih večeri do velikih festivala, svaki nastup je pažljivo kreiran da publiku odvede na glazbeno putovanje.
+                    S više od 5 godina iskustva kao DJ na vjenčanjima i proslavama, DJ Vrana stvara energiju koja puni plesni podij i spaja generacije kroz glazbu. Svaki nastup pažljivo je prilagođen publici i željama klijenata kako bi proslava imala savršenu atmosferu od početka do kraja.
                   </p>
                 </header>
 
                 <div className="flex gap-[25px] sm:gap-[40px] mb-[40px] flex-wrap justify-center lg:justify-start">
                   <div className="flex-1 min-w-[120px]">
-                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">500+</span>
+                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">300+</span>
                     <span className="text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Nastupa</span>
                   </div>
                   <div className="flex-1 min-w-[120px]">
-                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">15</span>
-                    <span className="text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Gradova</span>
+                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">5+</span>
+                    <span className="text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Godina iskustva</span>
                   </div>
                   <div className="flex-1 min-w-[120px]">
-                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">10K+</span>
-                    <span className="text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Fanova</span>
+                    <span className="text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">50+</span>
+                    <span className="text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Lokacija i dvorana</span>
                   </div>
                 </div>
 
                 <Link to="/o-meni" className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[18px] px-[40px] text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
-                  Saznaj više o meni
+                  Saznajte više o meni
                   <span className="transition-transform duration-300 group-hover:translate-x-[5px]">→</span>
                 </Link>
               </div>
@@ -189,15 +187,14 @@ export default function Home() {
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
               <div className="relative mx-auto w-full">
               <header className="mx-auto max-w-2xl text-center section-header scroll-animate">
-                <p className="section-subtitle">Što Nudim?</p>
+                <p className="section-subtitle">Što nudim?</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                  Premium DJ Usluge
+                  Profesionalne DJ usluge
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                  Izaberi format nastupa i atmosferu — sve ostalo (flow, dinamika i produkcija) se
-                  prilagođava tvom događaju.
+                  Vrhunska audio i rasvjetna oprema za savršenu atmosferu na svakom događaju.
                 </p>
               </header>
               <ServicesPremium />
@@ -208,96 +205,45 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="paketi" className="pricing pt-10 pb-50 scroll-mt-[80px]">
+      <section id="video-nastup" className="video-showcase pt-10 pb-50 scroll-mt-[80px]">
         <div className="container relative">
           <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[200px] left-[-100px] [animation-delay:0s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-          <header className="section-header scroll-animate">
-            <p className="section-subtitle">Transparentne Cijene</p>
-            <h2 className="section-title">Premium Paketi</h2>
-            <p className="section-description">
-              Odaberite paket koji najbolje odgovara vašim potrebama
+          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[10%] left-[-10%] [animation-delay:0s]"></div>
+          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-10%] right-[-10%] [animation-delay:5s]"></div>
+          
+          <header className="section-header scroll-animate text-center mx-auto mb-16">
+            <p className="section-subtitle">
+              Dio Atmosfere
+            </p>
+            <h2 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl mb-6">
+              Zavirite na Plesni Podij
+            </h2>
+            <p className="mx-auto max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
+              Kratki isječak energije i atmosfere koju donosim na svaki događaj. Vrhunska glazba, profesionalna oprema i nezaboravni trenuci.
             </p>
           </header>
 
-          <div className="pricing-grid">
-            <div className="pricing-card scroll-animate flex flex-col justify-between">
-              <div>
-                <h3 className="pricing-name">Essential</h3>
-                <p className="pricing-duration">Do 4 sata</p>
+          <div className="flex justify-center scroll-animate relative z-10">
+            <div className="relative w-full max-w-[360px] md:max-w-[400px] aspect-[9/16] rounded-3xl overflow-hidden border border-[rgba(212,175,55,0.3)] shadow-[0_20px_80px_-20px_rgba(212,175,55,0.4)] backdrop-blur-xl group transition-all duration-500 hover:-translate-y-2 hover:border-[#d4af37] hover:shadow-[0_20px_80px_-10px_rgba(212,175,55,0.6)]">
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 pointer-events-none z-20"></div>
               
-                <ul className="pricing-features">
-                  <li>Profesionalna DJ oprema</li>
-                  <li>Sound sistem do 150 ljudi</li>
-                  <li>LED rasvjeta - osnovni paket</li>
-                  <li>Pripreme i konzultacije</li>
-                  <li>Playlist prilagođen eventu</li>
-                </ul>
-              </div>
-                
-              <Link
-                className="btn btn-secondary"
-                onClick={() => window.scrollTo(0, 0)}
-                to='/kontakt'
-              >
-                  Rezerviraj
-              </Link>
+              <iframe
+                src="https://www.youtube.com/embed/xf_R-eEJoUI?rel=0"
+                title="DJ Vrana - Atmosfera s Nastupa"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full relative z-10"
+              ></iframe>
             </div>
-
-            <div className="pricing-card featured scroll-animate flex flex-col justify-between">
-              <div>
-                <div className="pricing-badge">Najpopularniji</div>
-                <h3 className="pricing-name">Premium</h3>
-                <p className="pricing-duration">Do 6 sati</p>
-
-                <ul className="pricing-features">
-                  <li>Vrhunska DJ oprema</li>
-                  <li>Premium sound sistem do 300 ljudi</li>
-                  <li>LED rasvjeta - premium paket</li>
-                  <li>Dim mašina + specijalni efekti</li>
-                  <li>Personalizirane animacije</li>
-                  <li>Backup oprema</li>
-                  <li>Neograničene konzultacije</li>
-                </ul>
-              </div>
-              
-                <Link
-                  className="btn btn-secondary"
-                  onClick={() => window.scrollTo(0, 0)}
-                  to='/kontakt'
-                >
-                    Rezerviraj
-                </Link>
-            </div>
-
-            <div className="pricing-card scroll-animate flex flex-col justify-between">
-              <div>
-                <h3 className="pricing-name">Luxury</h3>
-                <p className="pricing-duration">Bez vremenskog ograničenja</p>
-                <ul className="pricing-features">
-                  <li>Ekskluzivna oprema</li>
-                  <li>Premium sound sistem 500 ljudi</li>
-                  <li>Kompletna svjetlosna produkcija</li>
-                  <li>Profesionalne laserske projekcije</li>
-                  <li>Video mapping mogućnost</li>
-                  <li>Personalni event manager</li>
-                  <li>VIP tretman</li>
-                </ul>
-              </div>
-                  
-              <Link
-                className="btn btn-secondary"
-                onClick={() => window.scrollTo(0, 0)}
-                to='/kontakt'
-              >
-                  Rezerviraj
-              </Link>
-            </div>
+          </div>
+          <div className="mt-10">
+            <button className="mx-auto block">
+              <Link to="/gallery#video" className="px-40 btn btn-primary">Pogledaj više sadržaja</Link>
+            </button>
           </div>
         </div>
       </section>
+
       <Footer />
     </main>
   );
@@ -319,57 +265,50 @@ interface Item {
 const services: Item[] = [
   {
     id: "weddings",
-    title: "Ekskluzivna Vjenčanja",
-    badge: "NAJTRAŽENIJE",
+    title: "Vjenčanja",
+    badge: "Istaknuto",
     icon: faHeart,
     image: serviceImg01,
     imagePosition: "50% 20%",
     description:
-      "Potpuno prilagođen muzički program, vrhunska oprema i besprijekorna izvedba za vaš poseban dan. Uključuje konsultacije, playlist prilagođavanje i backup opremu.",
+      "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
     path: "/vjencanja",
     featured: true,
-    bullets: ["Konsultacije i plan događaja", "Playlist prilagođavanje", "Backup oprema"],
+    bullets: ["Vrhunska DJ oprema", "Pažljivo osmišljen repertoar", "Konzultacija s mladencima", "Animacija gostiju", "Vođenje protokola"],
   },
   {
-    id: "corporate",
-    title: "Korporativni Eventi",
-    icon: faBuilding,
+    id: "events",
+    title: "Događaji",
+    icon: faChampagneGlasses,
     image: serviceImg02,
     imagePosition: "50% 10%",
     description:
-      "Profesionalni muzički program za poslovne događaje, konferencije i korporativne proslave.",
-    path: "/korporativni-eventi",
+      "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
+    path: "/dogadaji",
+    bullets: ["Rođendani i proslave", "Korporativni događaji", "Djevojačke i momačke večeri", "Privatne zabave", "Festivali i koncerti"],
   },
   {
-    id: "club",
-    title: "Klupski Nastupi",
+    id: "equipment",
+    title: "Najam Opreme",
     icon: faCompactDisc,
     image: serviceImg03,
     imagePosition: "center",
     description:
-      "Energične večeri s najboljim house, techno i elektronskim setovima za vrhunsku atmosferu.",
-    path: "/klubovi-i-festivali",
+      "Vrhunska DJ oprema za svaki događaj -- ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.",
+    path: "/najam-opreme",
+    bullets: ["Ozvučenje", "DJ kontroleri i mikseri", "Rasvjeta", "Mikrofoni", "Tehnička podrška"],
   },
   {
-    id: "private",
-    title: "Privatne Proslave",
-    icon: faChampagneGlasses,
+    id: "education",
+    title: "DJ Edukacija",
+    icon: faBuilding,
     image: serviceImg04,
     imagePosition: "50% 20%",
     description:
-      "Personalizirani muzički doživljaj za rođendane, godišnjice i privatne događaje svih veličina.",
-    path: "/privatne-proslave",
-  },
-  {
-    id: "festival",
-    title: "Festival Setovi",
-    icon: faMask,
-    image: serviceImg05,
-    imagePosition: "center",
-    description:
-      "Spektakularni nastupi za velike outdoor i indoor festivale s potpunom produkcijskom podrškom.",
-    path: "/klubovi-i-festivali",
-  },
+      "Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama -- od početnika do onih koji žele usavršiti svoje miksanje.",
+    path: "/edukacija",
+    bullets: ["Osnove DJ opreme i tehnike miksanja", "Praktične vježbe i live miks sesije", "Savjeti za kreiranje set lista i energiju publike", "Individualni pristup i personalizirani program", "Priprema za nastupe"],
+  }
 ];
 
 function Card({ title, badge, icon, image, imagePosition = "center", description, path, bullets }: Item) {
@@ -440,7 +379,7 @@ function Card({ title, badge, icon, image, imagePosition = "center", description
 
       <div className="relative mt-6 flex items-center justify-between pt-6">
         <span className="text-xs font-medium tracking-wide text-white/50">
-          Premium DJ Usluga
+          Profesionalna DJ Usluga
         </span>
         
         <button>
@@ -482,13 +421,8 @@ function ServicesPremium() {
         )}
 
         {rest[2] && (
-          <div className="md:col-span-6">
+          <div className="md:col-span-12 lg:col-span-12">
             <Card key={rest[2].id} {...rest[2]} />
-          </div>
-        )}
-        {rest[3] && (
-          <div className="md:col-span-6">
-            <Card key={rest[3].id} {...rest[3]} />
           </div>
         )}
       </div>

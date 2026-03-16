@@ -74,7 +74,7 @@ const AboutMe = () => {
                       Tko Sam Ja
                     </h1>
                     <p className="text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed">
-                        Strast prema ritmu, iskustvo za pultom i posvećenost detaljima koji vaš event čine besprijekornim.                    </p>
+                        Strast prema ritmu, iskustvo za pultom i posvećenost detaljima koji vaš događaj čine besprijekornim.                    </p>
                 </div>
             </header>
             <div className="hero-content-aobut">
@@ -104,7 +104,7 @@ const AboutMe = () => {
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                Već više od 10 godina stvaram jedinstvena muzička iskustva koja pretvaraju svaki događaj u nezaboravan trenutak. Moja misija je spojiti vrhunski kvalitet zvuka s emocionalnom povezanošću s publikom.
+                    Već više od 5 godina stvaram nezaboravnu glazbenu atmosferu koja pokreće emocije i okuplja ljude. Sa svakim nastupom težim učiniti svaki trenutak posebnim, bilo da je riječ o prvom plesu, proslavi rođendana ili klupskom događaju.
                 </p>
             </header>
 
@@ -116,9 +116,9 @@ const AboutMe = () => {
                 <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
                     <FontAwesomeIcon icon={faMusic} className='text-[24px]' />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Početak Putovanja</h3>
+                <h3 className="text-xl font-bold mb-4">Početak putovanja</h3>
                 <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    Moja ljubav prema muzici započela je u ranoj mladosti, eksperimentirajući s različitim žanrovima i stilovima. Od prvih mikseva u malim klubovima do velikih događaja, svaki nastup je bio lekcija i novi korak naprijed.
+                    Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed
                 </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
@@ -134,11 +134,11 @@ const AboutMe = () => {
                 className="bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-y-8 group delay-100"
                 >
                 <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
-                    <FontAwesomeIcon icon={faZap} className='text-[24px]' />
+                    <FontAwesomeIcon icon={faHeadphones} className='text-[24px]' />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Profesionalni Pristup</h3>
+                <h3 className="text-xl font-bold mb-4">Posebnost</h3>
                 <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao besprijekornu izvedbu.
+                    Ono što me izdvaja je sposobnost brzog čitanja publike i prilagođavanja trenutku. Ne puštam samo glazbu – stvaram iskustvo koje miješa emocije i posebnost trenutka, ostavljajući trajni dojam na svakog prisutnog.
                 </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
@@ -154,12 +154,11 @@ const AboutMe = () => {
                 className="bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-x-12 group delay-200"
                 >
                 <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
-                    <FontAwesomeIcon icon={faHeadphones} className='text-[24px]' />
+                    <FontAwesomeIcon icon={faZap} className='text-[24px]' />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Posebnost</h3>
+                <h3 className="text-xl font-bold mb-4">Profesionalni pristup</h3>
                 <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    Ono što me izdvaja je sposobnost čitanja publike i prilagođavanja trenutku. Ne puštam samo glazbu - stvaram iskustvo koje rezonira s emocijama i trenutkom, ostavljajući trajni dojam na svakog prisutnog.
-                </p>
+                    S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao energiju na najvišoj razini.                </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
                     src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=400&fit=crop" 
@@ -176,9 +175,9 @@ const AboutMe = () => {
             <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                { num: '500+', label: 'Događaja' },
-                { num: '10+', label: 'Godina Iskustva' },
-                { num: '98%', label: 'Zadovoljnih Klijenata' },
+                { num: '300+', label: 'Događaja' },
+                { num: '5+', label: 'Godina Iskustva' },
+                { num: '100%', label: 'Zadovoljnih Klijenata' },
                 { num: '50+', label: 'Vjenčanja' }
                 ].map((stat, i) => (
                 <div key={i}>
@@ -217,10 +216,10 @@ const AboutMe = () => {
                 <div className="w-full md:w-1/2 space-y-6">
                 <h3 className="text-2xl font-bold text-[#d4af37]">Iza Pulta</h3>
                 <p className="text-[#b8b8b8] leading-relaxed">
-                    Svaki nastup je jedinstveno putovanje. Pratim energiju publike, njihove reakcije i emocije kako bih kreirao savršen trenutak.
+                    Vjerujem da glazba nije samo zvuk, nego iskustvo koje povezuje ljude. Moj pristup temelji se na slušanju, prilagodbi i stvaranju trenutaka koji se pamte. Svaki događaj tretiram kao jedinstvenu priču, gdje je cilj više od samog miksa – stvaranje emocija i atmosfere koja će se pamtiti.
                 </p>
                 <p className="text-[#b8b8b8] leading-relaxed">
-                    Za mene DJ pult nije samo oprema - to je instrument kroz koji prenosim priče i stvaram nezaboravne trenutke.
+                    Za mene to nije samo još jedan datum u kalendaru – svaki događaj je priča koju želim prenijeti. Kroz glazbu stvaram trenutke, emocije i uspomene koje ostaju s vama dugo nakon posljednjeg plesa.
                 </p>
                 </div>
             </div>
@@ -252,9 +251,9 @@ const AboutMe = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                 { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja", title: 'Vjenčanja', desc: 'Stvaram romantičnu i elegantnu atmosferu koja čini vaš poseban dan još nezaboravnijim.' },
-                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-eventi", title: 'Korporativni Događaji', desc: 'Profesionalan i sofisticiran pristup koji odražava vrijednosti vašeg brenda.' },
-                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Privatne Zabave', desc: 'Od rođendana do proslave godišnjica - stvaram energiju koja podiže događaj na višu razinu.' },
-                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/klubovi-i-festivali", title: 'Klubski Nastupi', desc: 'Dinamični setovi koji drže plesni podij punim cijelu noć. Ekspertiza u crossover žanrovima.' }
+                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
+                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/klubovi-i-festivali", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
+                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-eventi", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
                 ].map((spec, i) => (
                 <div key={i} className="bg-[#1a1a1a] p-8 rounded-2xl border border-transparent hover:border-[#d4af37]/30 transition-all duration-300 group flex flex-col justify-between">
                     <div>
@@ -290,13 +289,13 @@ const AboutMe = () => {
                 <div className='max-w-3xl mx-auto text-center'>
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
                     <p className="text-xl text-[#b8b8b8] mb-10">
-                        Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
+                         Osigurajte svoj datum i učinite svoj događaj nezaboravnim. Kontaktirajte me već danas i krenimo zajedno stvarati savršenu atmosferu!
                     </p>
                     <Link 
                         to="/kontakt" 
                         className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                     >
-                        Pošalji Upit
+                        Pošaljite Upit
                     </Link>
                     <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-[675px]'>
                         <DJControllerApp></DJControllerApp>

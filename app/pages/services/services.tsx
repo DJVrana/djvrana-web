@@ -84,7 +84,7 @@ const PremiumDJUsluge: React.FC = () => {
                         Što Nudim
                     </h1>
                     <p className="text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed">
-                        Specijalizirane DJ usluge prilagođene vašim potrebama, s vrhunskom opremom i bogatim iskustvom
+                      Profesionalne DJ usluge i oprema koja podiže svaki događaj na novu razinu. Svaki set prilagođavam vašim željama i atmosferi, kako bi svaki trenutak bio poseban.
                     </p>
                 </div>
             </header>
@@ -94,12 +94,12 @@ const PremiumDJUsluge: React.FC = () => {
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
                 Premium Wedding
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Vjenčanja</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">DJ Vjenčanja</h3>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                Stvorite savršenu atmosferu za najvažniji dan vašeg života s personaliziranom glazbenom selekcijom koja će oduševiti vas i vaše goste. Profesionalni pristup od ceremonije do posljednjeg plesa.
+                  Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. DJ na vjenčanju osigurava profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak – od ceremonije do posljednjeg plesa, potpuno prilagođeno vašim željama i stilu svadbe.
                 </p>
                 <ul className="space-y-4 pt-4 text-gray-300">
-                {['Personalizirani playlist prema vašim željama', 'Profesionalno ceremonijalno ozvučenje', 'Atmosfera za prvi ples i zabavu', 'Koordinacija s ostalim izvođačima', 'Vrhunska audio i lighting oprema'].map((item, i) => (
+                {['Prilagođavanje glazbenog seta Vašim željama i stilu vjenčanja', 'Jedinstvena atmosfera', 'Interakcija s gostima', 'Vođenje protokola', 'Profesionalna oprema', 'Rasvjeta koja prati atmosferu i prostor'].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1.5" />
                     <span>{item}</span>
@@ -129,12 +129,12 @@ const PremiumDJUsluge: React.FC = () => {
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
                 Corporate Events
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Korporativni Eventi</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">Korporativni Događaji</h3>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                Profesionalan i diskretan pristup za poslovne događaje, konferencije i korporativne proslave. Stvaramo atmosferu koja odražava profesionalnost vašeg brenda uz vrhunsku tehnološku podršku.
+                  Korporativni događaji su prilika za povezivanje, opuštanje i zajedničko stvaranje nezaboravnih trenutaka izvan ureda. Glazbom i atmosferom potičem timsku energiju, dobru vibru i iskustvo koje će zaposlenici pamtiti dugo nakon završetka događaja.
                 </p>
                 <ul className="space-y-4 pt-4 text-gray-300">
-                {['Diskretna i profesionalna izvedba', 'Prilagođena glazba za poslovnu atmosferu', 'Tehnička podrška za prezentacije', 'Fleksibilnost i prilagodba programu', 'Iskustvo s VIP eventima'].map((item, i) => (
+                {['Odabir glazbe prilagođen tipu događaja i publici', 'Profesionalno ozvučenje cijelog prostora', 'Ambijentalna i dinamična rasvjeta za stvaranje prave atmosfere', 'Vođenje važnih trenutaka događaja (nagrade, prezentacije, govori)', 'Iskustvo s VIP događajima'].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1.5" />
                     <span>{item}</span>
@@ -166,7 +166,7 @@ const PremiumDJUsluge: React.FC = () => {
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold">Privatne Proslave</h3>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                Nezaboravne rođendanske zabave, obljetnice i posebne privatne prilike. Prilagođavamo se vašim željama i stvaramo jedinstvenu atmosferu koja će oduševiti sve generacije.
+                  Bez obzira radi li se o rođendanu, maturalnoj zabavi ili djevojačkoj večeri, svaki događaj zaslužuje glazbu koja pokreće, energiju koja okuplja i atmosferu koja se pamti. DJ Vrana stvara trenutke koji ostaju u sjećanju i čine vašu proslavu jedinstvenom.
                 </p>
                 <ul className="space-y-4 pt-4 text-gray-300">
                 {['Personalizirani glazbeni pristup', 'Prilagodba za sve dobne skupine', 'Interaktivna zabava i angažman gostiju', 'Fleksibilni paketi i trajanje', 'Profesionalna rasvjeta i efekti'].map((item, i) => (
@@ -197,14 +197,14 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row-reverse items-center gap-12 mb-20 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                Clubs & Festivals
+                DJ Education
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Klubovi & Festivali</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">DJ Edukacija</h3>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                Energična i dinamična izvedba za klubove, festivale i velika glazbena događanja. Dugogodišnje iskustvo u čitanju publike i stvaranju nezaboravne atmosfere na najzahtjevnijim eventima.
+                  Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama – od početnika do onih koji žele usavršiti svoje miksanje.
                 </p>
                 <ul className="space-y-4 pt-4 text-gray-300">
-                {['Iskustvo s velikim eventima', 'Raznoliki glazbeni žanrovi i stilovi', 'Čitanje publike i energija', 'Profesionalna DJ oprema i backup', 'Dugogodišnje iskustvo u industriji'].map((item, i) => (
+                {['Osnove DJ opreme', 'Upoznavanje s glazbenim žanrovima i strukturama pjesama', 'Tehnike miksanja i beatmatching', 'Praktično snalaženje s digitalnim DJ softverima', 'Savjeti za izgradnju DJ karijere i nastupe uživo', 'Personalizirane vježbe i zadaci prema razini polaznika'].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1.5" />
                     <span>{item}</span>
@@ -229,13 +229,48 @@ const PremiumDJUsluge: React.FC = () => {
             </div>
             </section>
 
+            <section className="flex flex-col lg:flex-row items-center gap-12 mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+            <div className="flex-1 space-y-6">
+                <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
+                Equipment Rental
+                </span>
+                <h3 className="text-3xl md:text-4xl font-bold">Najam Opreme</h3>
+                <p className="text-gray-400 text-lg leading-relaxed">
+                  Vrhunska DJ oprema za svaki događaj – ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.
+                </p>
+                <ul className="space-y-4 pt-4 text-gray-300">
+                {['Ozvučenje', 'DJ kontroleri i mikseri', 'Rasvjeta', 'Mikrofoni', 'Tehnička podrška'].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                    <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1.5" />
+                    <span>{item}</span>
+                    </li>
+                ))}
+                </ul>
+                <button>
+                    <Link to="/privatne-proslave" className="btn btn-primary">
+                    Detaljnije
+                    </Link>
+                </button>
+            </div>
+            <div className="flex-1 relative w-full">
+                <div className="absolute -top-6 -left-6 w-20 h-20 bg-[#121212] rounded-full flex items-center justify-center text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
+                <FontAwesomeIcon icon={faChampagneGlasses} />
+                </div>
+                <img 
+                alt="Private Party DJ" 
+                className="w-full h-[400px] md:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
+                src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop"
+                />
+            </div>
+            </section>
+
         </div>
 
         <section className="bg-[#121212] py-24 text-center border-t border-[#d4af37]/10">
             <div className="container reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-            <h2 className="text-4xl font-bold mb-6 text-white">Spremni za Nezaboravan Event?</h2>
+            <h2 className="text-4xl font-bold mb-6 text-white">Spremni za Nezaboravno Iskustvo?</h2>
             <p className="text-xl text-gray-400 mb-10">
-                Kontaktirajte me danas i razgovarajmo o vašim potrebama. Zajedno ćemo stvoriti savršeno glazbeno iskustvo.
+              Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
             </p>
             <button>
                 <Link to="/kontakt" className="btn btn-primary">

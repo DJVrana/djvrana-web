@@ -2,16 +2,61 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import Footer from '~/components/footer/footer';
 import Navbar from '~/components/navbar/navbar';
+import type { Route } from './+types/privacyPolicy';
+
+export function meta({}: Route.MetaArgs) {
+  const domain = "https://djvrana.com";
+  const title = "Politika Privatnosti | DJ Vrana";
+  const description = "Pročitajte kako DJ Vrana prikuplja, koristi i štiti vaše osobne podatke u skladu s Općom uredbom o zaštiti podataka (GDPR).";
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { name: "robots", content: "index, follow" }, // Google voli indeksirati legalne stranice radi provjere legitimiteta
+    
+    // Open Graph
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: `${domain}/politika-privatnosti` },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
+
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
+    
+    // Canonical link
+    { tagName: "link", rel: "canonical", href: `${domain}/politika-privatnosti` }
+  ];
+}
 
 const PrivacyPolicy: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState('not');
+  const [currentPage, setCurrentPage] = useState('politika-privatnosti');
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
   };
 
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Politika Privatnosti - DJ Vrana",
+    "description": "Informacije o zaštiti osobnih podataka i GDPR usklađenosti za klijente DJ Vrane.",
+    "url": "https://djvrana.com/politika-privatnosti",
+    "publisher": {
+      "@type": "Person",
+      "name": "Ivan Vraneša"
+    }
+  };
+
   return (
     <main>
+        <script 
+            type="application/ld+json" 
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} 
+        />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
         <div className="min-h-screen pt-20 text-white font-sans">
         <div className="max-w-[900px] mx-auto px-6 py-20">

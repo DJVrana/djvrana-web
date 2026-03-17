@@ -11,6 +11,37 @@ import {
   faComments,
   faBolt
 } from '@fortawesome/free-solid-svg-icons';
+import type { Route } from './+types/weddings';
+import weddingsImg from '../../../assets/images/weddings.webp'
+
+export function meta({}: Route.MetaArgs) {
+  const domain = "https://djvrana.com"; 
+  const title = "DJ za Vjenčanja | Vrhunski Svadbeni DJ | DJ Vrana";
+  const description = "Učinite svoje vjenčanje nezaboravnim uz profesionalnog DJ-a. Vrhunska glazba, rasvjeta, vođenje protokola i savršena atmosfera za vaš najvažniji dan.";
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { name: "keywords", content: "DJ za vjenčanja, svadbeni DJ, DJ za svadbe Zagreb, glazba za vjenčanje, DJ Vrana, glazba za prvi ples, najam DJ-a za svadbu" },
+    { name: "robots", content: "index, follow" },
+    
+    // Open Graph
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: `${domain}/vjencanja` },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
+
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
+    
+    // Canonical link
+    { tagName: "link", rel: "canonical", href: `${domain}/vjencanja` }
+  ];
+}
 
 export default function Vjencanja() {
   const [currentPage, setCurrentPage] = useState('usluge');
@@ -26,50 +57,74 @@ export default function Vjencanja() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "DJ za Vjenčanja i Svadbe",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "DJ Vrana",
+      "image": "https://djvrana.com/dj-vrana-og-image.png"
+    },
+    "description": "Profesionalna DJ usluga za vjenčanja. Uključuje vođenje protokola, personaliziranu glazbu, vrhunsko ozvučenje i rasvjetu za zabavu do jutra.",
+    "areaServed": "Hrvatska",
+    "url": "https://djvrana.com/vjencanja",
+    "category": "Wedding Entertainment"
+  };
+
   return (
     <main>
+        <script 
+            type="application/ld+json" 
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} 
+        />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-        <div className="min-h-screen text-white font-sans">
-        <section className="text-center mb-16 relative wedding-hero-bg-img py-40">
+        
+        <div className="min-h-screen text-white font-sans overflow-x-hidden">
+        
+        <section className="text-center mb-16 relative wedding-hero-bg-img py-30 md:py-40 px-4 overflow-y-hidden">
             <div className="hero-badge">PREMIUM DJ USLUGE</div>
             <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-                Vjenčanja
+                DJ Vjenčanja
             </h1>
             <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-                Stvorite nezaboravnu atmosferu za najvažniji dan vašeg života s profesionalnom glazbenom pratnjom
+                Stvaram romantičnu i elegantnu atmosferu koja čini vaš poseban dan još nezaboravnijim
             </p>
         </section>
-        <section className='wedding'>
-            <div className='container'>
+
+        <section className='wedding px-4 md:px-0'>
+            <div className='container mx-auto'>
                 <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mb-20">
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
-                    <div className="relative lg:max-w-none w-full">
+                    
+                    <div className="relative lg:max-w-none w-full order-2 md:order-1">
                         <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                             <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                                 <img 
-                                src="https://images.unsplash.com/photo-1618107095181-e3ba0f53ee59?w=800&h=600&fit=crop"
-                                alt="DJ Profil" 
+                                src={weddingsImg}
+                                alt="Profesionalni DJ za vjenčanja - DJ Vrana stvara romantičnu i zabavnu atmosferu za mladence" 
+                                loading="lazy"
                                 className="w-full h-auto block object-cover"
                                 />
                             </div>
                         </div>
                     </div>
 
-                <div className="py-5">
+                <div className="py-5 order-1 md:order-2">
                     <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                    Premium Wedding
+                    DJ Vrana
                     </span>
                     <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                    Vaše savršeno vjenčanje zaslužuje savršenu glazbu
+                    Učinite svoje vjenčanje nezaboravnim
                     </h2>
                     <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                    Glazba je srce svakog vjenčanja. S dugogodišnjim iskustvom u stvaranju nezaboravnih trenutaka, pružam profesionalnu DJ uslugu koja će učiniti vaš poseban dan još ljepšim.
+                    Kao DJ na vjenčanju, osiguravam profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak vašeg slavlja. Moj cilj je stvoriti ugođaj koji je potpuno prilagođen vašim željama i stilu svadbe.
                     </p>
                     <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                    Od prvog plesa do posljednje pjesme, brižljivo biram svaku melodiju kako bi odražavala vašu priču i održala goste na plesnom podiju kroz cijelu noć.
+                    Od elegantne ceremonije do posljednjeg plesa, svaki detalj je pažljivo isplaniran kako biste vi i vaši gosti bezbrižno uživali u nezaboravnim trenucima.
                     </p>
                 </div>
                 </div>
@@ -77,62 +132,60 @@ export default function Vjencanja() {
                 <div className="scroll-animate relative bg-gradient-to-br from-[rgba(212,175,55,0.05)] to-[rgba(10,10,10,0.8)] border border-[#d4af37]/10 rounded-[20px] p-6 sm:p-10 md:p-[60px_40px] mt-10">
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-                    <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-                    <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
                     <header>
                         <p className="section-subtitle text-center">Što Očekivati</p>
-                        <h2 className="text-[1.75rem] mb-10 text-center text-white font-semibold">
+                        <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
                             Što uključuje usluga
                         </h2>
                     </header>
-                    <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-[30px]">
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[20px] md:gap-[30px]">
                         
-                        <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                            <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                                     <FontAwesomeIcon icon={faMusic} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Personalizirana Playlist</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Prilagođen Glazbeni Set</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Prilagođen glazbeni izbor prema vašim željama i ukusu
+                                Potpuno prilagođavanje glazbenog odabira vašim željama i jedinstvenom stilu vjenčanja.
                             </p>
                         </div>
 
-                        <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                            <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                                     <FontAwesomeIcon icon={faSliders} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna Oprema</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna Oprema i Rasvjeta</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Vrhunski zvučni sistem i rasvjeta za savršenu atmosferu
+                                Vrhunska tehnička oprema te impresivna rasvjeta koja savršeno prati atmosferu i prostor.
                             </p>
                         </div>
 
-                        <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-
-                            <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                                     <FontAwesomeIcon icon={faComments} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Individualna Konzultacija</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Protokol i Interakcija</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Detaljno planiranje glazbene podloge za sve segmente
+                                Besprijekorno vođenje protokola vjenčanja uz odličnu interakciju s vašim gostima.
                             </p>
                         </div>
 
-                        <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                            <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                                     <FontAwesomeIcon icon={faBolt} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Fleksibilnost</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Jedinstvena Atmosfera</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Prilagodba atmosfere i glazbe tijekom cijelog događaja
+                                Stvaranje posebne, dinamične energije koja svaki trenutak vašeg dana čini doista jedinstvenim.
                             </p>
                         </div>
                         
@@ -140,25 +193,28 @@ export default function Vjencanja() {
                 </div>
             </div>
         </section>
-        <section className="py-24 relative overflow-hidden scroll-animate">
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-            <div className="container">
-                <div className='max-w-3xl mx-auto text-center'>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
-                    <p className="text-xl text-[#b8b8b8] mb-10">
-                        Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
-                    </p>
-                    <button>
+        
+        <section className="py-16 md:py-24 px-4 md:px-0 relative overflow-hidden">
+            <div className="scroll-animate">
+                <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
+                <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+                <div className="container mx-auto">
+                    <div className='max-w-3xl mx-auto text-center'>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                        <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
+                            Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
+                        </p>
                         <Link 
                             to="/kontakt" 
+                            aria-label="Pošaljite upit i rezervirajte DJ-a za Vaše vjenčanje"
                             className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                         >
                             Pošalji Upit
                         </Link>
-                    </button>
-                    <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-[675px]'>
-                        <DJControllerApp></DJControllerApp>
+                        
+                        <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>
+                            <DJControllerApp></DJControllerApp>
+                        </div>
                     </div>
                 </div>
             </div>

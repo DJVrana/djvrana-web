@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // --- CSS Animacije za živi VU Metar ---
 const VUMeterStyles = () => (
@@ -197,13 +197,26 @@ const Deck = ({ number, sizePx }: { number: number; sizePx: number }) => (
         </div>
     
         <div>
-            <div className="grid grid-cols-4 gap-3 text-[rgba(212,175,55,1)] font-bold mb-2 text-center tracking-wider">
+            {/* Dinamički gap za labele */}
+            <div 
+              className="grid grid-cols-4 text-[rgba(212,175,55,1)] font-bold text-center tracking-wider"
+              style={{ 
+                gap: `${sizePx * 0.05}px`, // Dinamički razmak umjesto gap-3
+                marginBottom: `${sizePx * 0.03}px`,
+                fontSize: `${sizePx * 0.040}px` // Opcionalno: tekst labela se također blago smanjuje
+              }}
+            >
                 <span>HOT CUE</span>
                 <span>FX FADE</span>
                 <span>PAD FX</span>
                 <span>SAMPLER</span>
             </div>
-            <div className="grid grid-cols-4 gap-3">
+            
+            {/* Dinamički gap za same padove */}
+            <div 
+              className="grid grid-cols-4"
+              style={{ gap: `${sizePx * 0.05}px` }} // Dinamički razmak umjesto gap-3
+            >
                 {[...Array(8)].map((_, i) => (
                     <Pad key={i} sizePx={sizePx * 0.18} />
                 ))}
@@ -277,14 +290,36 @@ const Mixer = ({ sizePx = 288 }: { sizePx?: number }) => (
 
 // --- GLAVNI KONTROLER KONTEJNER ---
 export default function DJControllerApp() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      
+      const REQUIRED_WIDTH = 650; 
+      const SAFE_PADDING = 1;
+
+      if (screenWidth < REQUIRED_WIDTH + SAFE_PADDING) {
+        setScale((screenWidth - SAFE_PADDING) / REQUIRED_WIDTH);
+      } else {
+        setScale(1);
+      }
+    };
+
+    handleResize();
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="flex items-center justify-center rounded-2xl font-sans overflow-hidden">
+    <div className="flex items-center justify-center w-full overflow-hidden">
       <VUMeterStyles />
-      <div className="w-full max-w-7xl bg-black p-3 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.9),0_0_100px_rgba(212,175,55,0.05)] border-b-8 border-gray-800 ring-1 ring-gray-800">
-        <div className="flex w-full overflow-hidden rounded-xl">
-          <Deck number={1} sizePx={180} />
-          <Mixer sizePx={200} />
-          <Deck number={2} sizePx={180} />
+      <div className="bg-black p-2 md:p-3 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.9),0_0_100px_rgba(212,175,55,0.05)] border-b-4 md:border-b-8 border-gray-800 ring-1 ring-gray-800 inline-flex overflow-hidden">
+        <div className="flex overflow-hidden rounded-xl">
+          <Deck number={1} sizePx={150 * scale} />
+          <Mixer sizePx={160 * scale} />
+          <Deck number={2} sizePx={150 * scale} />
         </div>
       </div>
     </div>

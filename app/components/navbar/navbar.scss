@@ -4,19 +4,20 @@
   width: 100%;
   z-index: 1000;
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
   transition: all 0.3s ease;
   padding: 0 !important;
 }
 
 .navbar-wrapper.scrolled {
-  background: var(--color-bg-primary);
+  background: var(--color-bg-primary, rgba(10, 10, 10, 0.95));
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
   max-width: 1200px;
-  padding: 1.2rem 0;
+  padding: 1.2rem 1.5rem; 
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -26,7 +27,7 @@
 .logo {
   font-size: 1.8rem;
   font-weight: 800;
-  background: var(--gradient-gold);
+  background: var(--gradient-gold, linear-gradient(to right, #d4af37, #f4e5a0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -48,7 +49,7 @@
 }
 
 .nav-links a {
-  color: var(--color-text-primary);
+  color: var(--color-text-primary, #ffffff);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
@@ -66,12 +67,12 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: var(--color-accent-gold);
+  background: var(--color-accent-gold, #d4af37);
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--color-accent-gold);
+  color: var(--color-accent-gold, #d4af37);
 }
 
 .nav-links a:hover::after,
@@ -80,32 +81,30 @@
 }
 
 .nav-links a.active {
-  color: var(--color-accent-gold);
+  color: var(--color-accent-gold, #d4af37);
 }
 
 .mobile-menu-btn {
   display: none;
   background: none;
   border: none;
-  color: var(--color-text-primary);
-  font-size: 1.5rem;
+  color: var(--color-text-primary, #ffffff);
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.mobile-menu-btn:hover {
-  color: var(--color-accent-gold);
+  padding: 5px;
 }
 
 @media (max-width: 1024px) {
   .nav-links {
     position: fixed;
-    top: 80px;
+    top: 70px; 
     left: -100%;
     flex-direction: column;
-    background: var(--color-bg-primary);
+    background: var(--color-bg-primary, rgba(10, 10, 10, 0.98));
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     width: 100%;
+    height: calc(100vh - 70px); 
     padding: 2rem;
     gap: 1.5rem;
     transition: left 0.3s ease;
@@ -117,6 +116,8 @@
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

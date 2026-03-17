@@ -59,23 +59,39 @@ body::selection {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .btn {
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem; 
   font-weight: 600;
   border: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
 }
 
 .btn-primary {
@@ -188,7 +204,7 @@ body::selection {
 .wedding-hero-bg-img {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-    url("assets/images/wedding-hero.jpg");
+    url("assets/images/wedding-hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -197,17 +213,26 @@ body::selection {
 .corporate-events-hero-bg-img {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-    url("assets/images/corporate-events-hero.jpg");
+    url("assets/images/corporate-events-hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 
-.clubs-and-festivals-hero-bg-img {
+.dj-education-hero-bg-img {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-    url("assets/images/clubs-and-festivals-hero.jpg");
+    url("assets/images/dj-education-hero.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.equipment-rental-hero-bg-img {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
+    url("assets/images/equipment-rental-hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -217,7 +242,7 @@ body::selection {
 .private-parties-hero-bg-img {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-    url("assets/images/private-parties-hero.jpg");
+    url("assets/images/private-parties-hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

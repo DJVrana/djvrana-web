@@ -18,6 +18,42 @@ import { Link } from 'react-router';
 import DJControllerApp from '~/components/dj-controller/djController';
 import serviceImg02 from '../../assets/images/service02.webp'
 import djVranaLogo from '../../assets/images/dj-vrana-logo.png'
+import about01 from '../../assets/images/about01.webp'
+import about02 from '../../assets/images/about02.webp'
+import about03 from '../../assets/images/about03.webp'
+import type { Route } from './+types/about';
+
+export function meta({}: Route.MetaArgs) {
+  const domain = "http://localhost:5173"; // Zamijenite vašom domenom
+  const title = "O meni | DJ Vrana - Ivan Vraneša";
+  const description = "Upoznajte DJ Vranu. Više od 5 godina iskustva u stvaranju nezaboravne atmosfere na vjenčanjima, rođendanima i korporativnim eventima uz profesionalni pristup.";
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { name: "keywords", content: "DJ Vrana o meni, Ivan Vraneša DJ, iskustvo DJ za svadbe, profesionalni DJ biografija" },
+    { name: "robots", content: "index, follow" },
+    
+    // Open Graph (Facebook, Instagram, LinkedIn)
+    { property: "og:type", content: "profile" }, // Ovdje koristimo "profile" umjesto "website"
+    { property: "profile:first_name", content: "Ivan" },
+    { property: "profile:last_name", content: "Vraneša" },
+    { property: "profile:username", content: "DJ Vrana" },
+    { property: "og:url", content: `${domain}/o-meni` },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
+
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
+    
+    // Canonical link
+    { tagName: "link", rel: "canonical", href: `${domain}/o-meni` }
+  ];
+}
 
 const AboutMe = () => {
   const storyRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -57,8 +93,30 @@ const AboutMe = () => {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const personStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ivan Vraneša",
+    "alternateName": "DJ Vrana",
+    "jobTitle": "Professional DJ",
+    "description": "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente s preko 5 godina iskustva.",
+    "url": "https://djvrana.com/o-meni",
+    "image": "https://djvrana.com/ivan-vranesa-profil.png",
+    "knowsAbout": ["DJing", "Wedding Entertainment", "Event Management", "Sound Engineering"],
+    "sameAs": [
+      "https://www.instagram.com/ivan.vranesa/",
+      "https://www.tiktok.com/@dj.proslave",
+      "https://www.youtube.com/@IvanVraneša",
+      "https://soundcloud.com/djvrana"
+    ]
+  };
+
   return (
     <main>
+        <script 
+            type="application/ld+json" 
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }} 
+        />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
         <div className="font-sans text-white overflow-x-hidden">
 
@@ -82,7 +140,7 @@ const AboutMe = () => {
                     <div className="profile-image">
                     <img 
                         src={djVranaLogo}
-                        alt="DJ Profil"
+                        alt="DJ Vrana logo - Ivan Vraneša, profesionalni DJ za događaje"
                     />
                     </div>
                 </div>
@@ -122,8 +180,8 @@ const AboutMe = () => {
                 </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
-                    src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop" 
-                    alt="DJ za pultem" 
+                    src={about01}
+                    alt="DJ Vrana miksa glazbu na početku karijere" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                 </div>
@@ -142,8 +200,8 @@ const AboutMe = () => {
                 </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
-                    src="https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=600&h=400&fit=crop" 
-                    alt="DJ oprema" 
+                    src={about02}
+                    alt="Profesionalna DJ oprema i slušalice na nastupu" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                 </div>
@@ -161,8 +219,8 @@ const AboutMe = () => {
                     S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao energiju na najvišoj razini.                </p>
                 <div className="rounded-xl overflow-hidden h-48">
                     <img 
-                    src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=400&fit=crop" 
-                    alt="DJ nastup" 
+                    src={about03}
+                    alt="DJ Vrana pušta glazbu i zabavlja publiku na noćnom događaju" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                 </div>
@@ -208,7 +266,7 @@ const AboutMe = () => {
                 <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/5 border border-[#d4af37]/20">
                     <img 
                     src={serviceImg02} 
-                    alt="DJ u akciji" 
+                     alt="DJ Vrana u akciji na svadbi - stvaranje savršene atmosfere" 
                     className="w-full h-auto"
                     />
                 </div>
@@ -252,8 +310,8 @@ const AboutMe = () => {
                 {[
                 { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja", title: 'Vjenčanja', desc: 'Stvaram romantičnu i elegantnu atmosferu koja čini vaš poseban dan još nezaboravnijim.' },
                 { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
-                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/klubovi-i-festivali", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
-                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-eventi", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
+                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
+                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-dogadaji", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
                 ].map((spec, i) => (
                 <div key={i} className="bg-[#1a1a1a] p-8 rounded-2xl border border-transparent hover:border-[#d4af37]/30 transition-all duration-300 group flex flex-col justify-between">
                     <div>
@@ -266,15 +324,13 @@ const AboutMe = () => {
                         <p className="text-[#808080] text-sm leading-relaxed">{spec.desc}</p>
                     </div>
                     <div className='mt-6'>
-                        <button>
-                            <Link
-                                to={spec.path}
-                                type="button"
-                                className="inline-flex cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85 transition hover:border-[rgba(212,175,55,0.4)] hover:bg-[rgba(212,175,55,0.1)] hover:text-white"
-                            >
-                                Detalji
-                            </Link>
-                        </button>
+                        <Link
+                            to={spec.path}
+                            aria-label={`Saznajte više o usluzi: ${spec.title}`}
+                            className="inline-flex cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85 transition hover:border-[rgba(212,175,55,0.4)] hover:bg-[rgba(212,175,55,0.1)] hover:text-white"
+                        >
+                            Detalji
+                        </Link>
                     </div>
                 </div>
                 ))}
@@ -283,22 +339,24 @@ const AboutMe = () => {
         </section>
 
         <section className="py-24 relative overflow-hidden">
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-            <div className="container">
-                <div className='max-w-3xl mx-auto text-center'>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
-                    <p className="text-xl text-[#b8b8b8] mb-10">
-                         Osigurajte svoj datum i učinite svoj događaj nezaboravnim. Kontaktirajte me već danas i krenimo zajedno stvarati savršenu atmosferu!
-                    </p>
-                    <Link 
-                        to="/kontakt" 
-                        className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
-                    >
-                        Pošaljite Upit
-                    </Link>
-                    <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-[675px]'>
-                        <DJControllerApp></DJControllerApp>
+            <div className="scroll-animate">
+                <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
+                <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+                <div className="container mx-auto">
+                    <div className='max-w-3xl mx-auto text-center'>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                        <p className="text-xl text-[#b8b8b8] mb-10">
+                            Osigurajte svoj datum i učinite svoj događaj nezaboravnim. Kontaktirajte me već danas i krenimo zajedno stvarati savršenu atmosferu!
+                        </p>
+                        <Link 
+                            to="/kontakt" 
+                            className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
+                        >
+                            Pošaljite Upit
+                        </Link>
+                        <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] max-w-[595px] overflow-hidden'>
+                            <DJControllerApp></DJControllerApp>
+                        </div>
                     </div>
                 </div>
             </div>

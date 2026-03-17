@@ -8,9 +8,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMusic,
   faSliders,
-  faComments,
-  faBolt
+  faBolt,
+  faMicrophone,
+  faStar
 } from '@fortawesome/free-solid-svg-icons';
+import type { Route } from './+types/corporateEvents';
+
+import corporateEventsImg from '../../../assets/images/corporate-events.webp'
+
+export function meta({}: Route.MetaArgs) {
+  const domain = "https://djvrana.com"; 
+  const title = "DJ za Korporativne Događaje i Evente | DJ Vrana";
+  const description = "Profesionalni DJ za poslovne domjenke, team buildinge i korporativne evente. Vrhunska glazba, ozvučenje, rasvjeta i vođenje programa za vaš tim.";
+
+  return [
+    { title },
+    { name: "description", content: description },
+    { name: "keywords", content: "DJ za korporativne događaje, DJ za evente Zagreb, poslovni domjenak glazba, team building DJ, DJ za tvrtke, zabava za firme" },
+    { name: "robots", content: "index, follow" },
+    
+    // Open Graph
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: `${domain}/korporativni-dogadaji` },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
+
+    // Twitter Card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
+    
+    // Canonical link
+    { tagName: "link", rel: "canonical", href: `${domain}/korporativni-dogadaji` }
+  ];
+}
 
 export default function KorporativniDogadaji() {
   const [currentPage, setCurrentPage] = useState('usluge');
@@ -26,52 +59,74 @@ export default function KorporativniDogadaji() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "DJ za Korporativne Događaje i Evente",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "DJ Vrana",
+      "image": "https://djvrana.com/dj-vrana-og-image.png"
+    },
+    "description": "Profesionalna DJ usluga, uključujući odabir glazbe, ozvučenje, ambijentalnu rasvjetu i vođenje programa za poslovne događaje, domjenke i team buildinge.",
+    "areaServed": "Hrvatska",
+    "url": "https://djvrana.com/korporativni-dogadaji",
+    "category": "Event Entertainment"
+  };
+
   return (
     <main>
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} 
+      />
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-      <div className="min-h-screen text-white font-sans">
-        <section className="text-center mb-16 relative corporate-events-hero-bg-img py-40">
+      
+      <div className="min-h-screen text-white font-sans overflow-x-hidden">
+        
+        <section className="text-center mb-16 relative corporate-events-hero-bg-img py-30 md:py-40 px-4">
           <div className="hero-badge">PREMIUM DJ USLUGE</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
             Korporativni Događaji
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Podignite svoje poslovne evente na višu razinu uz profesionalnog DJ-a koji spaja eleganciju, brend i pravu količinu energije za goste.
+            Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.
           </p>
         </section>
 
-        <section className='corporate-events'>
-          <div className='container'>
+        <section className='corporate-events px-4 md:px-0'>
+          <div className='container mx-auto'>
             <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mb-20">
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
 
-              <div className="relative lg:max-w-none w-full">
+              <div className="relative lg:max-w-none w-full order-2 md:order-1">
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1515169067868-5387ec356754?w=800&h=600&fit=crop"
-                      alt="DJ na korporativnom događaju" 
+                      src={corporateEventsImg}
+                      alt="DJ Vrana pušta glazbu i stvara vrhunsku atmosferu na korporativnom događaju tvrtke"
+                      loading="lazy" 
                       className="w-full h-auto block object-cover"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="py-5">
+              <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Corporate Events
+                  DJ Vrana
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Glazba koja podržava brend i ciljeve događaja
+                  Nezaboravni trenuci izvan ureda
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Specijaliziran sam za poslovne evente poput gala večeri, godišnjih proslava, konferencija, team buildinga i product launch događaja, gdje je bitno spojiti profesionalnost i opuštenu atmosferu.
+                  Korporativni događaji su savršena prilika za povezivanje, opuštanje i zajedničko stvaranje nezaboravnih trenutaka izvan svakodnevnog radnog okruženja.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Kroz pažljivo odabranu glazbu i kontrolu energije tijekom večeri stvaram ambijent koji potiče networking, dobru atmosferu i pozitivan dojam o vašem brendu.
+                  Kroz pažljivo odabranu glazbu i usklađenu atmosferu potičem timsku energiju, dobru vibru i vrhunsko iskustvo koje će zaposlenici i gosti pamtiti dugo nakon završetka događaja.
                 </p>
               </div>
             </div>
@@ -79,61 +134,73 @@ export default function KorporativniDogadaji() {
             <div className="scroll-animate relative bg-gradient-to-br from-[rgba(212,175,55,0.05)] to-[rgba(10,10,10,0.8)] border border-[#d4af37]/10 rounded-[20px] p-6 sm:p-10 md:p-[60px_40px] mt-10">
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
+              
               <header>
                 <p className="section-subtitle text-center">Što Očekivati</p>
-                <h2 className="text-[1.75rem] mb-10 text-center text-white font-semibold">
+                <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
                   Što uključuje usluga
                 </h2>
               </header>
-              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-[30px]">
+              
+              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[20px] md:gap-[30px]">
                 
-                <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Glazba za svaku fazu eventa</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Prilagođen odabir glazbe</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Background za welcome & networking, elegantna glazba za večeru te dinamičniji set za after-party – sve prilagođeno profilu gostiju.
+                    Glazba je pažljivo odabrana i u potpunosti prilagođena specifičnom tipu vašeg događaja te ukusu publike.
                   </p>
                 </div>
 
-                <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                       <FontAwesomeIcon icon={faSliders} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Suradnja s AV & produkcijom</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalno ozvučenje</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Usklađivanje glazbe s programom, najavama, govorima i tehničkim timom za bešavne prijelaze bez “praznog hoda”.
+                    Osiguravam vrhunsko i profesionalno ozvučenje cijelog prostora kako bi kvaliteta zvuka bila besprijekorna u svakom kutku.
                   </p>
                 </div>
 
-                <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faComments} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Planiranje uz brend i ciljeve</h3>
-                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Konzultacije oko tipa eventa, publike, tona večeri i brenda kako bi glazba podržala poruku koju želite poslati.
-                  </p>
-                </div>
-
-                <div className="p-[30px] bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative hidden text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 md:block mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Diskretna, ali efektna energija</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Čitanje prostora i publike u realnom vremenu, uz fokus na ugodnu atmosferu, networking i kvalitetno iskustvo za klijente i zaposlenike.
+                    Ambijentalna i dinamična rasvjeta za stvaranje prave atmosfere koja vizualno podiže cijeli doživljaj na višu razinu.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faMicrophone} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje događaja</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Preuzimam vođenje važnih trenutaka tijekom večeri, uključujući dodjele nagrada, najave prezentacija i govore.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faStar} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">VIP Iskustvo</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Dugogodišnje iskustvo rada s VIP događajima garantira maksimalnu razinu profesionalnosti, diskrecije i elegancije.
                   </p>
                 </div>
 
@@ -142,25 +209,27 @@ export default function KorporativniDogadaji() {
           </div>
         </section>
 
-        <section className="py-24 relative overflow-hidden scroll-animate">
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-          <div className="container">
-            <div className='max-w-3xl mx-auto text-center'>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
-              <p className="text-xl text-[#b8b8b8] mb-10">
-                Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
-              </p>
-              <button>
+        <section className="py-16 md:py-24 px-4 md:px-0 relative overflow-hidden">
+          <div className="scroll-animate">
+            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
+            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+            <div className="container mx-auto">
+              <div className='max-w-3xl mx-auto text-center'>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
+                  Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
+                </p>
                 <Link 
-                  to="/kontakt" 
+                  to="/kontakt"
+                  aria-label="Pošaljite upit za rezervaciju DJ-a za Vaš korporativni događaj"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
                   Pošalji Upit
                 </Link>
-              </button>
-              <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-[675px]'>
-                <DJControllerApp></DJControllerApp>
+                
+                <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] max-w-[595px] overflow-hidden'>
+                  <DJControllerApp></DJControllerApp>
+                </div>
               </div>
             </div>
           </div>

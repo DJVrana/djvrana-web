@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '~/components/footer/footer';
 import Navbar from '~/components/navbar/navbar';
 import emailjs from '@emailjs/browser';
@@ -74,13 +74,15 @@ const PremiumContact: React.FC = () => {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
+  useEffect(() => emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY!), []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formState.name && formState.email && formState.phone && formState.message) {
       try {
         await emailjs.send(
-          process.env.REACT_APP_EMAIL_SERVICE_ID!, 
-          process.env.REACT_APP_EMAIL_TEMPLATE_ID!,
+          import.meta.env.VITE_EMAIL_SERVICE_ID!, 
+          import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
           {
             name: formState.name,
             email: formState.email,
@@ -88,7 +90,7 @@ const PremiumContact: React.FC = () => {
             phone: formState.phone,
             message: formState.message
           },
-          process.env.REACT_APP_EMAIL_PUBLIC_KEY!
+          import.meta.env.VITE_EMAIL_PUBLIC_KEY!
         );
 
         setShowSuccess(true);

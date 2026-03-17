@@ -1,6 +1,6 @@
 import {
   isRouteErrorResponse,
-  Link, // Dodano za navigaciju u ErrorBoundary-u
+  Link,
   Links,
   Meta,
   Outlet,
@@ -11,20 +11,17 @@ import {
 import type { Route } from "./+types/root";
 import "./styles.css";
 
-// 1. GLOBALNE META OZNAKE (Fallback za cijelu stranicu)
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "DJ Vrana | Vrhunski DJ za Vjenčanja i Proslave" },
     { name: "description", content: "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente. Više od 5 godina iskustva i vrhunska oprema. Rezervirajte svoj termin!" },
-    { name: "theme-color", content: "#0a0a0a" }, // Boja preglednika na mobitelima (crna iz vaše teme)
+    { name: "theme-color", content: "#0a0a0a" },
     { name: "author", content: "Ivan Vraneša" },
     
-    // Globalni Open Graph podaci za društvene mreže
     { property: "og:site_name", content: "DJ Vrana" },
     { property: "og:locale", content: "hr_HR" },
     { property: "og:type", content: "website" },
     
-    // Globalne Twitter kartice
     { name: "twitter:card", content: "summary_large_image" },
     { name: "apple-mobile-web-app-title", content: "DJ Vrana" },
   ];
@@ -72,16 +69,13 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Ups!";
-  let details = "Došlo je do neočekivane pogreške.";
+  let message = "Ups! Nešto je pošlo po zlu.";
+  let details = "Došlo je do neočekivane pogreške u aplikaciji.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404 - Stranica nije pronađena" : `Greška ${error.status}`;
-    details =
-      error.status === 404
-        ? "Nažalost, stranica koju tražite ne postoji ili je premještena."
-        : error.statusText || details;
+    message = `Greška ${error.status}`;
+    details = error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
@@ -94,7 +88,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       </h1>
       <p className="text-xl text-[#a0a0a0] mb-8 max-w-lg">{details}</p>
       
-      {(isRouteErrorResponse(error) && error.status === 404) || !import.meta.env.DEV ? (
+      {!import.meta.env.DEV ? (
         <Link 
           to="/" 
           className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"

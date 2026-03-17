@@ -38,7 +38,7 @@ jobs:
       - name: Build project
         run: |
           npm run build
-          cp ./build/client/index.html ./build/client/404.html
+          cp ./build/client/djvrana-web/index.html ./build/client/djvrana-web/404.html
         env:
           VITE_EMAIL_SERVICE_ID: ${{ secrets.VITE_EMAIL_SERVICE_ID }}
           VITE_EMAIL_TEMPLATE_ID: ${{ secrets.VITE_EMAIL_TEMPLATE_ID }}

@@ -48,9 +48,9 @@ export const links: Route.LinksFunction = () => [
 
 export function HydrateFallback() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-8 text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#111111] text-white p-8 text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div>
-      <p className="mt-4 text-lg">Učitavam aplikaciju...</p>
+      <p className="mt-4 text-lg">Učitavam stranicu...</p>
     </div>
   );
 }

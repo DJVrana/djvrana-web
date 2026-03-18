@@ -5,5 +5,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   base: "/djvrana-web/",
+  build: {
+    outDir: 'build/client',  // tvoj trenutni
+  },
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
 });

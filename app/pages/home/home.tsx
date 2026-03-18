@@ -105,43 +105,30 @@ export default function Home() {
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       
        <section className="hero">
-        <div className="hero-wrapper animate-hero-bottom-glow">
-          <div className="hero-bg-img relative min-h-[100svh] h-auto overflow-hidden flex flex-col items-center justify-center pt-24 md:pt-32 px-4 pb-20 font-sans">
-            <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full">
+        <div className="hero-wrapper relative isolate min-h-[100svh]">
+          <div className="hero-bg-img relative min-h-[100svh] overflow-hidden flex flex-col items-center justify-center pt-24 md:pt-32 px-4 pb-20 font-sans">
+
+            <div className="flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full">
               <header className="flex flex-col items-center text-center w-full">
                 <div className="hero-badge mb-4">DJ ZA VJENČANJA I PROSLAVE</div>
+
                 <h1 className="text-4xl sm:text-5xl md:text-[5rem] font-bold tracking-tight leading-[1.2] md:leading-[1.05]">
                   <span className="text-[#f4f4f5]">Profesionalni DJ za vjenčanja u </span>
-                  <span className="hero-highlight min-h-auto md:h-28 inline-block mt-2 md:mt-0">Zagrebu i okolici</span>
+                  <span className="hero-highlight inline-block mt-2 md:mt-0">
+                    Zagrebu i okolici
+                  </span>
                 </h1>
-                
+
                 <p className="text-base sm:text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-8 md:mb-10 mt-6 md:mt-0 leading-relaxed px-2">
-                  Specijaliziran za svadbe, privatne proslave i korporativne događaje, 
+                  Specijaliziran za svadbe, privatne proslave i korporativne događaje,
                   s ciljem stvaranja vrhunske atmosfere i nezaboravnog plesnog podija.
                 </p>
               </header>
-
-              <div className="cta-buttons flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0 mt-4">
-                <Link
-                  className="btn btn-primary w-full sm:w-auto text-center py-3"
-                  to='/kontakt'
-                >
-                    Rezervirajte Termin
-                </Link>
-                <Link
-                  className="btn btn-secondary w-full sm:w-auto text-center py-3"
-                  to="#video-nastup"
-                >
-                  Pogledajte Video
-                </Link>
-              </div>
             </div>
           </div>
-          <div className="bg-black absolute top-0 left-0 h-full min-h-[100svh] w-full opacity-75"></div>
         </div>
-        
-        <div className="min-h-[100svh] w-full relative"></div>
       </section>
+
 
       <section className="about">
         <div className="relative">

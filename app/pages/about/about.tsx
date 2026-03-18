@@ -271,30 +271,32 @@ const AboutMe = () => {
                 </h2>
             </header>
 
-            <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
-                <div className="w-full md:w-1/2">
-                <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/5 border border-[#d4af37]/20">
-                    <img 
-                    src={serviceImg02} 
-                     alt="DJ Vrana u akciji na svadbi - stvaranje savršene atmosfere" 
-                    className="w-full h-auto"
-                    />
+            <div className='container'>
+                <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
+                    <div className="w-full md:w-1/2">
+                    <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/5 border border-[#d4af37]/20">
+                        <img 
+                        src={serviceImg02} 
+                        alt="DJ Vrana u akciji na svadbi - stvaranje savršene atmosfere" 
+                        className="w-full h-auto"
+                        />
+                    </div>
+                    </div>
+                    <div className="w-full md:w-1/2 space-y-6">
+                    <h3 className="text-2xl font-bold text-[#d4af37]">Iza Pulta</h3>
+                    <p className="text-[#b8b8b8] leading-relaxed">
+                        Vjerujem da glazba nije samo zvuk, nego iskustvo koje povezuje ljude. Moj pristup temelji se na slušanju, prilagodbi i stvaranju trenutaka koji se pamte. Svaki događaj tretiram kao jedinstvenu priču, gdje je cilj više od samog miksa – stvaranje emocija i atmosfere koja će se pamtiti.
+                    </p>
+                    <p className="text-[#b8b8b8] leading-relaxed">
+                        Za mene to nije samo još jedan datum u kalendaru – svaki događaj je priča koju želim prenijeti. Kroz glazbu stvaram trenutke, emocije i uspomene koje ostaju s vama dugo nakon posljednjeg plesa.
+                    </p>
+                    </div>
                 </div>
-                </div>
-                <div className="w-full md:w-1/2 space-y-6">
-                <h3 className="text-2xl font-bold text-[#d4af37]">Iza Pulta</h3>
-                <p className="text-[#b8b8b8] leading-relaxed">
-                    Vjerujem da glazba nije samo zvuk, nego iskustvo koje povezuje ljude. Moj pristup temelji se na slušanju, prilagodbi i stvaranju trenutaka koji se pamte. Svaki događaj tretiram kao jedinstvenu priču, gdje je cilj više od samog miksa – stvaranje emocija i atmosfere koja će se pamtiti.
-                </p>
-                <p className="text-[#b8b8b8] leading-relaxed">
-                    Za mene to nije samo još jedan datum u kalendaru – svaki događaj je priča koju želim prenijeti. Kroz glazbu stvaram trenutke, emocije i uspomene koje ostaju s vama dugo nakon posljednjeg plesa.
-                </p>
-                </div>
-            </div>
 
-            <blockquote className="text-2xl md:text-3xl font-light italic text-center mb-16 px-8 py-12 border-l-4 border-r-4 border-[#d4af37] bg-gradient-to-r from-transparent via-[#1a1a1a] to-transparent">
-                "Glazba nije samo zvuk - to je emocija, energija i veza između ljudi. Moj posao je stvoriti trenutke koji se pamte zauvijek."
-            </blockquote>
+                <blockquote className="text-2xl md:text-3xl font-light italic text-center mb-16 px-8 py-12 border-l-4 border-r-4 border-[#d4af37] bg-gradient-to-r from-transparent via-[#1a1a1a] to-transparent">
+                    "Glazba nije samo zvuk - to je emocija, energija i veza između ljudi. Moj posao je stvoriti trenutke koji se pamte zauvijek."
+                </blockquote>
+                </div>
             </div>
         </section>
 

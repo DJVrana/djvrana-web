@@ -13,5 +13,4 @@ export default [
   route("/najam-opreme", "pages/services/equipment-rental/equipmentRental.tsx"),
   route("/politika-privatnosti", "pages/legal-acts/privacy-policy/privacyPolicy.tsx"),
   route("/uvjeti-koristenja", "pages/legal-acts/terms-and-conditions/termsAndConditions.tsx"),
-  route("*", "pages/catch-all/catchall.tsx"),
 ] satisfies RouteConfig;

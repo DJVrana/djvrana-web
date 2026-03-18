@@ -36,8 +36,17 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:url", content: domain },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` }, 
-    { property: "og:site_name", content: "DJ Vrana" },
+    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
+    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
+    { property: "og:image:type", content: "image/png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+
+    { property: "og:image", content: `${domain}/dj-vrana-og-image-square.png` },
+    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image-square.png` },
+    { property: "og:image:type", content: "image/png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "1200" },
     
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },

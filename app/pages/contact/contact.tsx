@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 import type { Route } from './+types/contact';
 
 export function meta({}: Route.MetaArgs) {
-  const domain = "djvrana.com";
+  const domain = "https://djvrana.com";
   const title = "Kontakt i Rezervacije | DJ Vrana Zagreb";
   const description = "Rezervirajte DJ Vranu za vaše vjenčanje, rođendan ili korporativni event. Provjerite slobodne termine, cijene i pročitajte česta pitanja. Zagreb i cijela Hrvatska.";
 
@@ -79,6 +79,12 @@ const PremiumContact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formState.name && formState.email && formState.phone && formState.message) {
+      const formatDateHR = (dateStr: string): string => {
+        if (!dateStr) return '';
+        const [year, month, day] = dateStr.split('-');
+        return `${day}.${month}.${year}.`;
+      };
+
       try {
         await emailjs.send(
           import.meta.env.VITE_EMAIL_SERVICE_ID!, 
@@ -86,7 +92,7 @@ const PremiumContact: React.FC = () => {
           {
             name: formState.name,
             email: formState.email,
-            date: formState.date,
+            date: formatDateHR(formState.date),
             phone: formState.phone,
             message: formState.message
           },

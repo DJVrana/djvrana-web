@@ -37,14 +37,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Fix folder structure for GitHub Pages
-        run: |
-          mkdir -p dist
-          cp -r build/client/* dist/  # sve u dist root
-          cp build/client/__spa-fallback.html dist/404.html
-      - uses: actions/upload-pages-artifact@v3
+      - name: Create 404 fallback
+        run: cp ./build/client/__spa-fallback.html ./build/client/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: ./build/client
 
   deploy:
     environment:

@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 import type { Route } from './+types/contact';
 
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com";
+  const domain = "djvrana.com";
   const title = "Kontakt i Rezervacije | DJ Vrana Zagreb";
   const description = "Rezervirajte DJ Vranu za vaše vjenčanje, rođendan ili korporativni event. Provjerite slobodne termine, cijene i pročitajte česta pitanja. Zagreb i cijela Hrvatska.";
 

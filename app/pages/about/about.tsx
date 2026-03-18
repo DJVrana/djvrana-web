@@ -24,7 +24,7 @@ import about03 from '../../assets/images/about03.webp'
 import type { Route } from './+types/about';
 
 export function meta({}: Route.MetaArgs) {
-  const domain = "http://localhost:5173"; // Zamijenite vašom domenom
+  const domain = "https://djvrana.com";
   const title = "O meni | DJ Vrana - Ivan Vraneša";
   const description = "Upoznajte DJ Vranu. Više od 5 godina iskustva u stvaranju nezaboravne atmosfere na vjenčanjima, rođendanima i korporativnim eventima uz profesionalni pristup.";
 

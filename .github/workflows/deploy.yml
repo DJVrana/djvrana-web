@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: "npm"
 
       - name: Install dependencies
@@ -36,9 +36,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build project
-        run: |
-          npm run build
-          cp ./build/client/djvrana-web/index.html ./build/client/djvrana-web/404.html
+        run: npm run build
         env:
           VITE_EMAIL_SERVICE_ID: ${{ secrets.VITE_EMAIL_SERVICE_ID }}
           VITE_EMAIL_TEMPLATE_ID: ${{ secrets.VITE_EMAIL_TEMPLATE_ID }}
@@ -47,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./build/client/djvrana-web" 
+          path: build/client"
 
       - name: Deploy to GitHub Pages
         id: deployment

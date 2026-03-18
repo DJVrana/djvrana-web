@@ -86,18 +86,18 @@ const PremiumContact: React.FC = () => {
       };
 
       try {
-        // await emailjs.send(
-        //   import.meta.env.VITE_EMAIL_SERVICE_ID!, 
-        //   import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
-        //   {
-        //     name: formState.name,
-        //     email: formState.email,
-        //     date: formatDateHR(formState.date),
-        //     phone: formState.phone,
-        //     message: formState.message
-        //   },
-        //   import.meta.env.VITE_EMAIL_PUBLIC_KEY!
-        // );
+        await emailjs.send(
+          import.meta.env.VITE_EMAIL_SERVICE_ID!, 
+          import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
+          {
+            name: formState.name,
+            email: formState.email,
+            date: formatDateHR(formState.date),
+            phone: formState.phone,
+            message: formState.message
+          },
+          import.meta.env.VITE_EMAIL_PUBLIC_KEY!
+        );
 
         setShowSuccess(true);
         setFormState({ name: '', email: '', date: '', phone: '', message: '' });

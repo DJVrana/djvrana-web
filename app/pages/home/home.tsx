@@ -22,7 +22,7 @@ import {
 import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 
 export function meta({}: Route.MetaArgs) {
-  const domain = "http://localhost:5173"; 
+  const domain = "https://djvrana.com"; 
   const title = "DJ Vrana | Vrhunski DJ za Vjenčanja i Proslave u Zagrebu";
   const description = "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente u Zagrebu i okolici. Više od 5 godina iskustva, vrhunska oprema i nezaboravna atmosfera. Rezervirajte svoj termin!";
 

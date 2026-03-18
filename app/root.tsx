@@ -69,13 +69,16 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Ups! Nešto je pošlo po zlu.";
-  let details = "Došlo je do neočekivane pogreške u aplikaciji.";
+  let message = "Ups!";
+  let details = "Došlo je do neočekivane pogreške.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = `Greška ${error.status}`;
-    details = error.statusText || details;
+    message = error.status === 404 ? "404 - Stranica nije pronađena" : `Greška ${error.status}`;
+    details =
+      error.status === 404
+        ? "Nažalost, stranica koju tražite ne postoji ili je premještena."
+        : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
@@ -88,7 +91,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       </h1>
       <p className="text-xl text-[#a0a0a0] mb-8 max-w-lg">{details}</p>
       
-      {!import.meta.env.DEV ? (
+      {(isRouteErrorResponse(error) && error.status === 404) || !import.meta.env.DEV ? (
         <Link 
           to="/" 
           className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"

@@ -22,7 +22,7 @@ export default function NotFound() {
       </p>
       
       <Link 
-        to="/djvrana-web" 
+        to="/" 
         className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
       >
         Vrati se na početnu

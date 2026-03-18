@@ -73,8 +73,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let details = "Došlo je do neočekivane pogreške u aplikaciji.";
   let stack: string | undefined;
 
-  console.log(import.meta.env.DEV);
-
   if (isRouteErrorResponse(error)) {
     message = `Greška ${error.status}`;
     details = error.statusText || details;

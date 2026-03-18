@@ -68,43 +68,43 @@ export default function App() {
   return <Outlet />;
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Ups!";
-  let details = "Došlo je do neočekivane pogreške.";
-  let stack: string | undefined;
+// export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+//   let message = "Ups!";
+//   let details = "Došlo je do neočekivane pogreške.";
+//   let stack: string | undefined;
 
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404 - Stranica nije pronađena" : `Greška ${error.status}`;
-    details =
-      error.status === 404
-        ? "Nažalost, stranica koju tražite ne postoji ili je premještena."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
+//   if (isRouteErrorResponse(error)) {
+//     message = error.status === 404 ? "404 - Stranica nije pronađena" : `Greška ${error.status}`;
+//     details =
+//       error.status === 404
+//         ? "Nažalost, stranica koju tražite ne postoji ili je premještena."
+//         : error.statusText || details;
+//   } else if (import.meta.env.DEV && error && error instanceof Error) {
+//     details = error.message;
+//     stack = error.stack;
+//   }
 
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#0a0a0a] text-white font-sans text-center">
-      <h1 className="text-[4rem] md:text-[6rem] font-bold bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent mb-4">
-        {message}
-      </h1>
-      <p className="text-xl text-[#a0a0a0] mb-8 max-w-lg">{details}</p>
+//   return (
+//     <main className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#0a0a0a] text-white font-sans text-center">
+//       <h1 className="text-[4rem] md:text-[6rem] font-bold bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent mb-4">
+//         {message}
+//       </h1>
+//       <p className="text-xl text-[#a0a0a0] mb-8 max-w-lg">{details}</p>
       
-      {(isRouteErrorResponse(error) && error.status === 404) || !import.meta.env.DEV ? (
-        <Link 
-          to="/" 
-          className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-        >
-          Vrati se na početnu
-        </Link>
-      ) : null}
+//       {(isRouteErrorResponse(error) && error.status === 404) || !import.meta.env.DEV ? (
+//         <Link 
+//           to="/" 
+//           className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+//         >
+//           Vrati se na početnu
+//         </Link>
+//       ) : null}
 
-      {stack && (
-        <pre className="w-full max-w-3xl p-6 mt-12 overflow-x-auto bg-[#111] border border-red-900/50 rounded-xl text-left text-sm text-red-400 shadow-2xl">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
-  );
-}
+//       {stack && (
+//         <pre className="w-full max-w-3xl p-6 mt-12 overflow-x-auto bg-[#111] border border-red-900/50 rounded-xl text-left text-sm text-red-400 shadow-2xl">
+//           <code>{stack}</code>
+//         </pre>
+//       )}
+//     </main>
+//   );
+// }

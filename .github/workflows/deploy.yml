@@ -36,8 +36,9 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build project
-        run: npm run build
-        run: cp build/client/index.html build/client/404.html
+        run: |
+          npm run build
+          cp build/client/index.html build/client/404.html
         env:
           VITE_EMAIL_SERVICE_ID: ${{ secrets.VITE_EMAIL_SERVICE_ID }}
           VITE_EMAIL_TEMPLATE_ID: ${{ secrets.VITE_EMAIL_TEMPLATE_ID }}

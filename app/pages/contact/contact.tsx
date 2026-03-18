@@ -86,18 +86,18 @@ const PremiumContact: React.FC = () => {
       };
 
       try {
-        await emailjs.send(
-          import.meta.env.VITE_EMAIL_SERVICE_ID!, 
-          import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
-          {
-            name: formState.name,
-            email: formState.email,
-            date: formatDateHR(formState.date),
-            phone: formState.phone,
-            message: formState.message
-          },
-          import.meta.env.VITE_EMAIL_PUBLIC_KEY!
-        );
+        // await emailjs.send(
+        //   import.meta.env.VITE_EMAIL_SERVICE_ID!, 
+        //   import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
+        //   {
+        //     name: formState.name,
+        //     email: formState.email,
+        //     date: formatDateHR(formState.date),
+        //     phone: formState.phone,
+        //     message: formState.message
+        //   },
+        //   import.meta.env.VITE_EMAIL_PUBLIC_KEY!
+        // );
 
         setShowSuccess(true);
         setFormState({ name: '', email: '', date: '', phone: '', message: '' });
@@ -316,6 +316,7 @@ const PremiumContact: React.FC = () => {
                             type="date" 
                             id="date" 
                             name="date" 
+                            lang="hr"
                             value={formState.date}
                             onChange={handleInputChange}
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 [color-scheme:dark]"

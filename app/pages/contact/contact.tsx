@@ -144,7 +144,7 @@ const PremiumContact: React.FC = () => {
     },
     {
       q: "Kako rezervirati DJ Vranu?",
-      a: "Kontaktirajte me telefonom (+385 98 958 2676) ili putem kontakt forme. Dogovorit ćemo <span class=\"text-[rgba(212,175,55,1)] font-semibold\">besplatne konzultacije</span> kako bismo zajedno prošli vaše želje, glazbene preferencije i sve detalje vašeg događaja.<br><br><a href=\"#kontakt-forma\" class=\"text-[rgba(212,175,55,1)] font-semibold underline hover:opacity-80 transition-opacity inline-block mt-2\">Ispunite formu ovdje</a>"
+      a: "Kontaktirajte me telefonom (+385 98 958 2676) ili putem kontakt forme. Dogovorit ćemo <span class=\"text-[rgba(212,175,55,1)] font-semibold\">besplatne konzultacije</span> kako bismo zajedno prošli Vaše želje, glazbene preferencije i sve detalje Vašeg događaja.<br><br><a href=\"#kontakt-forma\" class=\"text-[rgba(212,175,55,1)] font-semibold underline hover:opacity-80 transition-opacity inline-block mt-2\">Ispunite formu ovdje</a>"
     }
   ];
 

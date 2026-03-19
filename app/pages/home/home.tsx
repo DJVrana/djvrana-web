@@ -113,13 +113,15 @@ export default function Home() {
                 <div className="hero-badge mb-4">DJ ZA VJENČANJA I PROSLAVE</div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-[5rem] font-bold tracking-tight leading-[1.2] md:leading-[1.05]">
-                  <span className="text-[#f4f4f5]">Profesionalni DJ za vjenčanja u </span>
-                  <span className="hero-highlight inline-block mt-2 md:mt-0">
+                  <span className="text-[#f4f4f5]">
+                    Profesionalni DJ za vjenčanja u
+                  </span>{" "}
+                  <span className="inline-block relative pb-1 mt-2 md:mt-0 bg-[linear-gradient(135deg,#d4af37_0%,#f4e5a0_50%,#d4af37_100%)] bg-clip-text text-transparent [-webkit-text-fill-color:transparent]">
                     Zagrebu i okolici
                   </span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-8 md:mb-10 mt-6 md:mt-0 leading-relaxed px-2">
+                <p className="text-base sm:text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-8 md:mb-10 mt-6 md:mt-6 leading-relaxed px-2">
                   Specijaliziran za svadbe, privatne proslave i korporativne događaje,
                   s ciljem stvaranja vrhunske atmosfere i nezaboravnog plesnog podija.
                 </p>
@@ -227,7 +229,7 @@ export default function Home() {
                     Profesionalne DJ usluge
                   </h2>
                   <p className="mx-auto mt-4 sm:mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                    Vrhunska audio i rasvjetna oprema za savršenu atmosferu na svakom događaju.
+                    Pružam cjelovita rješenja za glazbu i atmosferu — prilagođena svakom događaju.
                   </p>
                 </header>
                 <ServicesPremium />
@@ -247,7 +249,7 @@ export default function Home() {
               Zavirite na Plesni Podij
             </h2>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
-              Kratki isječak energije i atmosfere koju donosim na svaki događaj. Vrhunska glazba, profesionalna oprema i nezaboravni trenuci.
+              Kratki isječak energije i atmosfere koju donosim na svaki događaj – ritam koji pokreće, glazba koja spaja i trenuci koji se pamte.
             </p>
           </header>
 
@@ -350,7 +352,7 @@ function Card({ title, badge, icon, image, imagePosition = "center", description
       ].join(" ")}
     >
       <div className={[
-        "group z-999 relative overflow-hidden rounded-3xl border-b border-[rgba(212,175,55,0.2)] bg-white/5",
+        "group z-999 relative overflow-hidden t-rounded-3xl border-b border-[rgba(212,175,55,0.2)] bg-white/5",
         "backdrop-blur-xl mb-6",
         ].join(" ")}
       >
@@ -430,27 +432,27 @@ function ServicesPremium() {
   const rest = services.filter((s) => !s.featured);
 
   return (
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12">
+      <div className="mt-12 grid grid-cols-1 gap-16 md:grid-cols-6">
         {featured && (
-          <div className="md:col-span-7 md:row-span-2">
+          <div className="md:col-span-3">
             <Card key={featured.id} {...featured} />
           </div>
         )}
 
         {rest[0] && (
-          <div className="md:col-span-5">
+          <div className="md:col-span-3">
             <Card key={rest[0].id} {...rest[0]} />
           </div>
         )}
 
         {rest[1] && (
-          <div className="md:col-span-5">
+          <div className="md:col-span-3">
             <Card key={rest[1].id} {...rest[1]} />
           </div>
         )}
 
         {rest[2] && (
-          <div className="md:col-span-12 lg:col-span-12">
+          <div className="md:col-span-3">
             <Card key={rest[2].id} {...rest[2]} />
           </div>
         )}

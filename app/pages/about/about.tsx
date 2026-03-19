@@ -168,7 +168,7 @@ const AboutMe = () => {
                 <p className="section-subtitle">Moja Priča</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                Strast Koja Stvara Atmosferu
+                    Strast Koja Stvara Atmosferu
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
@@ -310,17 +310,17 @@ const AboutMe = () => {
                 <p className="section-subtitle">Specijalizacija</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                U Čemu Sam Najbolji
+                    U Čemu Sam Najbolji
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                Svaki tip događaja zahtijeva specifičan pristup i razumijevanje. Evo područja u kojima iznimujem.
+                    Svaki događaj nosi svoju priču, energiju i publiku. Kroz iskustvo sam razvio sposobnost da prepoznam što publika želi u pravom trenutku i stvorim atmosferu koja se pamti.
                 </p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja", title: 'Vjenčanja', desc: 'Stvaram romantičnu i elegantnu atmosferu koja čini vaš poseban dan još nezaboravnijim.' },
+                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja", title: 'Vjenčanja', desc: 'Bilo da se radi o intimnom ili velikom vjenčanju, znam kako stvoriti pravu atmosferu i držati plesni podij punim cijelu večer. Prilagođavam glazbu vašim željama, tempu večeri i gostima kako bi svaki trenutak bio poseban i nezaboravan.' },
                 { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
                 { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
                 { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-dogadaji", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }

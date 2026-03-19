@@ -35,7 +35,7 @@ export default function Footer() {
               DJ VRANA
             </div>
             <p className="text-[#b8b8b8] text-[0.9rem] md:text-[0.95rem] leading-relaxed max-w-full lg:max-w-[350px]">
-              Pružamo premium DJ usluge za ekskluzivne događaje, vjenčanja, korporativne zabave i privatne proslave. Vaš trenutak, naša glazba.
+              Premium DJ usluge za ekskluzivne događaje, vjenčanja, korporativne zabave i privatne proslave. Vaša želja za savršenom glazbom je moja misija!
             </p>
             <div className="flex gap-3 sm:gap-4 mt-2 md:mt-4">
               <Link to="https://www.instagram.com/ivan.vranesa/" target='_blank' aria-label="Posjetite naš Instagram profil" rel="noopener noreferrer" className="w-[40px] md:w-[42px] h-[40px] md:h-[42px] border border-[#d4af37]/20 rounded-full flex items-center justify-center text-[#d4af37] bg-[#d4af37]/5 transition-all duration-300 hover:bg-[#d4af37] hover:text-[#0a0a0a] hover:border-[#d4af37] hover:-translate-y-[3px] hover:shadow-[0_5px_15px_rgba(212,175,55,0.3)]">
@@ -115,7 +115,7 @@ export default function Footer() {
               </li>
               <li className="mt-2 w-full sm:w-auto">
                 <Link to="/kontakt" className="btn-wrapper btn-footer inline-block w-full text-center py-3 md:py-2 px-4 border border-[#d4af37]/50 rounded-lg text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300">
-                  Kontaktiraj Me
+                  Kontaktirajte Me
                 </Link>
               </li>
             </ul>

@@ -187,7 +187,7 @@ const PremiumDJUsluge: React.FC = () => {
                         Što Nudim
                     </h1>
                     <p className="text-base md:text-lg lg:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed px-2">
-                      Profesionalne DJ usluge i oprema koja podiže svaki događaj na novu razinu. Svaki set prilagođavam vašim željama i atmosferi, kako bi svaki trenutak bio poseban.
+                      Profesionalne DJ usluge i oprema koja podiže svaki događaj na novu razinu. Svaki set prilagođavam Vašim željama i atmosferi, kako bi svaki trenutak bio poseban.
                     </p>
                 </div>
             </header>

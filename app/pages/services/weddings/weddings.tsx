@@ -36,12 +36,6 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
 
-    { property: "og:image", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "1200" },
-
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },

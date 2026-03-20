@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Footer from '~/components/footer/footer';
 import Navbar from '~/components/navbar/navbar';
 import emailjs from '@emailjs/browser';
@@ -29,12 +29,6 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:type", content: "image/png" },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-
-    { property: "og:image", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "1200" },
 
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
@@ -74,6 +68,8 @@ const PremiumContact: React.FC = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   const [currentPage, setCurrentPage] = useState<string>('kontakt');
+
+  const today = useMemo(() => formatLocalDate(), []);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
@@ -124,6 +120,13 @@ const PremiumContact: React.FC = () => {
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
+
+  function formatLocalDate(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
 
   const faqs: FaqItem[] = [
     {
@@ -327,6 +330,7 @@ const PremiumContact: React.FC = () => {
                             id="date" 
                             name="date" 
                             lang="hr"
+                            min={today}
                             value={formState.date}
                             onChange={handleInputChange}
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 [color-scheme:dark]"

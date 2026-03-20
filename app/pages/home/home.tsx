@@ -41,12 +41,6 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:image:type", content: "image/png" },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-
-    { property: "og:image", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image-square.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "1200" },
     
     // Twitter Card
     { name: "twitter:card", content: "summary_large_image" },
@@ -259,7 +253,7 @@ export default function Home() {
               <iframe
                 src="https://www.youtube.com/embed/xf_R-eEJoUI?rel=0"
                 title="DJ Vrana - Atmosfera s Nastupa"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full relative z-10"
               ></iframe>

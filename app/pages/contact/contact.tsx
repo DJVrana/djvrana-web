@@ -21,7 +21,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/kontakt` },
+    { property: "og:url", content: `${domain}/kontakt/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -37,7 +37,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/kontakt` }
+    { tagName: "link", rel: "canonical", href: `${domain}/kontakt/` }
   ];
 }
 
@@ -180,7 +180,7 @@ const PremiumContact: React.FC = () => {
         "addressCountry": "HR"
       },
       "areaServed": "Hrvatska",
-      "url": "https://djvrana.com/kontakt"
+      "url": "https://djvrana.com/kontakt/"
     }
   };
 

@@ -32,7 +32,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/usluge` },
+    { property: "og:url", content: `${domain}/usluge/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -48,7 +48,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/usluge` }
+    { tagName: "link", rel: "canonical", href: `${domain}/usluge/` }
   ];
 }
 
@@ -104,60 +104,67 @@ const PremiumDJUsluge: React.FC = () => {
 
   const servicesSchema = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Service",
-          "name": "DJ za Vjenčanja",
-          "description": "Profesionalno odabrana glazba i savršena atmosfera za vjenčanja.",
-          "url": "https://djvrana.com/vjencanja"
+    "@type": "Service",
+    "name": "DJ Vrana usluge",
+    "serviceType": "DJ usluge za vjenčanja, korporativne događaje i privatne proslave",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "DJ Vrana",
+      "url": "https://djvrana.com/"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "DJ Vrana usluge",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "DJ za Vjenčanja",
+            "description": "Profesionalno odabrana glazba i savršena atmosfera za vjenčanja.",
+            "url": "https://djvrana.com/vjencanja/"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "DJ za Korporativne Događaje",
+            "description": "Glazba i atmosfera za korporativne evente i team buildinge.",
+            "url": "https://djvrana.com/korporativni-dogadaji/"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Privatne Proslave",
+            "description": "Nezaboravna glazba za rođendane, maturalne zabave i ostale proslave.",
+            "url": "https://djvrana.com/privatne-proslave/"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "DJ Edukacija",
+            "description": "Tečajevi i radionice za početnike i napredne DJ-eve.",
+            "url": "https://djvrana.com/dj-edukacija/"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Najam Opreme",
+            "description": "Najam profesionalnog ozvučenja, rasvjete i DJ miksera.",
+            "url": "https://djvrana.com/najam-opreme/"
+          }
         }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "Service",
-          "name": "DJ za Korporativne Događaje",
-          "description": "Glazba i atmosfera za korporativne evente i team buildinge.",
-          "url": "https://djvrana.com/korporativni-dogadaji"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@type": "Service",
-          "name": "Privatne Proslave",
-          "description": "Nezaboravna glazba za rođendane, maturalne zabave i ostale proslave.",
-          "url": "https://djvrana.com/privatne-proslave"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "item": {
-          "@type": "Service",
-          "name": "DJ Edukacija",
-          "description": "Tečajevi i radionice za početnike i napredne DJ-eve.",
-          "url": "https://djvrana.com/dj-edukacija"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "item": {
-          "@type": "Service",
-          "name": "Najam Opreme",
-          "description": "Najam profesionalnog ozvučenja, rasvjete i DJ miksera.",
-          "url": "https://djvrana.com/najam-opreme"
-        }
-      }
-    ]
+      ]
+    }
   };
+
 
   return (
     <main className="overflow-x-hidden">
@@ -202,7 +209,7 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                  <Link to="/vjencanja" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
+                  <Link to="/vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
                     Saznaj Više
                   </Link>
             </div>
@@ -236,7 +243,7 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/korporativni-dogadaji" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za korporativne događaje">
+                <Link to="/korporativni-dogadaji/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za korporativne događaje">
                   Potraži Informacije
                 </Link>
             </div>
@@ -270,7 +277,7 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/privatne-proslave" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za privatne proslave">
+                <Link to="/privatne-proslave/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za privatne proslave">
                   Detaljnije
                 </Link>
             </div>
@@ -304,7 +311,7 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/dj-edukacija" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o tečajevima i radionicama">
+                <Link to="/dj-edukacija/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o tečajevima i radionicama">
                   Više Informacija
                 </Link>
             </div>
@@ -338,8 +345,8 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/najam-opreme" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o najmu opreme">
-                  Detaljnije
+                <Link to="/najam-opreme/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o najmu opreme">
+                  Saznaj Više
                 </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
@@ -363,7 +370,7 @@ const PremiumDJUsluge: React.FC = () => {
               <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
                 Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
               </p>
-              <Link to="/kontakt" type="button" className="btn btn-primary">
+              <Link to="/kontakt/" type="button" className="btn btn-primary">
                 Kontaktiraj Me
               </Link>
             </div>

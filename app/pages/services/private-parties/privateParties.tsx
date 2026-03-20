@@ -27,7 +27,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/privatne-proslave` },
+    { property: "og:url", content: `${domain}/privatne-proslave/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -43,7 +43,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/privatne-proslave` }
+    { tagName: "link", rel: "canonical", href: `${domain}/privatne-proslave/` }
   ];
 }
 
@@ -72,7 +72,7 @@ export default function PrivatneProslave() {
     },
     "description": "Profesionalne DJ usluge za rođendane, maturalne zabave, djevojačke večeri i ostale privatne proslave. Uključuje personaliziranu glazbu, profesionalno ozvučenje i rasvjetu.",
     "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/privatne-proslave",
+    "url": "https://djvrana.com/privatne-proslave/",
     "category": "Event Entertainment"
   };
 
@@ -209,7 +209,7 @@ export default function PrivatneProslave() {
                   Podignite svaki događaj uz DJ Vranu! Kontaktirajte me danas i rezervirajmo datum za vašu proslavu.
                 </p>
                 <Link
-                  to="/kontakt"
+                  to="/kontakt/"
                   aria-label="Pošaljite upit za rezervaciju DJ-a za vašu privatnu proslavu"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >

@@ -39,7 +39,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "profile:first_name", content: "Ivan" },
     { property: "profile:last_name", content: "Vraneša" },
     { property: "profile:username", content: "DJ Vrana" },
-    { property: "og:url", content: `${domain}/o-meni` },
+    { property: "og:url", content: `${domain}/o-meni/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -55,7 +55,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/o-meni` }
+    { tagName: "link", rel: "canonical", href: `${domain}/o-meni/` }
   ];
 }
 
@@ -104,7 +104,7 @@ const AboutMe = () => {
     "alternateName": "DJ Vrana",
     "jobTitle": "Professional DJ",
     "description": "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente s preko 5 godina iskustva.",
-    "url": "https://djvrana.com/o-meni",
+    "url": "https://djvrana.com/o-meni/",
     "image": "https://djvrana.com/ivan-vranesa-profil.png",
     "knowsAbout": ["DJing", "Wedding Entertainment", "Event Management", "Sound Engineering"],
     "sameAs": [
@@ -136,7 +136,8 @@ const AboutMe = () => {
                       Tko Sam Ja
                     </h1>
                     <p className="text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed">
-                        Strast prema ritmu, iskustvo za pultom i posvećenost detaljima koji vaš događaj čine besprijekornim.                    </p>
+                        Strast prema ritmu, iskustvo za pultom i posvećenost detaljima koji vaš događaj čine besprijekornim.
+                    </p>
                 </div>
             </header>
             <div className="hero-content-aobut">
@@ -314,10 +315,10 @@ const AboutMe = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja", title: 'Vjenčanja', desc: 'Bilo da se radi o intimnom ili velikom vjenčanju, znam kako stvoriti pravu atmosferu i držati plesni podij punim cijelu večer. Prilagođavam glazbu vašim željama, tempu večeri i gostima kako bi svaki trenutak bio poseban i nezaboravan.' },
-                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
-                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
-                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-dogadaji", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
+                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/vjencanja/", title: 'Vjenčanja', desc: 'Bilo da se radi o intimnom ili velikom vjenčanju, znam kako stvoriti pravu atmosferu i držati plesni podij punim cijelu večer. Prilagođavam glazbu vašim željama, tempu večeri i gostima kako bi svaki trenutak bio poseban i nezaboravan.' },
+                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave/", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
+                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave/", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
+                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-dogadaji/", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
                 ].map((spec, i) => (
                 <div key={i} className="bg-[#1a1a1a] p-8 rounded-2xl border border-transparent hover:border-[#d4af37]/30 transition-all duration-300 group flex flex-col justify-between">
                     <div>
@@ -355,7 +356,7 @@ const AboutMe = () => {
                             Osigurajte svoj datum i učinite svoj događaj nezaboravnim. Kontaktirajte me već danas i krenimo zajedno stvarati savršenu atmosferu!
                         </p>
                         <Link 
-                            to="/kontakt" 
+                            to="/kontakt/" 
                             className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                         >
                             Pošaljite Upit

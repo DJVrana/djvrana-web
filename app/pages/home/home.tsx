@@ -199,7 +199,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Link to="/o-meni" aria-label={`Saznajte više o meni`} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
+                <Link to="/o-meni/" aria-label={`Saznajte više o meni`} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
                   Saznajte više o meni
                   <span className="transition-transform duration-300 group-hover:translate-x-[5px]">→</span>
                 </Link>
@@ -261,7 +261,7 @@ export default function Home() {
           </div>
           <div className="mt-10 flex justify-center w-full">
             {/* Ovdje je ključna izmjena za gumb - maknut fiksni px-40 */}
-            <Link to="/galerija" aria-label={`Pogledajte više u galeriji`} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
+            <Link to="/galerija/" aria-label={`Pogledajte više u galeriji`} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
               Pogledaj više sadržaja
             </Link>
           </div>
@@ -296,7 +296,7 @@ const services: Item[] = [
     imagePosition: "50% 20%",
     description:
       "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
-    path: "/vjencanja",
+    path: "/vjencanja/",
     featured: true,
     bullets: ["Vrhunska DJ oprema", "Pažljivo osmišljen repertoar", "Konzultacija s mladencima", "Animacija gostiju", "Vođenje protokola"],
   },
@@ -308,7 +308,7 @@ const services: Item[] = [
     imagePosition: "50% 10%",
     description:
       "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
-    path: "/usluge#dogadaji",
+    path: "/usluge/#dogadaji",
     bullets: ["Rođendani i proslave", "Korporativni događaji", "Djevojačke i momačke večeri", "Privatne zabave", "Festivali i koncerti"],
   },
   {
@@ -319,7 +319,7 @@ const services: Item[] = [
     imagePosition: "center",
     description:
       "Vrhunska DJ oprema za svaki događaj -- ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.",
-    path: "/najam-opreme",
+    path: "/najam-opreme/",
     bullets: ["Ozvučenje", "DJ kontroleri i mikseri", "Rasvjeta", "Mikrofoni", "Tehnička podrška"],
   },
   {
@@ -330,7 +330,7 @@ const services: Item[] = [
     imagePosition: "50% 20%",
     description:
       "Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama -- od početnika do onih koji žele usavršiti svoje miksanje.",
-    path: "/dj-edukacija",
+    path: "/dj-edukacija/",
     bullets: ["Osnove DJ opreme i tehnike miksanja", "Praktične vježbe i live miks sesije", "Savjeti za kreiranje set lista i energiju publike", "Individualni pristup i personalizirani program", "Priprema za nastupe"],
   }
 ];

@@ -27,7 +27,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/dj-edukacija` },
+    { property: "og:url", content: `${domain}/dj-edukacija/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -43,7 +43,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/dj-edukacija` }
+    { tagName: "link", rel: "canonical", href: `${domain}/dj-edukacija/` }
   ];
 }
 
@@ -69,7 +69,7 @@ export default function DJEdukacija() {
     "provider": {
       "@type": "Person",
       "name": "Ivan Vraneša (DJ Vrana)",
-      "url": "https://djvrana.com/o-meni"
+      "url": "https://djvrana.com/o-meni/"
     },
     "coursePrerequisites": "Nije potrebno prethodno predznanje.",
     "educationalCredentialAwarded": "Znanje za samostalan DJ nastup",
@@ -213,7 +213,7 @@ export default function DJEdukacija() {
                   Spremni ste stati za pult i savladati umjetnost miksanja? Prijavite se na edukaciju i rezervirajte svoj prvi termin.
                 </p>
                 <Link 
-                  to="/kontakt"
+                  to="/kontakt/"
                   aria-label="Pošaljite upit i prijavite se na DJ edukaciju"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >

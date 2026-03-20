@@ -16,7 +16,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/uvjeti-koristenja` },
+    { property: "og:url", content: `${domain}/uvjeti-koristenja/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -32,7 +32,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/uvjeti-koristenja` }
+    { tagName: "link", rel: "canonical", href: `${domain}/uvjeti-koristenja/` }
   ];
 }
 
@@ -48,7 +48,7 @@ const TermsOfUse: React.FC = () => {
     "@type": "WebPage",
     "name": "Uvjeti Korištenja - DJ Vrana",
     "description": "Pravila i uvjeti korištenja usluga i web stranice DJ Vrane.",
-    "url": "https://djvrana.com/uvjeti-koristenja",
+    "url": "https://djvrana.com/uvjeti-koristenja/",
     "publisher": {
       "@type": "Person",
       "name": "Ivan Vraneša"
@@ -267,7 +267,7 @@ const TermsOfUse: React.FC = () => {
                   Obrada osobnih podataka (npr. podaci iz kontakt forme) te uporaba kolačića i analitike (npr. Google Analytics uz privolu) uređeni su zasebnim dokumentom: Politikom privatnosti.
                 </p>
                 <p>
-                  Preporučujemo da prije korištenja kontakt forme pročitate <Link to="/politika-privatnosti" className="text-[#d4af37] hover:underline">Politiku privatnosti</Link>.
+                  Preporučujemo da prije korištenja kontakt forme pročitate <Link to="/politika-privatnosti/" className="text-[#d4af37] hover:underline">Politiku privatnosti</Link>.
                 </p>
               </div>
             </section>

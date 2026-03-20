@@ -16,7 +16,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/politika-privatnosti` },
+    { property: "og:url", content: `${domain}/politika-privatnosti/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -32,7 +32,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/politika-privatnosti` }
+    { tagName: "link", rel: "canonical", href: `${domain}/politika-privatnosti/` }
   ];
 }
 
@@ -48,7 +48,7 @@ const PrivacyPolicy: React.FC = () => {
     "@type": "WebPage",
     "name": "Politika Privatnosti - DJ Vrana",
     "description": "Informacije o zaštiti osobnih podataka i GDPR usklađenosti za klijente DJ Vrane.",
-    "url": "https://djvrana.com/politika-privatnosti",
+    "url": "https://djvrana.com/politika-privatnosti/",
     "publisher": {
       "@type": "Person",
       "name": "Ivan Vraneša"

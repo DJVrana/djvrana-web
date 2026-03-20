@@ -30,7 +30,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "robots", content: "index, follow" },
     
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/galerija` },
+    { property: "og:url", content: `${domain}/galerija/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -45,7 +45,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
-    { tagName: "link", rel: "canonical", href: `${domain}/galerija` }
+    { tagName: "link", rel: "canonical", href: `${domain}/galerija/` }
   ];
 }
 
@@ -157,32 +157,44 @@ export default function Gallery() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxOpen, navigateLightbox]);
 
-  const videoSchema = {
+  const toAbsoluteUrl = (src: string) =>
+  src.startsWith("http") ? src : `https://djvrana.com${src}`;
+
+  const gallerySchema = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": videoData.map((video, index) => {
-      const videoId = video.embedUrl.split('/').pop(); 
-      
-      return {
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": {
+    "@type": "CollectionPage",
+    "@id": "https://djvrana.com/galerija/",
+    "url": "https://djvrana.com/galerija/",
+    "name": "DJ Vrana galerija",
+    "description": "Galerija fotografija i video isječaka s vjenčanja, klubskih večeri, privatnih i korporativnih događanja DJ Vrane.",
+    "hasPart": [
+      ...galleryData.map((item) => ({
+        "@type": "ImageObject",
+        "@id": `https://djvrana.com/galerija/#image-${item.id}`,
+        "contentUrl": toAbsoluteUrl(item.image),
+        "name": item.title,
+        "description": item.description
+      })),
+      ...videoData.map((video) => {
+        const videoId = video.embedUrl.split("/").pop()?.split("?")[0];
+
+        return {
           "@type": "VideoObject",
+          "@id": `https://djvrana.com/galerija/#video-${video.id}`,
           "name": `DJ Vrana - ${video.title}`,
-          "description": `Atmosfera s nastupa DJ Vrane: ${video.title}`,
-          "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/hqdefault.webp`,
-          "embedUrl": video.embedUrl,
-          "uploadDate": "2024-01-01"
-        }
-      };
-    })
+          "description": `Video isječak s nastupa DJ Vrane: ${video.title}`,
+          "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+          "embedUrl": video.embedUrl
+        };
+      })
+    ]
   };
 
   return (
     <main className="overflow-x-hidden">
         <script 
           type="application/ld+json" 
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} 
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(gallerySchema) }} 
         />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 

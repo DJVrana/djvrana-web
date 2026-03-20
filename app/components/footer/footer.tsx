@@ -59,11 +59,11 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                {title: 'Vjenčanja', path: "/vjencanja"}, 
-                {title: 'Korporativni Događaji', path: "/korporativni-dogadaji"}, 
-                {title: 'Privatne Proslave', path: "/privatne-proslave"}, 
-                {title: 'DJ Edukacija', path: "/dj-edukacija"}, 
-                {title: 'Klubovi i Festivali', path: "/klubovi-i-festivali"}
+                {title: 'Vjenčanja', path: "/vjencanja/"}, 
+                {title: 'Korporativni Događaji', path: "/korporativni-dogadaji/"}, 
+                {title: 'Privatne Proslave', path: "/privatne-proslave/"}, 
+                {title: 'DJ Edukacija', path: "/dj-edukacija/"}, 
+                {title: 'Najam Opreme', path: "/najam-opreme/"}
               ].map((item) => (
                 <li key={item.path}>
                   <Link to={item.path} className="text-[#b8b8b8] text-[0.85rem] md:text-[0.9rem] transition-all duration-300 inline-block hover:text-[#d4af37] hover:pl-1">
@@ -80,11 +80,11 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                {title: 'O Meni', path: "/o-meni"}, 
-                {title: 'Galerija', path: "/galerija#photo"}, 
-                {title: 'Video', path: "/galerija"}, 
-                {title: 'FAQ', path: "/kontakt#cesta-pitanja"}, 
-                {title: 'Kontakt', path: "/kontakt"}
+                {title: 'O Meni', path: "/o-meni/"}, 
+                {title: 'Galerija', path: "/galerija/#photo"}, 
+                {title: 'Video', path: "/galerija/"}, 
+                {title: 'FAQ', path: "/kontakt/#cesta-pitanja"}, 
+                {title: 'Kontakt', path: "/kontakt/"}
               ].map((item) => (
                 <li key={item.path}>
                   <Link to={item.path} className="text-[#b8b8b8] text-[0.85rem] md:text-[0.9rem] transition-all duration-300 inline-block hover:text-[#d4af37] hover:pl-1">
@@ -114,7 +114,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mt-2 w-full sm:w-auto">
-                <Link to="/kontakt" className="btn-wrapper btn-footer inline-block w-full text-center py-3 md:py-2 px-4 border border-[#d4af37]/50 rounded-lg text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300">
+                <Link to="/kontakt/" className="btn-wrapper btn-footer inline-block w-full text-center py-3 md:py-2 px-4 border border-[#d4af37]/50 rounded-lg text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300">
                   Kontaktirajte Me
                 </Link>
               </li>
@@ -126,8 +126,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center pt-2 md:pt-4 text-[#b8b8b8] text-[0.8rem] md:text-[0.85rem] gap-4 md:gap-0 text-center md:text-left">
           <div>© {new Date().getFullYear()} DJ Vrana. Sva prava pridržana.</div>
           <nav aria-label="Pravni dokumenti" className="flex gap-4 md:gap-8">
-            <Link to="/politika-privatnosti" className="text-[#b8b8b8] transition-colors duration-300 hover:text-[#d4af37]">Politika Privatnosti</Link>
-            <Link to="/uvjeti-koristenja" className="text-[#b8b8b8] transition-colors duration-300 hover:text-[#d4af37]">Uvjeti Korištenja</Link>
+            <Link to="/politika-privatnosti/" className="text-[#b8b8b8] transition-colors duration-300 hover:text-[#d4af37]">Politika Privatnosti</Link>
+            <Link to="/uvjeti-koristenja/" className="text-[#b8b8b8] transition-colors duration-300 hover:text-[#d4af37]">Uvjeti Korištenja</Link>
           </nav>
         </div>
 

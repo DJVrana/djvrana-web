@@ -25,11 +25,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   };
 
   const navLinks = [
-    { page: '', label: 'Početna' },
-    { page: 'o-meni', label: 'O meni' },
-    { page: 'usluge', label: 'Usluge' },
-    { page: 'galerija', label: 'Galerija' },
-    { page: 'kontakt', label: 'Kontakt' },
+    { page: '/', label: 'Početna' },
+    { page: '/o-meni/', label: 'O meni' },
+    { page: '/usluge/', label: 'Usluge' },
+    { page: '/galerija/', label: 'Galerija' },
+    { page: '/kontakt/', label: 'Kontakt' },
   ];
 
   return (
@@ -57,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           {navLinks.map((link) => (
             <li key={link.page}>
               <NavLink
-                to={'/' + link.page}
+                to={link.page}
                 className={`nav-link ${currentPage === link.page ? 'active' : ''}`}
                 onClick={() => {
                   setIsMobileMenuOpen(false);

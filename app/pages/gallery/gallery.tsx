@@ -66,6 +66,7 @@ interface VideoItem {
   id: number;
   title: string;
   embedUrl: string;
+  uploadDate: string;
 }
 
 const galleryData: GalleryItem[] = [
@@ -84,18 +85,18 @@ const galleryData: GalleryItem[] = [
 ];
 
 const videoData: VideoItem[] = [
-  { id: 1, title: 'I love It x Samba de Janeiro 🕺', embedUrl: 'https://www.youtube.com/embed/6QLlmMBR7M4' },
-  { id: 2, title: 'Ne Zovi Mama Doktora x Linđo 💃', embedUrl: 'https://www.youtube.com/embed/McuOUAMXpWc' },
-  { id: 3, title: 'Forza x Najbolje od Svega 🕺', embedUrl: 'https://www.youtube.com/embed/4V5H3rfRwWM' },
-  { id: 4, title: 'DJ Vrana Promo Video', embedUrl: 'https://www.youtube.com/embed/xf_R-eEJoUI' },
-  { id: 5, title: '2025 recap', embedUrl: 'https://www.youtube.com/embed/Y7kbiqNnuD4' },
-  { id: 6, title: 'Maturalna Zabava Westin', embedUrl: 'https://www.youtube.com/embed/kI1O_YqYCMY' },
-  { id: 7, title: 'Vjenčanje - Wedding Corberon', embedUrl: 'https://www.youtube.com/embed/xrMuE-NM-e8' },
-  { id: 8, title: 'Maturalna Večer - Hotel Sheraton', embedUrl: 'https://www.youtube.com/embed/Y_a0muJv32k' },
-  { id: 9, title: 'Birthday Party - Gin Garden', embedUrl: 'https://www.youtube.com/embed/9_JscLl-BO0' },
-  { id: 10, title: '20th Birthday - Kvatric', embedUrl: 'https://www.youtube.com/embed/fd3JR7YeaAY' },
-  { id: 11, title: 'DJ na rođendanu', embedUrl: 'https://www.youtube.com/embed/xkXCgT9mdwI' },
-  { id: 12, title: 'Pivnica Budweiser - Nova Godina', embedUrl: 'https://www.youtube.com/embed/SF5BOd3WW3o' },
+  { id: 1, title: 'I love It x Samba de Janeiro 🕺', embedUrl: 'https://www.youtube.com/embed/6QLlmMBR7M4', uploadDate: "2026-01-19" },
+  { id: 2, title: 'Ne Zovi Mama Doktora x Linđo 💃', embedUrl: 'https://www.youtube.com/embed/McuOUAMXpWc', uploadDate: "2026-01-17" },
+  { id: 3, title: 'Forza x Najbolje od Svega 🕺', embedUrl: 'https://www.youtube.com/embed/4V5H3rfRwWM', uploadDate: "2026-01-16" },
+  { id: 4, title: 'DJ Vrana Promo Video', embedUrl: 'https://www.youtube.com/embed/xf_R-eEJoUI', uploadDate: "2026-02-20" },
+  { id: 5, title: '2025 recap', embedUrl: 'https://www.youtube.com/embed/Y7kbiqNnuD4', uploadDate: "2026-03-12" },
+  { id: 6, title: 'Maturalna Zabava Westin', embedUrl: 'https://www.youtube.com/embed/kI1O_YqYCMY', uploadDate: "2026-03-12" },
+  { id: 7, title: 'Vjenčanje - Wedding Corberon', embedUrl: 'https://www.youtube.com/embed/xrMuE-NM-e8', uploadDate: "2026-03-12" },
+  { id: 8, title: 'Maturalna Večer - Hotel Sheraton', embedUrl: 'https://www.youtube.com/embed/Y_a0muJv32k', uploadDate: "2026-03-12" },
+  { id: 9, title: 'Birthday Party - Gin Garden', embedUrl: 'https://www.youtube.com/embed/9_JscLl-BO0', uploadDate: "2026-03-12" },
+  { id: 10, title: '20th Birthday - Kvatric', embedUrl: 'https://www.youtube.com/embed/fd3JR7YeaAY', uploadDate: "2026-03-12" },
+  { id: 11, title: 'DJ na rođendanu', embedUrl: 'https://www.youtube.com/embed/xkXCgT9mdwI', uploadDate: "2026-03-13" },
+  { id: 12, title: 'Pivnica Budweiser - Nova Godina', embedUrl: 'https://www.youtube.com/embed/SF5BOd3WW3o', uploadDate: "2026-03-13" },
 ];
 
 const categoryLabels: Record<string, string> = {
@@ -184,7 +185,8 @@ export default function Gallery() {
           "name": `DJ Vrana - ${video.title}`,
           "description": `Video isječak s nastupa DJ Vrane: ${video.title}`,
           "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-          "embedUrl": video.embedUrl
+          "embedUrl": video.embedUrl,
+          "uploadDate": video.uploadDate
         };
       })
     ]

@@ -7,12 +7,13 @@ import "./home.scss";
 import { Link } from "react-router";
 
 import aboutImg from '../../assets/images/about.webp'
-import serviceImg01 from '../../assets/images/service01.webp'
-import serviceImg02 from '../../assets/images/service02.webp'
-import serviceImg03 from '../../assets/images/service03.webp'
-import serviceImg04 from '../../assets/images/service04.webp'
+import serviceImg01 from '../../assets/images/service01.webp';
+import serviceImg02 from '../../assets/images/service02.webp';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import weddingsVideo from '../../assets/videos/weddings.mp4';
+import eventsVideo from '../../assets/videos/events.mp4';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeart,
   faGraduationCap,
@@ -278,8 +279,9 @@ interface Item {
   title: string;
   badge?: string;
   icon: any;
-  image: any;
-  imagePosition?: string;
+  image?: any;
+  video?: any;
+  mediaPosition?: string;
   description: string;
   path: string;
   featured?: boolean;
@@ -292,8 +294,8 @@ const services: Item[] = [
     title: "Vjenčanja",
     badge: "Istaknuto",
     icon: faHeart,
-    image: serviceImg01,
-    imagePosition: "50% 20%",
+    video: weddingsVideo,
+    mediaPosition: "center",
     description:
       "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
     path: "/vjencanja/",
@@ -304,8 +306,8 @@ const services: Item[] = [
     id: "events",
     title: "Događaji",
     icon: faChampagneGlasses,
-    image: serviceImg02,
-    imagePosition: "50% 10%",
+    video: eventsVideo,
+    mediaPosition: "center",
     description:
       "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
     path: "/usluge/#dogadaji",
@@ -315,8 +317,8 @@ const services: Item[] = [
     id: "equipment",
     title: "Najam Opreme",
     icon: faCompactDisc,
-    image: serviceImg03,
-    imagePosition: "center",
+    image: serviceImg02,
+    mediaPosition: "50% 36%",
     description:
       "Vrhunska DJ oprema za svaki događaj -- ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.",
     path: "/najam-opreme/",
@@ -326,8 +328,8 @@ const services: Item[] = [
     id: "education",
     title: "DJ Edukacija",
     icon: faGraduationCap,
-    image: serviceImg04,
-    imagePosition: "50% 20%",
+    image: serviceImg01,
+    mediaPosition: "50% 20%",
     description:
       "Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama -- od početnika do onih koji žele usavršiti svoje miksanje.",
     path: "/dj-edukacija/",
@@ -335,30 +337,55 @@ const services: Item[] = [
   }
 ];
 
-function Card({ title, badge, icon, image, imagePosition = "center", description, path, bullets }: Item) {
+function Card({ title, badge, icon, image, video, mediaPosition = "center", description, path, bullets }: Item) {
   return (
     <article
       className={[
         "group relative h-full overflow-hidden rounded-3xl border border-[rgba(212,175,55,0.2)] bg-white/5",
         "backdrop-blur-xl shadow-[0_20px_80px_-30px_rgba(0,0,0,0.9)]",
         "transition duration-300 hover:-translate-y-1 hover:border-[#d4af37] hover:shadow-[0_20px_60px_-30px_rgba(212,175,55,0.2)]",
-        "animate-fadeInUp",
+        "animate-fadeInUp flex flex-col",
       ].join(" ")}
     >
-      <div className={[
-        "group z-999 relative overflow-hidden t-rounded-3xl border-b border-[rgba(212,175,55,0.2)] bg-white/5",
-        "backdrop-blur-xl mb-6",
-        ].join(" ")}
-      >
-        <img 
-          src={image} 
-          alt={`${title} - DJ Vrana usluge`} 
-          className="w-full h-auto block aspect-[16/7] object-cover"
-          style={{ objectPosition: imagePosition }}
-        />
-      </div>
+      { image && (
+        <div className={[
+          "group z-999 relative overflow-hidden t-rounded-3xl border-b border-[rgba(212,175,55,0.2)] bg-white/5",
+          "backdrop-blur-xl",
+          ].join(" ")}
+        >
+          <img 
+            src={image} 
+            alt={`${title} - DJ Vrana usluge`} 
+            className="w-full h-auto block aspect-[16/7] object-cover"
+            style={{ objectPosition: mediaPosition }}
+          />
+        </div>
+      )}
 
-      <div className="p-6 md:p-7">
+      {video && (
+        <div
+          className={[
+            "group z-999 relative overflow-hidden t-rounded-3xl border-b border-[rgba(212,175,55,0.2)] bg-white/5",
+            "backdrop-blur-xl",
+          ].join(" ")}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-auto block aspect-[16/7] object-cover"
+            style={{ objectPosition: mediaPosition }}
+            aria-label={`${title} - DJ Vrana usluge video`}
+          >
+            <source src={video} type="video/mp4" />
+            Tvoj preglednik ne podržava video.
+          </video>
+        </div>
+      )}
+
+      <div className="p-6 md:p-7 flex flex-col justify-between flex-1">
         <div className="pointer-events-none absolute -inset-32 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100">
           <div className="absolute left-[40%] top-[40%] h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(212,175,55,0.25)]" />
           <div className="absolute right-[20%] bottom-[10%] h-72 w-72 rounded-full bg-[rgba(212,175,55,0.25)]" />
@@ -370,12 +397,12 @@ function Card({ title, badge, icon, image, imagePosition = "center", description
           <header className="relative flex items-start justify-between gap-4">
             <div className="min-w-0">
               {badge && (
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37] bg-[rgba(212,175,55,0.2)] px-3 py-1 text-xs font-semibold tracking-wide text-gold">
+                <div className="absolute mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37] bg-[rgba(212,175,55,0.2)] px-3 py-1 text-xs font-semibold tracking-wide text-gold">
                   {badge}
                 </div>
               )}
 
-              <h3 className="text-xl font-extrabold tracking-tight text-white md:text-2xl">
+              <h3 className="pt-[2.5rem] text-xl font-extrabold tracking-tight text-white md:text-2xl">
                 {title}
               </h3>
             </div>

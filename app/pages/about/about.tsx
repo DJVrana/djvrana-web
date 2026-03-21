@@ -16,7 +16,7 @@ import Navbar from '~/components/navbar/navbar';
 import Footer from '~/components/footer/footer';
 import { Link } from 'react-router';
 import DJControllerApp from '~/components/dj-controller/djController';
-import serviceImg02 from '../../assets/images/service02.webp'
+import myApproachImg from '../../assets/images/service01.webp'
 import djVranaLogo from '../../assets/images/dj-vrana-logo.png'
 import about01 from '../../assets/images/about01.webp'
 import about02 from '../../assets/images/about02.webp'
@@ -173,62 +173,69 @@ const AboutMe = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div 
-                ref={el => void (storyRefs.current[0] = el)}
-                className="bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 -translate-x-12 group"
+                    ref={el => void (storyRefs.current[0] = el)}
+                    className="flex flex-col justify-between bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 -translate-x-12 group"
                 >
-                <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
-                    <FontAwesomeIcon icon={faMusic} className='text-[24px]' />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Početak putovanja</h3>
-                <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed
-                </p>
-                <div className="rounded-xl overflow-hidden h-48">
-                    <img 
-                    src={about01}
-                    alt="DJ Vrana miksa glazbu na početku karijere" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                </div>
+                    <div>
+                        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
+                            <FontAwesomeIcon icon={faMusic} className='text-[24px]' />
+                        </div>
+                            <h3 className="text-xl font-bold mb-4">Početak putovanja</h3>
+                            <p className="text-[#808080] mb-6 text-sm leading-relaxed">
+                                Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed
+                            </p>
+                            <div className="rounded-xl overflow-hidden h-48">
+                                <img 
+                                src={about01}
+                                alt="DJ Vrana miksa glazbu na početku karijere" 
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                <div 
+                    ref={(el) => void (storyRefs.current[1] = el)}
+                    className="flex flex-col justify-between bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-y-8 group delay-100"
+                >
+                    <div>
+                        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
+                            <FontAwesomeIcon icon={faHeadphones} className='text-[24px]' />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Posebnost</h3>
+                        <p className="text-[#808080] mb-6 text-sm leading-relaxed">
+                            Ono što me izdvaja je sposobnost brzog čitanja publike i prilagođavanja trenutku. Ne puštam samo glazbu – stvaram iskustvo koje miješa emocije i posebnost trenutka, ostavljajući trajni dojam na svakog prisutnog.
+                        </p>
+                    </div>
+                    <div className="rounded-xl overflow-hidden h-48">
+                        <img 
+                        src={about02}
+                        alt="Profesionalna DJ oprema i slušalice na nastupu" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                    </div>
                 </div>
 
                 <div 
-                ref={(el) => void (storyRefs.current[1] = el)}
-                className="bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-y-8 group delay-100"
+                    ref={el => void (storyRefs.current[2] = el)}
+                    className="flex flex-col justify-between bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-x-12 group delay-200"
                 >
-                <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
-                    <FontAwesomeIcon icon={faHeadphones} className='text-[24px]' />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Posebnost</h3>
-                <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    Ono što me izdvaja je sposobnost brzog čitanja publike i prilagođavanja trenutku. Ne puštam samo glazbu – stvaram iskustvo koje miješa emocije i posebnost trenutka, ostavljajući trajni dojam na svakog prisutnog.
-                </p>
-                <div className="rounded-xl overflow-hidden h-48">
-                    <img 
-                    src={about02}
-                    alt="Profesionalna DJ oprema i slušalice na nastupu" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                </div>
-                </div>
-
-                <div 
-                ref={el => void (storyRefs.current[2] = el)}
-                className="bg-[#111] border border-[#d4af37]/10 rounded-2xl p-6 hover:border-[#d4af37]/30 transition-all duration-700 opacity-0 translate-x-12 group delay-200"
-                >
-                <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
-                    <FontAwesomeIcon icon={faZap} className='text-[24px]' />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Profesionalni pristup</h3>
-                <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                    S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao energiju na najvišoj razini.                </p>
-                <div className="rounded-xl overflow-hidden h-48">
-                    <img 
-                    src={about03}
-                    alt="DJ Vrana pušta glazbu i zabavlja publiku na noćnom događaju" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                </div>
+                    <div>
+                        <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
+                            <FontAwesomeIcon icon={faZap} className='text-[24px]' />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Profesionalni pristup</h3>
+                        <p className="text-[#808080] mb-6 text-sm leading-relaxed">
+                            S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao energiju na najvišoj razini.
+                        </p>
+                    </div>
+                    <div className="rounded-xl overflow-hidden h-48">
+                        <img 
+                        src={about03}
+                        alt="DJ Vrana pušta glazbu i zabavlja publiku na noćnom događaju" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                    </div>
                 </div>
             </div>
             </div>
@@ -271,7 +278,7 @@ const AboutMe = () => {
                     <div className="w-full md:w-1/2">
                     <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/5 border border-[#d4af37]/20">
                         <img 
-                        src={serviceImg02} 
+                        src={myApproachImg} 
                         alt="DJ Vrana u akciji na svadbi - stvaranje savršene atmosfere" 
                         className="w-full h-auto"
                         />

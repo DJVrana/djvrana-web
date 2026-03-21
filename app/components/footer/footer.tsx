@@ -59,7 +59,7 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                {title: 'Vjenčanja', path: "/vjencanja/"}, 
+                {title: 'Vjenčanja', path: "/dj-za-vjencanja/"}, 
                 {title: 'Korporativni Događaji', path: "/korporativni-dogadaji/"}, 
                 {title: 'Privatne Proslave', path: "/privatne-proslave/"}, 
                 {title: 'DJ Edukacija', path: "/dj-edukacija/"}, 

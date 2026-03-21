@@ -303,7 +303,7 @@ const services: Item[] = [
     mediaPosition: "center",
     description:
       "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
-    path: "/vjencanja/",
+    path: "/dj-za-vjencanja/",
     featured: true,
     bullets: ["Vrhunska DJ oprema", "Pažljivo osmišljen repertoar", "Konzultacija s mladencima", "Animacija gostiju", "Vođenje protokola"],
   },

@@ -12,7 +12,7 @@ export default {
       "/usluge",
       "/galerija",
       "/kontakt",
-      "/vjencanja",
+      "/dj-za-vjencanja",
       "/korporativni-dogadaji",
       "/privatne-proslave",
       "/dj-edukacija",

@@ -122,7 +122,7 @@ const PremiumDJUsluge: React.FC = () => {
             "@type": "Service",
             "name": "DJ za Vjenčanja",
             "description": "Profesionalno odabrana glazba i savršena atmosfera za vjenčanja.",
-            "url": "https://djvrana.com/vjencanja/"
+            "url": "https://djvrana.com/dj-za-vjencanja/"
           }
         },
         {
@@ -209,7 +209,7 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                  <Link to="/vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
+                  <Link to="/dj-za-vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
                     Saznaj Više
                   </Link>
             </div>

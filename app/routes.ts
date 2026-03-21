@@ -8,7 +8,7 @@ export default [
   route("kontakt", "pages/contact/contact.tsx"),
   route("korporativni-dogadaji", "pages/services/corporate-events/corporateEvents.tsx"),
   route("privatne-proslave", "pages/services/private-parties/privateParties.tsx"),
-  route("vjencanja", "pages/services/weddings/weddings.tsx"),
+  route("dj-za-vjencanja", "pages/services/weddings/weddings.tsx"),
   route("dj-edukacija", "pages/services/dj-education/djEducation.tsx"),
   route("najam-opreme", "pages/services/equipment-rental/equipmentRental.tsx"),
   route("politika-privatnosti", "pages/legal-acts/privacy-policy/privacyPolicy.tsx"),

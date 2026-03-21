@@ -66,7 +66,7 @@ const PrivacyPolicy: React.FC = () => {
         <div className="max-w-[900px] mx-auto px-6 py-20">
             {/* Header */}
             <header className="text-center mb-20 relative pb-10 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-[2px] after:bg-gradient-to-r after:from-transparent after:via-[#d4af37] after:to-transparent">
-            <h1 className="text-4xl md:text-5xl font-light tracking-widest mb-4 bg-gradient-to-br from-white to-[#f4e5a0] bg-clip-text text-transparent">
+            <h1 className="text-4xl pb-1 md:text-5xl font-light tracking-widest mb-4 bg-gradient-to-br from-white to-[#f4e5a0] bg-clip-text text-transparent">
                 Politika Privatnosti
             </h1>
             <p className="text-[#a0a0a0] text-lg md:text-xl tracking-wider uppercase">

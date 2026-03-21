@@ -13,6 +13,9 @@ import serviceImg02 from '../../assets/images/service02.webp';
 import weddingsVideo from '../../assets/videos/weddings.mp4';
 import eventsVideo from '../../assets/videos/events.mp4';
 
+import weddingsVideoPoster from '../../assets/images/weddingsPoster.webp';
+import eventsVideoPoster from '../../assets/images/eventsPoster.webp';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeart,
@@ -281,6 +284,7 @@ interface Item {
   icon: any;
   image?: any;
   video?: any;
+  poster?: any;
   mediaPosition?: string;
   description: string;
   path: string;
@@ -295,6 +299,7 @@ const services: Item[] = [
     badge: "Istaknuto",
     icon: faHeart,
     video: weddingsVideo,
+    poster: weddingsVideoPoster,
     mediaPosition: "center",
     description:
       "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
@@ -307,6 +312,7 @@ const services: Item[] = [
     title: "Događaji",
     icon: faChampagneGlasses,
     video: eventsVideo,
+    poster: eventsVideoPoster,
     mediaPosition: "center",
     description:
       "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
@@ -337,7 +343,7 @@ const services: Item[] = [
   }
 ];
 
-function Card({ title, badge, icon, image, video, mediaPosition = "center", description, path, bullets }: Item) {
+function Card({ title, badge, icon, image, video, poster, mediaPosition = "center", description, path, bullets }: Item) {
   return (
     <article
       className={[
@@ -375,6 +381,7 @@ function Card({ title, badge, icon, image, video, mediaPosition = "center", desc
             loop
             playsInline
             preload="metadata"
+            poster={poster}
             className="w-full h-auto block aspect-[16/7] object-cover"
             style={{ objectPosition: mediaPosition }}
             aria-label={`${title} - DJ Vrana usluge video`}

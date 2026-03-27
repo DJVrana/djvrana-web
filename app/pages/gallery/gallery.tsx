@@ -15,6 +15,28 @@ import gallery09 from '../../assets/images/gallery/gallery09.webp'
 import gallery10 from '../../assets/images/gallery/gallery10.webp'
 import gallery11 from '../../assets/images/gallery/gallery11.webp'
 import gallery12 from '../../assets/images/gallery/gallery12.webp'
+import gallery13 from '../../assets/images/gallery/gallery13.webp'
+import gallery14 from '../../assets/images/gallery/gallery14.webp'
+import gallery15 from '../../assets/images/gallery/gallery15.webp'
+import gallery16 from '../../assets/images/gallery/gallery16.webp'
+
+import galleryThumbnail01 from '../../assets/images/gallery-thumbnails/gallery01.webp'
+import galleryThumbnail02 from '../../assets/images/gallery-thumbnails/gallery02.webp'
+import galleryThumbnail03 from '../../assets/images/gallery-thumbnails/gallery03.webp'
+import galleryThumbnail04 from '../../assets/images/gallery-thumbnails/gallery04.webp'
+import galleryThumbnail05 from '../../assets/images/gallery-thumbnails/gallery05.webp'
+import galleryThumbnail06 from '../../assets/images/gallery-thumbnails/gallery06.webp'
+import galleryThumbnail07 from '../../assets/images/gallery-thumbnails/gallery07.webp'
+import galleryThumbnail08 from '../../assets/images/gallery-thumbnails/gallery08.webp'
+import galleryThumbnail09 from '../../assets/images/gallery-thumbnails/gallery09.webp'
+import galleryThumbnail10 from '../../assets/images/gallery-thumbnails/gallery10.webp'
+import galleryThumbnail11 from '../../assets/images/gallery-thumbnails/gallery11.webp'
+import galleryThumbnail12 from '../../assets/images/gallery-thumbnails/gallery12.webp'
+import galleryThumbnail13 from '../../assets/images/gallery-thumbnails/gallery13.webp'
+import galleryThumbnail14 from '../../assets/images/gallery-thumbnails/gallery14.webp'
+import galleryThumbnail15 from '../../assets/images/gallery-thumbnails/gallery15.webp'
+import galleryThumbnail16 from '../../assets/images/gallery-thumbnails/gallery16.webp'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight, faChevronRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -55,6 +77,7 @@ interface GalleryItem {
   title: string;
   description: string;
   image: string;
+  thumbnailImage: string;
 }
 
 interface FilterItem {
@@ -70,18 +93,22 @@ interface VideoItem {
 }
 
 const galleryData: GalleryItem[] = [
-  { id: 1, category: 'wedding', title: 'Luksuzno Vjenčanje Grand Hotel', description: 'Elegantna ballroom atmosfera s 200+ gostiju', image: gallery01 },
-  { id: 2, category: 'club', title: 'Noćni Klub Opening Night', description: 'Energija na vrhuncu s 500+ clubbera', image: gallery02 },
-  { id: 3, category: 'parties', title: 'Tech Summit 2026', description: 'Korporativna zabava Fortune 500 kompanije', image: gallery03 },
-  { id: 4, category: 'club', title: 'Summer Music Festival', description: 'Main stage nastup pred 3000+ ljudi', image: gallery04 },
-  { id: 5, category: 'wedding', title: 'Vjenčanje na Otvorenom', description: 'Romantična atmosfera pod zvijezdama', image: gallery05 },
-  { id: 6, category: 'club', title: 'VIP Club Night', description: 'Ekskluzivni party u elitnom klubu', image: gallery06 },
-  { id: 7, category: 'parties', title: 'Godišnja Korporativna Zabava', description: 'Award ceremony i after party', image: gallery07 },
-  { id: 8, category: 'club', title: 'Electronic Music Festival', description: 'Nezaboravan sunset set', image: gallery08 },
-  { id: 9, category: 'wedding', title: 'Moderna Gradska Vjenčanica', description: 'Stilska ceremonija u srcu grada', image: gallery09 },
-  { id: 10, category: 'club', title: 'Underground Techno Night', description: 'Industrialni vibe i čista energija', image: gallery10 },
-  { id: 11, category: 'parties', title: 'Product Launch Event', description: 'Inovativna produkcija za brend reveal', image: gallery11 },
-  { id: 12, category: 'club', title: 'Coastal Festival', description: 'Beach party s pogledom na more', image: gallery12 }
+  { id: 1, category: 'club', title: 'Klub Katran', description: 'Noć ispunjena energijom, plesom i hitovima koji drže podij punim do jutra.', image: gallery01, thumbnailImage: galleryThumbnail01 },
+  { id: 2, category: 'club', title: 'Platinum & Gold Club', description: 'Vrhunac večeri uz prskalice i CO2 efekte koji podižu atmosferu na maksimum.', image: gallery02, thumbnailImage: galleryThumbnail02 },
+  { id: 3, category: 'club', title: 'Platinum & Gold Club', description: 'Atmosfera iza DJ pulta — fokus, energija i kontrola nad plesnim podijem.', image: gallery03, thumbnailImage: galleryThumbnail03 },
+  { id: 4, category: 'parties', title: 'House Music Night', description: 'Osmijeh i dobra glazba koja drži atmosferu cijelu noć.', image: gallery04, thumbnailImage: galleryThumbnail04 },
+  { id: 5, category: 'parties', title: 'DJ Vrana – Party u Zagrebu', description: 'Profesionalni DJ nastup u Zagrebu, savršena glazba i energija za svaki event.', image: gallery05, thumbnailImage: galleryThumbnail05 },
+  { id: 6, category: 'parties', title: 'DJ Za Korporativni događaj', description: 'Profesionalna glazba, rasvjeta i atmosfera prilagođena poslovnim i korporativnim eventima.', image: gallery06, thumbnailImage: galleryThumbnail06 },
+  { id: 7, category: 'parties', title: 'Proslava rođendana', description: 'Party u Zagrebu s vrhunskom glazbom i plesnom atmosferom do ranih jutarnjih sati.', image: gallery07, thumbnailImage: galleryThumbnail07 },
+  { id: 8, category: 'parties', title: 'DJ Za Rođendane', description: 'DJ Vrana u akciji dok Tanja Savić oduševljava publiku na mikrofonu.', image: gallery08, thumbnailImage: galleryThumbnail08 },
+  { id: 9, category: 'parties', title: 'DJ Za Proslave Zagreb', description: 'Druženje i fešta za glumce uz DJ Vranu.', image: gallery09, thumbnailImage: galleryThumbnail09 },
+  { id: 10, category: 'parties', title: 'Team building i poslovni eventi uz DJ nastup', description: 'Uz dobru glazbu i osmijeh na licu, DJ Vrana stvara nezaboravnu atmosferu na svakom događaju.', image: gallery10, thumbnailImage: galleryThumbnail10 },
+  { id: 11, category: 'wedding', title: 'DJ Vjenčanje - Westin Zagreb', description: 'Glazba, ples i nezaboravna večer uz DJ Vranu.', image: gallery11, thumbnailImage: galleryThumbnail11 },
+  { id: 12, category: 'wedding', title: 'Profesionalni DJ za vjenčanja u Zagrebu', description: 'Kratka priprema prije samog početka eventa.', image: gallery12, thumbnailImage: galleryThumbnail12 },
+  { id: 13, category: 'wedding', title: 'Vjenčanja i proslave – DJ Zagreb', description: 'LED štapovi.', image: gallery13, thumbnailImage: galleryThumbnail13 },
+  { id: 14, category: 'wedding', title: 'DJ za vjenčanje u Zagrebu', description: 'Djelić atmosfere.', image: gallery14, thumbnailImage: galleryThumbnail14 },
+  { id: 15, category: 'wedding', title: 'DJ i bend suradnja', description: 'DJ Vrana u suradnji s bendom – spoj live glazbe i vrhunskog DJ seta za nezaboravan doživljaj.', image: gallery15, thumbnailImage: galleryThumbnail15 },
+  { id: 16, category: 'wedding', title: 'DJ setup s plavim kontrolerom', description: 'Alat za stvaranje energije, ritma i potpune kontrole nad plesnim podijem.', image: gallery16, thumbnailImage: galleryThumbnail16 },
 ];
 
 const videoData: VideoItem[] = [
@@ -287,10 +314,12 @@ export default function Gallery() {
                       {categoryLabels[item.category] || item.category}
                   </span>
                   <img 
-                      src={item.image} 
+                      src={item.thumbnailImage} 
                       alt={`DJ Vrana na nastupu - ${item.title}, ${categoryLabels[item.category] || item.category}`}
-                      className="w-full h-[240px] md:h-[320px] object-cover block transition-transform duration-700 md:group-hover:scale-110"
+                      className="w-full h-[320px] object-cover block transition-transform duration-700 md:group-hover:scale-110"
                       loading="lazy"
+                      height={320}
+                      width={240}
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-4 md:p-6 translate-y-0 md:translate-y-full transition-transform duration-500 md:group-hover:translate-y-0">
                       <h3 className="text-lg md:text-xl font-semibold mb-1 md:mb-2 text-[#d4af37]">{item.title}</h3>
@@ -314,9 +343,9 @@ export default function Gallery() {
                   <button 
                     onClick={closeLightbox}
                     aria-label="Zatvori galeriju"
-                    className="fixed top-4 right-4 md:absolute md:-top-12 md:right-8 bg-[#d4af37] text-[#0a0a0a] w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center hover:bg-[#e6c04e] hover:rotate-90 transition-all duration-300 z-50 shadow-lg"
+                    className="absolute top-4 right-4 md:absolute md:top-4 md:right-8 bg-[#d4af37] text-[#0a0a0a] w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center hover:bg-[#e6c04e] hover:rotate-90 transition-all duration-300 z-50 shadow-lg"
                   >
-                      <FontAwesomeIcon icon={faXmark} className="text-[20px] md:text-[24px]" />
+                      <FontAwesomeIcon icon={faXmark} className="text-[18px] md:text-[24px]" />
                   </button>
 
                   <div className="relative flex items-center justify-center w-full group">

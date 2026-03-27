@@ -13,11 +13,16 @@ import Footer from '~/components/footer/footer';
 import { Link } from 'react-router';
 import type { Route } from './+types/services';
 
-import services01 from '../../assets/images/services01.webp'
-import services02 from '../../assets/images/services02.webp'
-import services03 from '../../assets/images/services03.webp'
-import services04 from '../../assets/images/services04.webp'
+import services01 from '../../assets/videos/weddings.mp4';
+import services02 from '../../assets/videos/corporate-events.mp4'
+import services03 from '../../assets/videos/private-parties.mp4'
+import services04 from '../../assets/videos/dj-education.mp4'
 import services05 from '../../assets/images/services05.webp'
+
+import services01Poster from '../../assets/images/weddings-poster.webp';
+import services02Poster from '../../assets/images/corporate-events-poster.webp';
+import services03Poster from '../../assets/images/private-parties-poster.webp';
+import services04Poster from '../../assets/images/dj-education-poster.webp';
 
 export function meta({}: Route.MetaArgs) {
   const domain = "https://djvrana.com"; 
@@ -214,15 +219,23 @@ const PremiumDJUsluge: React.FC = () => {
                   </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
-                <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
+              <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
                 <FontAwesomeIcon icon={faRing} className="text-[16px] md:text-[32px]" />
-                </div>
-                <img 
-                alt="DJ Vrana na vjenčanju" 
-                loading="lazy"
-                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
-                src={services01}
-                />
+              </div>
+
+              <video
+                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={services01Poster}
+                aria-label={"DJ Vrana na vjenčanju video"}
+              >
+                <source src={services01} type="video/mp4" />
+                Vaš preglednik ne podržava video sadržaj.
+              </video>
             </div>
             </section>
 
@@ -251,12 +264,19 @@ const PremiumDJUsluge: React.FC = () => {
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 lg:left-auto lg:-right-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
                 <FontAwesomeIcon icon={faBuilding} className="text-[16px] md:text-[32px]" />
                 </div>
-                <img 
-                alt="Korporativni event s DJ Vranom" 
-                loading="lazy"
-                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
-                src={services02}
-                />
+                <video
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={services02Poster}
+                  aria-label={"Korporativni event s DJ Vranom video"}
+                >
+                  <source src={services02} type="video/mp4" />
+                  Vaš preglednik ne podržava video sadržaj.
+                </video>
             </div>
             </section>
 
@@ -285,12 +305,19 @@ const PremiumDJUsluge: React.FC = () => {
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
                 <FontAwesomeIcon icon={faChampagneGlasses} className="text-[16px] md:text-[32px]" />
                 </div>
-                <img 
-                alt="DJ za proslavu rođendana i privatne zabave" 
-                loading="lazy"
-                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
-                src={services03}
-                />
+                <video
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={services03Poster}
+                  aria-label={"DJ za proslavu rođendana i privatne zabave"}
+                >
+                  <source src={services03} type="video/mp4" />
+                  Vaš preglednik ne podržava video sadržaj.
+                </video>
             </div>
             </section>
 
@@ -319,12 +346,19 @@ const PremiumDJUsluge: React.FC = () => {
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 lg:left-auto lg:-right-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
                 <FontAwesomeIcon icon={faGraduationCap} className="text-[16px] md:text-[32px]" />
                 </div>
-                <img 
-                alt="Tečaj DJ-anja" 
-                loading="lazy"
-                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
-                src={services04}
-                />
+                <video
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={services04Poster}
+                  aria-label={"Tečaj DJ-anja"}
+                >
+                  <source src={services04} type="video/mp4" />
+                  Vaš preglednik ne podržava video sadržaj.
+                </video>
             </div>
             </section>
 

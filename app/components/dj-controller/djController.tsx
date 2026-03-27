@@ -189,7 +189,7 @@ const Deck = ({ number, sizePx }: { number: number; sizePx: number }) => (
     </div>
 
     <div className='flex justify-between items-end border-t border-gray-700 pt-3 space-x-3'>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 font-serif">
             {/* Blinking CUE i SYNC za realizam */}
             <Button sizePx={sizePx * 0.10} label="SYNC" borderColor="border-red-900" textColor="text-red-500" />
             <Button sizePx={sizePx * 0.18} label="CUE" borderColor="border-orange-800" textColor="text-orange-500" blink={true} />

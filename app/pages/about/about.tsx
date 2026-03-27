@@ -182,7 +182,7 @@ const AboutMe = () => {
                         </div>
                             <h3 className="text-xl font-bold mb-4">Početak putovanja</h3>
                             <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                                Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed
+                                Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed.
                             </p>
                             <div className="rounded-xl overflow-hidden h-48">
                                 <img 
@@ -324,7 +324,7 @@ const AboutMe = () => {
                 {[
                 { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/dj-za-vjencanja/", title: 'Vjenčanja', desc: 'Bilo da se radi o intimnom ili velikom vjenčanju, znam kako stvoriti pravu atmosferu i držati plesni podij punim cijelu večer. Prilagođavam glazbu vašim željama, tempu večeri i gostima kako bi svaki trenutak bio poseban i nezaboravan.' },
                 { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/privatne-proslave/", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
-                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave/", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Svojom glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što svjetla ugase.' },
+                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/privatne-proslave/", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što se svjetla ugase.' },
                 { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/korporativni-dogadaji/", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
                 ].map((spec, i) => (
                 <div key={i} className="bg-[#1a1a1a] p-8 rounded-2xl border border-transparent hover:border-[#d4af37]/30 transition-all duration-300 group flex flex-col justify-between">

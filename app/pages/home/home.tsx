@@ -13,8 +13,8 @@ import serviceImg02 from '../../assets/images/service02.webp';
 import weddingsVideo from '../../assets/videos/weddings.mp4';
 import eventsVideo from '../../assets/videos/events.mp4';
 
-import weddingsVideoPoster from '../../assets/images/weddingsPoster.webp';
-import eventsVideoPoster from '../../assets/images/eventsPoster.webp';
+import weddingsVideoPoster from '../../assets/images/weddings-poster.webp';
+import eventsVideoPoster from '../../assets/images/events-poster.webp';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -290,6 +290,7 @@ interface Item {
   path: string;
   featured?: boolean;
   bullets?: string[];
+  secondaryText: string;
 }
 
 const services: Item[] = [
@@ -306,6 +307,7 @@ const services: Item[] = [
     path: "/dj-za-vjencanja/",
     featured: true,
     bullets: ["Vrhunska DJ oprema", "Pažljivo osmišljen repertoar", "Konzultacija s mladencima", "Animacija gostiju", "Vođenje protokola"],
+    secondaryText: "DJ Za Vjenčanje ",
   },
   {
     id: "events",
@@ -318,6 +320,7 @@ const services: Item[] = [
       "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
     path: "/usluge/#dogadaji",
     bullets: ["Rođendani i proslave", "Korporativni događaji", "Djevojačke i momačke večeri", "Privatne zabave", "Festivali i koncerti"],
+    secondaryText: "DJ Za Proslave",
   },
   {
     id: "equipment",
@@ -329,6 +332,7 @@ const services: Item[] = [
       "Vrhunska DJ oprema za svaki događaj -- ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.",
     path: "/najam-opreme/",
     bullets: ["Ozvučenje", "DJ kontroleri i mikseri", "Rasvjeta", "Mikrofoni", "Tehnička podrška"],
+    secondaryText: "Najam DJ Opreme",
   },
   {
     id: "education",
@@ -340,10 +344,11 @@ const services: Item[] = [
       "Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama -- od početnika do onih koji žele usavršiti svoje miksanje.",
     path: "/dj-edukacija/",
     bullets: ["Osnove DJ opreme i tehnike miksanja", "Praktične vježbe i live miks sesije", "Savjeti za kreiranje set lista i energiju publike", "Individualni pristup i personalizirani program", "Priprema za nastupe"],
+    secondaryText: "DJ Edukacija",
   }
 ];
 
-function Card({ title, badge, icon, image, video, poster, mediaPosition = "center", description, path, bullets }: Item) {
+function Card({ title, badge, icon, image, video, poster, mediaPosition = "center", description, path, bullets, secondaryText }: Item) {
   return (
     <article
       className={[
@@ -387,7 +392,7 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
             aria-label={`${title} - DJ Vrana usluge video`}
           >
             <source src={video} type="video/mp4" />
-            Tvoj preglednik ne podržava video.
+            Vaš preglednik ne podržava video sadržaj.
           </video>
         </div>
       )}
@@ -439,7 +444,7 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
 
         <div className="relative mt-6 flex items-center justify-between pt-6">
           <span className="text-xs font-medium tracking-wide text-white/50">
-            Profesionalna DJ Usluga
+            {secondaryText}
           </span>
           
           <Link

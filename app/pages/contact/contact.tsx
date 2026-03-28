@@ -211,7 +211,7 @@ const PremiumContact: React.FC = () => {
                       Upiti i Rezervacije
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed mt-4">
-                        Imaš viziju za savršen party, a ja imam soundtrack. Pošalji mi detalje o svom eventu, a ja ću se pobrinuti da plesni podij bude pun cijelu noć.
+                      Javite se i stvorimo zajedno energiju i trenutke koji se pamte.
                     </p>
                 </div>
             </header>

@@ -114,7 +114,7 @@ export default function PrivatneProslave() {
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <video
-                      className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                      className="w-full h-[300px] sm:h-[350px] lg:h-[400px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
                       autoPlay
                       muted
                       loop

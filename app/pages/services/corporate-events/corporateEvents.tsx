@@ -15,7 +15,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/corporateEvents';
 
-import corporateEventsImg from '../../../assets/images/corporate-events.webp'
+import corporateEventsImg from '../../../assets/images/corporate-events.webp';
+
+import service from '../../../assets/videos/corporate-events.mp4';
+import servicePoster from '../../../assets/images/corporate-events-poster.webp';
 
 export function meta({}: Route.MetaArgs) {
   const domain = "https://djvrana.com"; 
@@ -110,12 +113,19 @@ export default function KorporativniDogadaji() {
               <div className="relative lg:max-w-none w-full order-2 md:order-1">
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
-                    <img 
-                      src={corporateEventsImg}
-                      alt="DJ Vrana pušta glazbu i stvara vrhunsku atmosferu na korporativnom događaju tvrtke"
-                      loading="lazy" 
-                      className="w-full h-auto block object-cover"
-                    />
+                    <video
+                      className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster={servicePoster}
+                      aria-label={"Korporativni event s DJ Vranom video"}
+                    >
+                      <source src={service} type="video/mp4" />
+                      Vaš preglednik ne podržava video sadržaj.
+                    </video>
                   </div>
                 </div>
               </div>
@@ -223,6 +233,41 @@ export default function KorporativniDogadaji() {
 
               </div>
             </div>
+
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mt-20 mb-10">
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
+
+              <div className="relative lg:max-w-none w-full order-2 md:order-2">
+                <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
+                  <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
+                    <img 
+                      src={corporateEventsImg}
+                      alt="DJ Vrana pušta glazbu i stvara vrhunsku atmosferu na korporativnom događaju tvrtke"
+                      loading="lazy" 
+                      className="w-full h-auto block object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="py-5 order-1 md:order-1">
+                <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
+                  Profesionalnost i elegancija
+                </span>
+                <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
+                  Dojam koji ostavlja trag
+                </h3>
+                <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                  Svaki poslovni domjenak, gala večera ili promocija prilika je za isticanje identiteta vaše tvrtke. Glazbenu pozadinu u potpunosti prilagođavam viziji vašeg brenda, stvarajući sofisticiran ambijent idealan za umrežavanje i razgovore s partnerima.
+                </p>
+                <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                  Uz vrhunsku zvučnu opremu i elegantan pristup, osiguravam nesmetan tijek cijelog programa. Od nenametljivih ritmova tijekom službenog dijela do dinamičnijeg seta za opuštanje na kraju večeri, svaki detalj je pažljivo isplaniran.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -241,7 +286,7 @@ export default function KorporativniDogadaji() {
                   aria-label="Pošaljite upit za rezervaciju DJ-a za Vaš korporativni događaj"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošalji Upit
+                  Pošaljite Upit
                 </Link>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] max-w-[595px] overflow-hidden'>

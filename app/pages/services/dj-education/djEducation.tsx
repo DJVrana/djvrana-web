@@ -14,7 +14,11 @@ import {
   faBriefcase
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/djEducation';
-import djEducationImg from '../../../assets/images/dj-education.webp'
+
+import djEducationImg from '../../../assets/images/dj-education.webp';
+
+import service from '../../../assets/videos/dj-education.mp4';
+import servicePoster from '../../../assets/images/dj-education-poster.webp';
 
 export function meta({}: Route.MetaArgs) {
   const domain = "https://djvrana.com"; 
@@ -112,12 +116,19 @@ export default function DJEdukacija() {
               <div className="relative lg:max-w-none w-full order-2 md:order-1">
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
-                    <img 
-                      src={djEducationImg}
-                      alt="Praktična DJ edukacija i učenje rada na profesionalnim DJ kontrolerima" 
-                      loading="lazy"
-                      className="w-full h-auto block object-cover"
-                    />
+                    <video
+                      className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster={servicePoster}
+                      aria-label={"Tečaj DJ-anja"}
+                    >
+                      <source src={service} type="video/mp4" />
+                      Vaš preglednik ne podržava video sadržaj.
+                    </video>
                   </div>
                 </div>
               </div>
@@ -222,6 +233,41 @@ export default function DJEdukacija() {
                   </p>
                 </div>
 
+              </div>
+            </div>
+
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mt-20 mb-10">
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
+              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
+
+              <div className="relative lg:max-w-none w-full order-2 md:order-2">
+                <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
+                  <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
+                    <img 
+                      src={djEducationImg}
+                      alt="Praktična DJ edukacija i učenje rada na profesionalnim DJ kontrolerima" 
+                      loading="lazy"
+                      className="w-full h-auto block object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="py-5 order-1 md:order-1">
+                <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
+                  Stvarno iskustvo s terena
+                </span>
+                <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
+                  Više od tehnike: Umijeće čitanja publike
+                </h3>
+                <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                  Tehničke vještine su temelj, no prava tajna uspješnog nastupa leži u upravljanju energijom u prostoriji. Naučit ću te kako prepoznati raspoloženje publike, kada promijeniti ritam i kako pravilno graditi set koji drži ljude na plesnom podiju.
+                </p>
+                <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                  Također prolazimo kroz ključne korake pripreme "iza kulisa" – od napredne organizacije glazbene biblioteke do snalaženja u nepredvidivim situacijama na gaži. Dobit ćeš konkretne savjete iz prve ruke koji će ti pomoći da izgradiš samopouzdanje i vlastiti prepoznatljiv stil.
+                </p>
               </div>
             </div>
           </div>

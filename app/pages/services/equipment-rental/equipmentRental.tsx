@@ -14,7 +14,8 @@ import {
   faCube
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/equipmentRental';
-import equipmentRentalImg from '../../../assets/images/equipment-rental.webp'
+
+import equipmentRentalImg from '../../../assets/images/equipment-rental.webp';
 
 export function meta({}: Route.MetaArgs) {
   const domain = "https://djvrana.com"; 

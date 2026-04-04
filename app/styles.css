@@ -225,7 +225,7 @@ body::selection {
     linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
     url("assets/images/dj-education-hero.webp");
   background-size: cover;
-  background-position: center;
+  background-position: 50% 80%;
   background-repeat: no-repeat;
 }
 
@@ -241,10 +241,10 @@ body::selection {
 
 .private-parties-hero-bg-img {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
+    linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)),
     url("assets/images/private-parties-hero.webp");
   background-size: cover;
-  background-position: center;
+  background-position: 50% 30%;
   background-repeat: no-repeat;
 }
 

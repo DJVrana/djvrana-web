@@ -60,8 +60,8 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {[
                 {title: 'Vjenčanja', path: "/dj-za-vjencanja/"}, 
-                {title: 'Korporativni Događaji', path: "/korporativni-dogadaji/"}, 
-                {title: 'Privatne Proslave', path: "/privatne-proslave/"}, 
+                {title: 'Korporativni Događaji', path: "/dj-za-korporativni-dogadaj/"}, 
+                {title: 'Privatne Proslave', path: "/dj-za-proslave/"}, 
                 {title: 'DJ Edukacija', path: "/dj-edukacija/"}, 
                 {title: 'Najam Opreme', path: "/najam-opreme/"}
               ].map((item) => (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faRing, 
+  faHeart, 
   faBuilding, 
   faChampagneGlasses, 
   faGraduationCap,
@@ -136,7 +136,7 @@ const PremiumDJUsluge: React.FC = () => {
             "@type": "Service",
             "name": "DJ za Korporativne Događaje",
             "description": "Glazba i atmosfera za korporativne evente i team buildinge.",
-            "url": "https://djvrana.com/korporativni-dogadaji/"
+            "url": "https://djvrana.com/dj-za-korporativni-dogadaj/"
           }
         },
         {
@@ -145,7 +145,7 @@ const PremiumDJUsluge: React.FC = () => {
             "@type": "Service",
             "name": "Privatne Proslave",
             "description": "Nezaboravna glazba za rođendane, maturalne zabave i ostale proslave.",
-            "url": "https://djvrana.com/privatne-proslave/"
+            "url": "https://djvrana.com/dj-za-proslave/"
           }
         },
         {
@@ -200,9 +200,9 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                Premium Wedding
+                  DJ za Svadbe i Vjenčanja
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">DJ Vjenčanja</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">DJ Za Vjenčanje</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
                   Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. DJ na vjenčanju osigurava profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak – od ceremonije do posljednjeg plesa, potpuno prilagođeno vašim željama i stilu svadbe.
                 </p>
@@ -215,12 +215,12 @@ const PremiumDJUsluge: React.FC = () => {
                 ))}
                 </ul>
                   <Link to="/dj-za-vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
-                    Saznaj Više
+                    Saznajte Više
                   </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
               <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
-                <FontAwesomeIcon icon={faRing} className="text-[16px] md:text-[32px]" />
+                <FontAwesomeIcon icon={faHeart} className="text-[16px] md:text-[32px]" />
               </div>
 
               <video
@@ -242,7 +242,7 @@ const PremiumDJUsluge: React.FC = () => {
             <section id='dogadaji' className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out scroll-mt-[160px]">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                Corporate Events
+                  DJ za Korporativne Događaje
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold">Korporativni Događaji</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
@@ -256,8 +256,8 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/korporativni-dogadaji/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za korporativne događaje">
-                  Potraži Informacije
+                <Link to="/dj-za-korporativni-dogadaj/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za korporativne događaje">
+                  Detaljnije
                 </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
@@ -283,7 +283,7 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                Private Parties
+                  DJ za Proslave
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold">Privatne Proslave</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
@@ -297,8 +297,8 @@ const PremiumDJUsluge: React.FC = () => {
                     </li>
                 ))}
                 </ul>
-                <Link to="/privatne-proslave/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za privatne proslave">
-                  Detaljnije
+                <Link to="/dj-za-proslave/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za privatne proslave">
+                  Saznajte Više
                 </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
@@ -324,7 +324,7 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                DJ Education
+                  DJ Edukacije i Radionice
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold">DJ Edukacija</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
@@ -365,7 +365,7 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                Equipment Rental
+                  Najam DJ Opreme
                 </span>
                 <h3 className="text-3xl md:text-4xl font-bold">Najam Opreme</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
@@ -380,7 +380,7 @@ const PremiumDJUsluge: React.FC = () => {
                 ))}
                 </ul>
                 <Link to="/najam-opreme/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o najmu opreme">
-                  Saznaj Više
+                  Saznajte Više
                 </Link>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">

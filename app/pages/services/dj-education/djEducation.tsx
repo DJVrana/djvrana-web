@@ -9,7 +9,9 @@ import {
   faMusic,
   faSliders,
   faComments,
-  faBolt
+  faBolt,
+  faHeadphones,
+  faBriefcase
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/djEducation';
 import djEducationImg from '../../../assets/images/dj-education.webp'
@@ -90,7 +92,7 @@ export default function DJEdukacija() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative dj-education-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">EDUKACIJA I RADIONICE</div>
+          <div className="hero-badge">DJ EDUKACIJA I RADIONICE</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
             DJ Edukacija
           </h1>
@@ -122,7 +124,7 @@ export default function DJEdukacija() {
 
               <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Mentorstvo & Trening
+                  MENTORSTVO & EDUKACIJA
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
                   Ostvarite svoj potencijal za DJ pultom
@@ -131,7 +133,7 @@ export default function DJEdukacija() {
                   Kroz individualni pristup i personalizirani program, fokusiram se na tvoj napredak – bilo da se tek upoznaješ s opremom ili već pripremaš za svoje prve nastupe.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Naglasak je na praktičnim vježbama i live miks sesijama u kojima učimo tehnike miksanja, beatmatching i snalaženje s najmodernijim digitalnim DJ softverima.
+                  Praktične vježbe i live miks sesije pomažu ti savladati tehnike miksanja, beatmatchinga i snalaženje s najmodernijim digitalnim DJ softverima, pripremajući te za samostalne nastupe i nastupe pred publikom.
                 </p>
               </div>
             </div>
@@ -151,12 +153,24 @@ export default function DJEdukacija() {
                 <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
                   <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faHeadphones} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Upoznavanje s opremom i softverom</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Osnove DJ opreme – kontroleri, CDJ-i, mikseri – te najpopularniji digitalni softveri poput rekordBoxa i Serata. Učim te kako sve povezati i koristiti na pravilan način.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
                       <FontAwesomeIcon icon={faSliders} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Osnove Opreme i Miksanja</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Tehnike miksanja</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Temeljito upoznavanje s DJ opremom i praktično snalaženje s digitalnim softverima. Učimo ključne tehnike miksanja i precizni beatmatching.
+                    Učenje osnovnih i naprednijih tehnika miksanja, uključujući beatmatching i usklađivanje ritmova za glatke prijelaze između pjesama.
                   </p>
                 </div>
 
@@ -166,21 +180,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Glazba i Struktura Seta</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Glazba i struktura seta</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Upoznavanje s glazbenim žanrovima i strukturama pjesama. Dobit ćeš savjete za pametno kreiranje set lista koje podižu energiju publike.
-                  </p>
-                </div>
-
-                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faComments} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Individualni Pristup</h3>
-                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Svaki polaznik je drugačiji. Zato osiguravamo personalizirane vježbe i zadatke izravno prilagođene tvojoj trenutnoj razini znanja i ciljevima.
+                    Učim te kako pravilno birati glazbu i slagati setove prema energiji, žanru i tijeku večeri, stvarajući logičan i dinamičan glazbeni put od početka do kraja.
                   </p>
                 </div>
 
@@ -190,9 +192,33 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Izgradnja Karijere i Nastupi</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Učenje o atmosferi i energiji publike</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Nije sve u tehnici – dobit ćeš vrijedne savjete za izgradnju uspješne DJ karijere te potpunu pripremu za tvoje buduće live nastupe.
+                    Kako pratiti reakcije publike i prilagođavati glazbu u skladu s energijom, čineći svaki nastup dinamičnim i zanimljivim.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faBriefcase} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Nastupi i izgradnja karijere</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Priprema za prve nastupe, razvoj samopouzdanja iza pulta te savjeti za izgradnju vlastitog DJ identiteta i pronalazak prilika za nastupe.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faComments} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Individualni pristup</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Svaki polaznik je drugačiji, zato program prilagođavam tvom znanju, tempu i ciljevima kako bi napredak bio što učinkovitiji i prirodniji.
                   </p>
                 </div>
 
@@ -217,7 +243,7 @@ export default function DJEdukacija() {
                   aria-label="Pošaljite upit i prijavite se na DJ edukaciju"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošalji Upit za Radionicu
+                  Pošaljite Upit Za Radionicu
                 </Link>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>

@@ -10,7 +10,8 @@ import {
   faSliders,
   faLightbulb,
   faMicrophone,
-  faWrench
+  faWrench,
+  faCube
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/equipmentRental';
 import equipmentRentalImg from '../../../assets/images/equipment-rental.webp'
@@ -126,10 +127,10 @@ export default function NajamOpreme() {
                   Sve što vam treba za nezaboravan događaj
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bez obzira organizirate li privatnu zabavu, korporativni event ili veći nastup, naša oprema će osigurati besprijekoran doživljaj. Nudimo samo opremu visoke klase koja garantira pouzdanost i kristalno čist zvuk.
+                  Bez obzira organizirate li privatnu proslavu, korporativni event ili veći nastup, osiguravam opremu koja garantira vrhunski doživljaj. Pouzdana i profesionalna oprema visoke klase koja pruža snažan i kristalno čist zvuk u svakom prostoru.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Naš asortiman pokriva apsolutno sve tehničke aspekte – od moćnog ozvučenja i klupske rasvjete do najnovijih DJ kontrolera, mikrofona i cjelokupne tehničke podrške na terenu.
+                  Asortiman pokriva sve tehničke potrebe – od kvalitetnog ozvučenja i osnovne ambijentalne rasvjete do DJ kontrolera, mikrofona i kompletne tehničke podrške na terenu, kako bi vaš događaj protekao bez stresa i komplikacija.
                 </p>
               </div>
             </div>
@@ -178,7 +179,31 @@ export default function NajamOpreme() {
                   </div>
                   <h3 className="text-xl mb-3 text-white font-semibold">Rasvjeta</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Dinamična i ambijentalna rasvjeta uz efekte koji savršeno prate ritam glazbe i podižu cjelokupnu atmosferu na novu razinu.
+                    Osnovna ambijentalna rasvjeta i moving head svjetla za dinamičnu i efektno osvijetljenu atmosferu.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faCube} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">DJ Pult</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Moderan i uredan DJ stol koji se vizualno uklapa u prostor i osigurava profesionalan izgled.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faMicrophone} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Mikrofoni</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Kvalitetni bežični i žični mikrofoni koji osiguravaju jasan i pouzdan prijenos govora i glazbe u svakom trenutku.
                   </p>
                 </div>
 
@@ -188,9 +213,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faWrench} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Mikrofoni & Tehnička Podrška</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Tehnička podrška</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Kvalitetni mikrofoni za govore i najave te stručna tehnička podrška koja prati cijeli događaj kako bi sve funkcioniralo bez zastoja.
+                    Osigurana tehnička podrška tijekom cijelog događaja kako bi sve funkcioniralo besprijekorno i bez stresa.
                   </p>
                 </div>
 
@@ -214,7 +239,7 @@ export default function NajamOpreme() {
                   aria-label="Pošaljite upit za najam DJ opreme, ozvučenja i rasvjete"
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošalji Upit
+                  Pošaljite Upit
                 </Link>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>

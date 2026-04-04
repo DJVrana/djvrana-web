@@ -7,9 +7,11 @@ import Navbar from '~/components/navbar/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMusic,
-  faSliders,
   faComments,
-  faBolt
+  faBolt,
+  faMicrophone,
+  faHeadphones,
+  faLightbulb
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/privateParties';
 import privatePartiesImg from '../../../assets/images/private-parties.webp'
@@ -27,7 +29,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/privatne-proslave/` },
+    { property: "og:url", content: `${domain}/dj-za-proslave/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -43,7 +45,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/privatne-proslave/` }
+    { tagName: "link", rel: "canonical", href: `${domain}/dj-za-proslave/` }
   ];
 }
 
@@ -72,7 +74,7 @@ export default function PrivatneProslave() {
     },
     "description": "Profesionalne DJ usluge za rođendane, maturalne zabave, djevojačke večeri i ostale privatne proslave. Uključuje personaliziranu glazbu, profesionalno ozvučenje i rasvjetu.",
     "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/privatne-proslave/",
+    "url": "https://djvrana.com/dj-za-proslave/",
     "category": "Event Entertainment"
   };
 
@@ -87,12 +89,12 @@ export default function PrivatneProslave() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative private-parties-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">PREMIUM DJ USLUGE</div>
+          <div className="hero-badge">DJ ZA PROSLAVE</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            Privatne Proslave
+            DJ Za Proslave
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Bez obzira radi li se o rođendanu, maturalnoj zabavi ili djevojačkoj večeri, svaki događaj zaslužuje glazbu koja pokreće, energiju koja okuplja i atmosferu koja se pamti.
+            Bez obzira radi li se o rođendanu, maturalnoj zabavi ili djevojačkoj večeri, Vaš događaj zaslužuje glazbu koja pokreće, energiju koja spaja ljude i atmosferu koja se pamti.
           </p>
         </section>
 
@@ -122,13 +124,13 @@ export default function PrivatneProslave() {
                   DJ Vrana
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Trenuci koji ostaju u sjećanju
+                  Trenuci koji ostaju u sječanju
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  <strong>Rođendani:</strong> Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.
+                  Svaka proslava zaslužuje jedinstvenu energiju i ritam koji pokreću ljude. Prilagođavam program Vašim željama i ritmu gostiju, stvarajući iskustvo koje svi dugo pamte.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  <strong>Maturalne zabave:</strong> Završetak jedne faze i početak novih avantura! Svojom glazbom stvaram energiju koja povezuje sve prisutne i osiguravam da se smijeh, ples i dobre vibracije pamte dugo nakon što se svjetla ugase.
+                  Podižem vašu proslavu na novi nivo! Uz pažljivo odabranu glazbu, profesionalnu opremu i rasvjetu, svaki trenutak postaje poseban – od prvog plesa do posljednje pjesme. Zajedno stvaramo atmosferu koju gosti neće zaboraviti.
                 </p>
               </div>
             </div>
@@ -139,7 +141,7 @@ export default function PrivatneProslave() {
               <header>
                 <p className="section-subtitle text-center">Što Očekivati</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Što uključuje usluga
+                  Što uključuje usluga DJ Za Proslave
                 </h2>
               </header>
               
@@ -151,21 +153,45 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni pristup</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Prilagodba za sve dobne skupine kako bi se svi uzvanici odlično zabavili, bilo na privatnoj zabavi, djevojačkoj večeri ili korporativnom događaju.
+                    Glazbu u potpunosti prilagođavam vašim željama i stilu proslave, uzimajući u obzir preferencije vas i vaših gostiju. Svaka pjesma bira se kako bi podigla energiju i stvorila nezaboravnu atmosferu.
                   </p>
                 </div>
 
                 <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
                   <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faSliders} />
+                      <FontAwesomeIcon icon={faMicrophone} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Fleksibilni paketi i trajanje</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć, sa opcijama koje se idealno prilagođavaju vašim festivalskim, koncertnim ili privatnim potrebama.
+                    Pratim energiju publike i biram prave pjesme u pravom trenutku, ali i vodim tijek cijele proslave – od dolaska gostiju do posljednjeg plesa – kako bi sve proteklo glatko i opušteno.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faHeadphones} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od mirnijih trenutaka do energičnih plesnih dijelova. Svaki trenutak proslave bit će jasno i savršeno zvučno doživljen.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faLightbulb} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Osvjetljenje koje naglašava ključne trenutke i transformira prostor, stvarajući čarobnu i zabavnu atmosferu koja potiče druženje i ples.
                   </p>
                 </div>
 
@@ -175,9 +201,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faComments} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Interaktivna zabava i angažman</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Planiranje i dogovor prije proslave</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Zajedno s vama stvaram trenutke koji ostaju u sjećanju i čine vašu proslavu jedinstvenom uz maksimalan angažman i interakciju svih gostiju.
+                    Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi proslava protekla bez stresa i s maksimalnim užitkom.
                   </p>
                 </div>
 
@@ -187,9 +213,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna rasvjeta i efekti</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Potpuni vizualno-zvučni doživljaj koji podiže svaki događaj na novu razinu. Vaša proslava pretvara se u pravi spektakl za sva osjetila.
+                    Iskustvo u vođenju privatnih proslava daje mi osjećaj za ritam i energiju publike, stvarajući atmosferu u kojoj se svi gosti opuštaju i zabavljaju.
                   </p>
                 </div>
 

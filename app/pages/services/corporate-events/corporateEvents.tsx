@@ -7,10 +7,11 @@ import Navbar from '~/components/navbar/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMusic,
-  faSliders,
   faBolt,
   faMicrophone,
-  faStar
+  faHeadphones,
+  faLightbulb,
+  faComments
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/corporateEvents';
 
@@ -29,7 +30,7 @@ export function meta({}: Route.MetaArgs) {
     
     // Open Graph
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/korporativni-dogadaji/` },
+    { property: "og:url", content: `${domain}/dj-za-korporativni-dogadaj/` },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
@@ -45,7 +46,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
     
     // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/korporativni-dogadaji/` }
+    { tagName: "link", rel: "canonical", href: `${domain}/dj-za-korporativni-dogadaj/` }
   ];
 }
 
@@ -74,7 +75,7 @@ export default function KorporativniDogadaji() {
     },
     "description": "Profesionalna DJ usluga, uključujući odabir glazbe, ozvučenje, ambijentalnu rasvjetu i vođenje programa za poslovne događaje, domjenke i team buildinge.",
     "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/korporativni-dogadaji/",
+    "url": "https://djvrana.com/dj-za-korporativni-dogadaj/",
     "category": "Event Entertainment"
   };
 
@@ -89,7 +90,7 @@ export default function KorporativniDogadaji() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative corporate-events-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">PREMIUM DJ USLUGE</div>
+          <div className="hero-badge">DJ ZA KORPORATIVNE DOGAĐAJE</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
             Korporativni Događaji
           </h1>
@@ -130,7 +131,7 @@ export default function KorporativniDogadaji() {
                   Korporativni događaji su savršena prilika za povezivanje, opuštanje i zajedničko stvaranje nezaboravnih trenutaka izvan svakodnevnog radnog okruženja.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Kroz pažljivo odabranu glazbu i usklađenu atmosferu potičem timsku energiju, dobru vibru i vrhunsko iskustvo koje će zaposlenici i gosti pamtiti dugo nakon završetka događaja.
+                  Kroz pažljivo odabranu glazbu i usklađenu atmosferu potičem timsku energiju, i vrhunsko iskustvo koje će zaposlenici i gosti pamtiti dugo nakon završetka događaja.
                 </p>
               </div>
             </div>
@@ -142,7 +143,7 @@ export default function KorporativniDogadaji() {
               <header>
                 <p className="section-subtitle text-center">Što Očekivati</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Što uključuje usluga
+                  Što uključuje usluga DJ za Korporativne Događaje
                 </h2>
               </header>
               
@@ -154,33 +155,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Prilagođen odabir glazbe</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Glazba je pažljivo odabrana i u potpunosti prilagođena specifičnom tipu vašeg događaja te ukusu publike.
-                  </p>
-                </div>
-
-                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faSliders} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalno ozvučenje</h3>
-                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osiguravam vrhunsko i profesionalno ozvučenje cijelog prostora kako bi kvaliteta zvuka bila besprijekorna u svakom kutku.
-                  </p>
-                </div>
-
-                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faBolt} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
-                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Ambijentalna i dinamična rasvjeta za stvaranje prave atmosfere koja vizualno podiže cijeli doživljaj na višu razinu.
+                    Glazbu potpuno prilagođavam vašem događaju, uzimajući u obzir vrstu eventa, preferencije tima i atmosferu koju želite postići.
                   </p>
                 </div>
 
@@ -190,21 +167,57 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faMicrophone} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje događaja</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Preuzimam vođenje važnih trenutaka tijekom večeri, uključujući dodjele nagrada, najave prezentacija i govore.
+                    Pratim energiju publike i biram prave pjesme u pravom trenutku, ali i vodim tijek događaja – od uvodnih aktivnosti do završnog trenutka – kako bi sve proteklo glatko i bez stresa.
                   </p>
                 </div>
 
                 <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
                   <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                      <FontAwesomeIcon icon={faStar} />
+                      <FontAwesomeIcon icon={faHeadphones} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">VIP Iskustvo</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Dugogodišnje iskustvo rada s VIP događajima garantira maksimalnu razinu profesionalnosti, diskrecije i elegancije.
+                    Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od formalnih prezentacija do energičnih dijelova eventa. Svaki trenutak bit će jasno i savršeno zvučno doživljen.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faLightbulb} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Osvjetljenje koje naglašava ključne trenutke i transformira prostor, stvarajući atmosferu koja podržava energiju tima i duh događaja.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faComments} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Planiranje i koordinacija prije događaja</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi sve prošlo bez stresa.
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                  <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                      <FontAwesomeIcon icon={faBolt} />
+                    </div>
+                  </div>
+                  <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
+                  <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                    Iskustvo u vođenju korporativnih događaja daje mi osjećaj za publiku i ritam, stvarajući atmosferu u kojoj se tim opušta, povezuje i stvara nezaboravne trenutke.
                   </p>
                 </div>
 

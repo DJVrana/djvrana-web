@@ -7,8 +7,10 @@ import Navbar from '~/components/navbar/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMusic,
-  faSliders,
+  faMicrophone,
   faComments,
+  faLightbulb,
+  faHeadphones,
   faBolt
 } from '@fortawesome/free-solid-svg-icons';
 import type { Route } from './+types/weddings';
@@ -87,12 +89,12 @@ export default function Vjencanja() {
         <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative wedding-hero-bg-img py-30 md:py-40 px-4 overflow-y-hidden">
-            <div className="hero-badge">PREMIUM DJ USLUGE</div>
+            <div className="hero-badge">DJ Za Svadbe i Vjenčanja Zagreb</div>
             <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-                DJ Vjenčanja
+                DJ Za Vjenčanja
             </h1>
             <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-                Stvaram romantičnu i elegantnu atmosferu koja čini vaš poseban dan još nezaboravnijim
+                Profesionalni DJ za svadbe i vjenčanja koji stvara vrhunsku atmosferu, ispunjen plesni podij i nezaboravne trenutke tijekom cijele večeri.
             </p>
         </section>
 
@@ -117,20 +119,20 @@ export default function Vjencanja() {
                         </div>
                     </div>
 
-                <div className="py-5 order-1 md:order-2">
-                    <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                    DJ Vrana
-                    </span>
-                    <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                    Učinite svoje vjenčanje nezaboravnim
-                    </h2>
-                    <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                    Kao DJ na vjenčanju, osiguravam profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak vašeg slavlja. Moj cilj je stvoriti ugođaj koji je potpuno prilagođen vašim željama i stilu svadbe.
-                    </p>
-                    <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                    Od elegantne ceremonije do posljednjeg plesa, svaki detalj je pažljivo isplaniran kako biste vi i vaši gosti bezbrižno uživali u nezaboravnim trenucima.
-                    </p>
-                </div>
+                    <div className="py-5 order-1 md:order-2">
+                        <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
+                            DJ Vrana
+                        </span>
+                        <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
+                            Učinite svoje vjenčanje nezaboravnim
+                        </h2>
+                        <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                            Kao DJ na vjenčanju, osiguravam profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak vašeg slavlja. Moj cilj je stvoriti ugođaj koji je potpuno prilagođen vašim željama i stilu svadbe.
+                        </p>
+                        <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
+                            Od elegantne ceremonije do posljednjeg plesa, svaki detalj je pažljivo isplaniran kako biste vi i vaši gosti bezbrižno uživali u nezaboravnim trenucima.
+                        </p>
+                    </div>
                 </div>
 
                 <div className="scroll-animate relative bg-gradient-to-br from-[rgba(212,175,55,0.05)] to-[rgba(10,10,10,0.8)] border border-[#d4af37]/10 rounded-[20px] p-6 sm:p-10 md:p-[60px_40px] mt-10">
@@ -139,7 +141,7 @@ export default function Vjencanja() {
                     <header>
                         <p className="section-subtitle text-center">Što Očekivati</p>
                         <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                            Što uključuje usluga
+                            Što uključuje usluga DJ Za Vjenčanje i Svadbu
                         </h2>
                     </header>
                     
@@ -151,21 +153,45 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faMusic} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Prilagođen Glazbeni Set</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Potpuno prilagođavanje glazbenog odabira vašim željama i jedinstvenom stilu vjenčanja.
+                                Glazbu u potpunosti prilagođavam vašim željama, uzimajući u obzir stil vjenčanja i preferencije vas i vaših gostiju.
                             </p>
                         </div>
 
                         <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
                             <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
-                                    <FontAwesomeIcon icon={faSliders} />
+                                    <FontAwesomeIcon icon={faMicrophone} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna Oprema i Rasvjeta</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Vrhunska tehnička oprema te impresivna rasvjeta koja savršeno prati atmosferu i prostor.
+                                Ne samo da pratim energiju publike i biram prave pjesme u pravom trenutku, već i vodim cijeli tijek večeri – od ceremonije do posljednjeg plesa – kako bi sve proteklo glatko i bez stresa.
+                            </p>
+                        </div>
+
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                                    <FontAwesomeIcon icon={faHeadphones} />
+                                </div>
+                            </div>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
+                            <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                                Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od intimne ceremonije do energičnog večernjeg partyja. Svaki trenutak vašeg slavlja bit će jasno i savršeno zvučno doživljen.
+                            </p>
+                        </div>
+
+                        <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                            <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
+                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center">
+                                    <FontAwesomeIcon icon={faLightbulb} />
+                                </div>
+                            </div>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                            <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
+                                Osvjetljenje koje naglašava svaki trenutak i pretvara svadbeni prostor u čarobnu pozornicu vašeg posebnog dana.
                             </p>
                         </div>
 
@@ -175,9 +201,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faComments} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Protokol i Interakcija</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Dogovor i planiranje prije vjenčanja</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Besprijekorno vođenje protokola vjenčanja uz odličnu interakciju s vašim gostima.
+                                Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi sve prošlo bez stresa.
                             </p>
                         </div>
 
@@ -187,9 +213,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faBolt} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Jedinstvena Atmosfera</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Stvaranje posebne, dinamične energije koja svaki trenutak vašeg dana čini doista jedinstvenim.
+                                Iskustvo u radu na vjenčanjima daje mi osjećaj za publiku i ritam, stvarajući savršenu atmosferu i nezaboravne trenutke.
                             </p>
                         </div>
                         
@@ -213,7 +239,7 @@ export default function Vjencanja() {
                             aria-label="Pošaljite upit i rezervirajte DJ-a za Vaše vjenčanje"
                             className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                         >
-                            Pošalji Upit
+                            Pošaljite Upit
                         </Link>
                         
                         <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>

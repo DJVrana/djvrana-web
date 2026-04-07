@@ -409,12 +409,12 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
           <header className="relative flex items-start justify-between gap-4">
             <div className="min-w-0">
               {badge && (
-                <div className="absolute mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37] bg-[rgba(212,175,55,0.2)] px-3 py-1 text-xs font-semibold tracking-wide text-gold">
+                <div className="md:absolute mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37] bg-[rgba(212,175,55,0.2)] px-3 py-1 text-xs font-semibold tracking-wide text-gold">
                   {badge}
                 </div>
               )}
 
-              <h3 className="pt-[2.5rem] text-xl font-extrabold tracking-tight text-white md:text-2xl">
+              <h3 className="md:pt-[2.5rem] text-xl font-extrabold tracking-tight text-white md:text-2xl">
                 {title}
               </h3>
             </div>

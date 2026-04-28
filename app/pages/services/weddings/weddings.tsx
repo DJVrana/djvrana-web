@@ -278,7 +278,7 @@ export default function Vjencanja() {
                     <div className='max-w-3xl mx-auto text-center'>
                         <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
                         <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                            Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
+                            Spremni ste za nezaboravno vjenčanje uz vrhunsku glazbu? Kontaktirajte me i zajedno ćemo stvoriti atmosferu koju ćete pamtiti cijeli život.
                         </p>
                         <Link 
                             to="/kontakt/" 

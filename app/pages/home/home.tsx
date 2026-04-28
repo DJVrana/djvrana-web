@@ -1,5 +1,5 @@
 import type { Route } from "../../+types/root";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import "../../styles.css";
@@ -66,10 +66,53 @@ export default function Home() {
   }, []);
 
   const [currentPage, setCurrentPage] = useState('pocetna');
+  const floatingElementsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
   };
+
+    useEffect(() => {
+    const handleScroll = () => {
+      const reveals = document.querySelectorAll('.reveal-on-scroll');
+      const windowHeight = window.innerHeight;
+      
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.remove('opacity-0', 'translate-y-12');
+          element.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return; 
+      
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      floatingElementsRef.current.forEach((el, index) => {
+        if (el) {
+          const speed = (index + 1) * 20;
+          const x = mouseX * speed;
+          const y = mouseY * speed;
+          el.style.transform = `translate(${x}px, ${y}px)`;
+        }
+      });
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -180,7 +223,7 @@ export default function Home() {
                   </h2>
                   
                   <p className="text-[1rem] sm:text-[1.3rem] lg:text-[1.5rem] text-[#cccccc] mb-[20px] sm:mb-[30px] font-light">
-                    DJ za svadbe | Evente | Privatne proslave
+                    DJ Za Svadbe | Evente | Privatne Proslave
                   </p>
                   
                   <p className="text-[0.95rem] sm:text-[1rem] lg:text-[1.1rem] leading-[1.7] sm:leading-[1.8] text-[#cccccc] mb-[30px] sm:mb-[35px] text-justify sm:text-left px-2 sm:px-0">
@@ -237,7 +280,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="video-nastup" className="video-showcase pt-10 pb-20 sm:pb-50 scroll-mt-[80px]">
+      <section id="video-nastup" className="video-showcase pt-10 pb-10 sm:pb-30 scroll-mt-[80px]">
         <div className="container relative px-4 sm:px-6 mx-auto">
           <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
           
@@ -269,6 +312,18 @@ export default function Home() {
               Pogledaj više sadržaja
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#121212] py-16 md:py-24 px-4 text-center border-t border-[#d4af37]/10 w-full relative z-20">
+        <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Spremni za Nezaboravno Iskustvo?</h2>
+          <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
+            Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
+          </p>
+          <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label="Pošaljite upit i rezervirajte DJ-a">
+            Kontaktiraj Me
+          </Link>
         </div>
       </section>
 

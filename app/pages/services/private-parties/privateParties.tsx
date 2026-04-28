@@ -260,10 +260,10 @@ export default function PrivatneProslave() {
                   Vi uživajte s gostima, ja vodim zabavu
                 </h3>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bilo da slavite okrugli rođendan, važnu obljetnicu ili organizirate privatni tulum, vaš jedini zadatak je opustiti se. Preuzimam potpunu kontrolu nad glazbenim tijekom kako biste se mogli posvetiti svojim uzvanicima bez stresa oko atmosfere.
+                  Bilo da slavite okrugli rođendan, važnu obljetnicu ili organizirate privatni tulum, vaš jedini zadatak je opustiti se. Preuzimam potpunu kontrolu nad glazbom kako biste se mogli posvetiti svojim uzvanicima bez stresa oko atmosfere.
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bilo koji prostor možemo pretvoriti u vrhunski plesni podij. Kroz pomno osmišljenu dinamiku večeri – od laganog glazbenog zagrijavanja do kulminacije uz najveće hitove – osiguravam da energija raste u pravom trenutku, stvarajući pravi klupski doživljaj na vašoj lokaciji.
+                  Bilo koji prostor možemo pretvoriti u vrhunski plesni podij. Kroz pomno osmišljenu dinamiku večeri – od laganog glazbenog zagrijavanja do plesa uz najveće hitove – osiguravam da energija raste u pravom trenutku, stvarajući pravi klupski doživljaj na vašoj proslavi.
                 </p>
               </div>
             </div>

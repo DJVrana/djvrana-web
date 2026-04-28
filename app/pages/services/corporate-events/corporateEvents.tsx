@@ -279,7 +279,7 @@ export default function KorporativniDogadaji() {
               <div className='max-w-3xl mx-auto text-center'>
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
                 <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                  Spremni ste podići svoj događaj na vrhunsku razinu? Kontaktirajte me danas i razgovarajmo o vašoj viziji.
+                  Organizirate event, konferenciju ili party za zaposlenike? Prepustite glazbeni dio DJ Vrani i osigurajte vrhunsku atmosferu.
                 </p>
                 <Link 
                   to="/kontakt/"

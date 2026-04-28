@@ -134,6 +134,14 @@ const PremiumContact: React.FC = () => {
       a: "DJ Vrana stvara <span class=\"text-[rgba(212,175,55,1)] font-semibold\">jedinstvenu atmosferu</span> na Vašem događaju. Kroz iskustvo, pažljivo praćenje atmosfere i kombinaciju raznih glazbenih žanrova vodi Vas na <span class=\"text-[rgba(212,175,55,1)] font-semibold\">nezaboravno glazbeno putovanje</span> – bilo da je riječ o vjenčanju, rođendanu ili proslavi."
     },
     {
+      q: "Koje usluge nudite?",
+      a: "Nudim <span class=\"text-[rgba(212,175,55,1)] font-semibold\">profesionalne DJ usluge</span> za vjenčanja, korporativne događaje i privatne proslave, kao i <span class=\"text-[rgba(212,175,55,1)] font-semibold\">DJ edukaciju</span> te <span class=\"text-[rgba(212,175,55,1)] font-semibold\">najam DJ opreme</span>."
+    },
+    {
+      q: "Nudite li pakete DJ + saksofon ili DJ + violina?",
+      a: "Da, nudim <span class=\"text-[rgba(212,175,55,1)] font-semibold\">kombinacije DJ-a s live glazbenicima</span>. Najpopularniji izbor je <span class=\"text-[rgba(212,175,55,1)] font-semibold\">DJ + saksofon</span> za energičan party dio večeri, dok je <span class=\"text-[rgba(212,175,55,1)] font-semibold\">violina</span> savršen dodatak za ceremoniju i cocktail prijem.<br><br>Svaki paket prilagođavam <span class=\"text-[rgba(212,175,55,1)] font-semibold\">vašem rasporedu, prostoru i željenoj atmosferi</span> kako bismo zajedno stvorili jedinstveno iskustvo."
+    },
+    {
       q: "Nastupate li izvan Zagreba?",
       a: "Da! DJ Vrana nastupa <span class=\"text-[rgba(212,175,55,1)] font-semibold\">diljem Hrvatske</span> – od Zagreba i okolice, preko Splita i Dalmacije, do Rijeke, Istre, Slavonije i Dubrovnika."
     },

@@ -404,7 +404,7 @@ const PremiumDJUsluge: React.FC = () => {
               <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
                 Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
               </p>
-              <Link to="/kontakt/" type="button" className="btn btn-primary">
+              <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label="Pošaljite upit i rezervirajte DJ-a">
                 Kontaktiraj Me
               </Link>
             </div>

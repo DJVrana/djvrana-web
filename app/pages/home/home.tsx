@@ -6,6 +6,7 @@ import "../../styles.css";
 import "./home.scss";
 import { Link } from "react-router";
 
+// Slike i videi
 import aboutImg from '../../assets/images/about.webp'
 import serviceImg01 from '../../assets/images/service01.webp';
 import serviceImg02 from '../../assets/images/service02.webp';
@@ -25,36 +26,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 
-export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ Vrana | Vrhunski DJ za Vjenčanja i Proslave u Zagrebu";
-  const description = "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente u Zagrebu i okolici. Više od 5 godina iskustva, vrhunska oprema i nezaboravna atmosfera. Rezervirajte svoj termin!";
+import * as m from '~/paraglide/messages.js';
+import { getMultilingualMeta } from "~/utils/seo/seo";
+import { getLocale } from "~/paraglide/runtime";
 
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ za vjenčanja, DJ Zagreb, DJ za svadbe, najam opreme, DJ za proslave, DJ Vrana, glazba za vjenčanje" },
-    { name: "robots", content: "index, follow" },
-    
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: domain },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-    
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: domain }
-  ];
+export function meta({}: Route.MetaArgs) {
+  return getMultilingualMeta(
+    "", 
+    m.home_meta_title(), 
+    m.home_meta_desc(),
+    m.home_meta_keywords()
+  );
 }
 
 export default function Home() {
@@ -72,7 +54,7 @@ export default function Home() {
     setCurrentPage(page);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const reveals = document.querySelectorAll('.reveal-on-scroll');
       const windowHeight = window.innerHeight;
@@ -114,20 +96,30 @@ export default function Home() {
     };
   }, []);
 
+    const currentLang = getLocale();
+
+  const currentHomeUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/' 
+    : 'https://djvrana.com/';
+
+  const localityTranslated = currentLang === 'en' ? 'Zagreb' : 'Zagreb';
+  const regionTranslated = currentLang === 'en' ? 'City of Zagreb' : 'Grad Zagreb';
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "EntertainmentBusiness",
+    "@id": `${currentHomeUrl}#business`,
     "name": "DJ Vrana",
     "image": "https://djvrana.com/dj-vrana-og-image.png",
-    "description": "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente u Zagrebu.",
+    "description": m.home_meta_desc(),
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Zagreb",
-      "addressRegion": "Grad Zagreb",
+      "addressLocality": localityTranslated,
+      "addressRegion": regionTranslated,
       "addressCountry": "HR"
     },
     "priceRange": "$$",
-    "url": "https://djvrana.com",
+    "url": currentHomeUrl,
     "sameAs": [
       "https://www.instagram.com/ivan.vranesa/",
       "https://www.tiktok.com/@dj.proslave",
@@ -137,7 +129,6 @@ export default function Home() {
   };
 
   return (
-    // Dodan overflow-x-hidden kako bi se spriječio horizontalni scroll zbog radial blur efekata
     <main className="overflow-x-hidden">
       <script 
         type="application/ld+json" 
@@ -151,27 +142,25 @@ export default function Home() {
 
             <div className="flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full">
               <header className="flex flex-col items-center text-center w-full">
-                <div className="hero-badge mb-4">DJ ZA VJENČANJA I PROSLAVE</div>
+                <div className="hero-badge mb-4">{m.home_hero_badge()}</div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-[5rem] font-bold tracking-tight leading-[1.2] md:leading-[1.05]">
                   <span className="text-[#f4f4f5]">
-                    Profesionalni DJ za vjenčanja u
+                    {m.home_hero_title_1()}
                   </span>{" "}
                   <span className="inline-block relative pb-1 mt-2 md:mt-0 bg-[linear-gradient(135deg,#d4af37_0%,#f4e5a0_50%,#d4af37_100%)] bg-clip-text text-transparent [-webkit-text-fill-color:transparent]">
-                    Zagrebu i okolici
+                    {m.home_hero_title_2()}
                   </span>
                 </h1>
 
                 <p className="text-base sm:text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-8 md:mb-10 mt-6 md:mt-6 leading-relaxed px-2">
-                  Specijaliziran za svadbe, privatne proslave i korporativne događaje,
-                  s ciljem stvaranja vrhunske atmosfere i nezaboravnog plesnog podija.
+                  {m.home_hero_desc()}
                 </p>
               </header>
             </div>
           </div>
         </div>
       </section>
-
 
       <section className="about">
         <div className="relative">
@@ -188,7 +177,7 @@ export default function Home() {
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img 
                       src={aboutImg} 
-                      alt="Ivan Vraneša - DJ Vrana na nastupu u Zagrebu" 
+                      alt={m.home_about_img_alt()} 
                       className="w-full h-auto block aspect-[3/4] object-cover"
                     />
                     
@@ -215,39 +204,39 @@ export default function Home() {
               <div className="py-[10px] sm:py-[20px]">
                 <header className="scroll-animate">
                   <span className="inline-block text-[10px] sm:text-[12px] tracking-[3px] uppercase text-[#d4af37] font-semibold mb-[20px] py-[8px] px-[20px] bg-[rgba(212,175,55,0.1)] border border-[rgba(212,175,55,0.2)] rounded-[30px]">
-                    O MENI
+                    {m.home_about_badge()}
                   </span>
                   
                   <h2 className="text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-bold leading-[1.1] mb-[15px] sm:mb-[20px] bg-gradient-to-br from-[#ffffff] to-[#d4af37] text-transparent bg-clip-text">
-                    DJ Vrana
+                    {m.home_about_title()}
                   </h2>
                   
                   <p className="text-[1rem] sm:text-[1.3rem] lg:text-[1.5rem] text-[#cccccc] mb-[20px] sm:mb-[30px] font-light">
-                    DJ Za Svadbe | Evente | Privatne Proslave
+                    {m.home_about_subtitle()}
                   </p>
                   
                   <p className="text-[0.95rem] sm:text-[1rem] lg:text-[1.1rem] leading-[1.7] sm:leading-[1.8] text-[#cccccc] mb-[30px] sm:mb-[35px] text-justify sm:text-left px-2 sm:px-0">
-                    S više od 5 godina iskustva kao DJ na vjenčanjima i proslavama, DJ Vrana stvara energiju koja puni plesni podij i spaja generacije kroz glazbu. Svaki nastup pažljivo je prilagođen publici i željama klijenata kako bi proslava imala savršenu atmosferu od početka do kraja.
+                    {m.home_about_desc()}
                   </p>
                 </header>
 
                 <div className="flex gap-[15px] sm:gap-[40px] mb-[40px] flex-wrap justify-center lg:justify-start">
                   <div className="flex-1 min-w-[100px] sm:min-w-[120px]">
-                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">300+</span>
-                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Nastupa</span>
+                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">{m.home_about_stats_1_num()}</span>
+                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">{m.home_about_stats_1_label()}</span>
                   </div>
                   <div className="flex-1 min-w-[100px] sm:min-w-[120px]">
-                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">5+</span>
-                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Godina iskustva</span>
+                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">{m.home_about_stats_2_num()}</span>
+                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">{m.home_about_stats_2_label()}</span>
                   </div>
                   <div className="flex-1 min-w-[100px] sm:min-w-[120px]">
-                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">50+</span>
-                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">Lokacija</span>
+                    <span className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] font-bold text-[#d4af37] block mb-[5px]">{m.home_about_stats_3_num()}</span>
+                    <span className="text-[0.8rem] sm:text-[0.9rem] text-[#cccccc] uppercase tracking-[1px]">{m.home_about_stats_3_label()}</span>
                   </div>
                 </div>
 
-                <Link to="/o-meni/" aria-label={`Saznajte više o meni`} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
-                  Saznajte više o meni
+                <Link to="/o-meni/" aria-label={m.home_about_btn()} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
+                  {m.home_about_btn()}
                   <span className="transition-transform duration-300 group-hover:translate-x-[5px]">→</span>
                 </Link>
               </div>
@@ -265,12 +254,12 @@ export default function Home() {
               
               <div className="relative mx-auto w-full">
                 <header className="mx-auto max-w-2xl text-center section-header scroll-animate px-4">
-                  <p className="section-subtitle">Što nudim?</p>
+                  <p className="section-subtitle">{m.home_services_subtitle()}</p>
                   <h2 className="text-balance text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-                    Profesionalne DJ usluge
+                    {m.home_services_title()}
                   </h2>
                   <p className="mx-auto mt-4 sm:mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                    Pružam cjelovita rješenja za glazbu i atmosferu — prilagođena svakom događaju.
+                    {m.home_services_desc()}
                   </p>
                 </header>
                 <ServicesPremium />
@@ -285,12 +274,12 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
           
           <header className="section-header scroll-animate text-center mx-auto mb-10 sm:mb-16 px-4">
-            <p className="section-subtitle">Dio Atmosfere</p>
+            <p className="section-subtitle">{m.home_video_subtitle()}</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 sm:mb-6">
-              Zavirite na Plesni Podij
+              {m.home_video_title()}
             </h2>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
-              Kratki isječak energije i atmosfere koju donosim na svaki događaj – ritam koji pokreće, glazba koja spaja i trenuci koji se pamte.
+              {m.home_video_desc()}
             </p>
           </header>
 
@@ -307,9 +296,8 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-10 flex justify-center w-full">
-            {/* Ovdje je ključna izmjena za gumb - maknut fiksni px-40 */}
-            <Link to="/galerija/" aria-label={`Pogledajte više u galeriji`} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
-              Pogledaj više sadržaja
+            <Link to="/galerija/" aria-label={m.home_video_aria_more()} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
+              {m.home_video_btn()}
             </Link>
           </div>
         </div>
@@ -317,12 +305,12 @@ export default function Home() {
 
       <section className="bg-[#121212] py-16 md:py-24 px-4 text-center border-t border-[#d4af37]/10 w-full relative z-20">
         <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Spremni za Nezaboravno Iskustvo?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">{m.home_cta_title()}</h2>
           <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
-            Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
+            {m.home_cta_desc()}
           </p>
-          <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label="Pošaljite upit i rezervirajte DJ-a">
-            Kontaktiraj Me
+          <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label={m.home_cta_aria()}>
+            {m.home_cta_btn()}
           </Link>
         </div>
       </section>
@@ -348,58 +336,54 @@ interface Item {
   secondaryText: string;
 }
 
-const services: Item[] = [
+const getServices = (): Item[] => [
   {
     id: "weddings",
-    title: "Vjenčanja",
-    badge: "Istaknuto",
+    title: m.home_service_1_title(),
+    badge: m.home_service_1_badge(),
     icon: faHeart,
     video: weddingsVideo,
     poster: weddingsVideoPoster,
     mediaPosition: "center",
-    description:
-      "Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. Profesionalno odabrana glazba i savršena atmosfera pratit će vas od ceremonije do posljednjeg plesa, prilagođeno vašim željama i stilu svadbe.",
+    description: m.home_service_1_desc(),
     path: "/dj-za-vjencanja/",
     featured: true,
-    bullets: ["Vrhunska DJ oprema", "Pažljivo osmišljen repertoar", "Konzultacija s mladencima", "Animacija gostiju", "Vođenje protokola"],
-    secondaryText: "DJ Za Vjenčanje ",
+    bullets: m.home_service_1_bullets().split('|'),
+    secondaryText: m.home_service_1_sec(),
   },
   {
     id: "events",
-    title: "Događaji",
+    title: m.home_service_2_title(),
     icon: faChampagneGlasses,
     video: eventsVideo,
     poster: eventsVideoPoster,
     mediaPosition: "center",
-    description:
-      "Podignite svaki događaj uz DJ Vranu, donosim Vam vrhunsku glazbu i energiju koja traje cijelu noć.",
+    description: m.home_service_2_desc(),
     path: "/usluge/#dogadaji",
-    bullets: ["Rođendani i proslave", "Korporativni događaji", "Djevojačke i momačke večeri", "Privatne zabave", "Festivali i koncerti"],
-    secondaryText: "DJ Za Proslave",
+    bullets: m.home_service_2_bullets().split('|'),
+    secondaryText: m.home_service_2_sec(),
   },
   {
     id: "equipment",
-    title: "Najam Opreme",
+    title: m.home_service_3_title(),
     icon: faCompactDisc,
     image: serviceImg02,
     mediaPosition: "50% 36%",
-    description:
-      "Vrhunska DJ oprema za svaki događaj -- ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.",
+    description: m.home_service_3_desc(),
     path: "/najam-opreme/",
-    bullets: ["Ozvučenje", "DJ kontroleri i mikseri", "Rasvjeta", "Mikrofoni", "Tehnička podrška"],
-    secondaryText: "Najam DJ Opreme",
+    bullets: m.home_service_3_bullets().split('|'),
+    secondaryText: m.home_service_3_sec(),
   },
   {
     id: "education",
-    title: "DJ Edukacija",
+    title: m.home_service_4_title(),
     icon: faGraduationCap,
     image: serviceImg01,
     mediaPosition: "50% 20%",
-    description:
-      "Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama -- od početnika do onih koji žele usavršiti svoje miksanje.",
+    description: m.home_service_4_desc(),
     path: "/dj-edukacija/",
-    bullets: ["Osnove DJ opreme i tehnike miksanja", "Praktične vježbe i live miks sesije", "Savjeti za kreiranje set lista i energiju publike", "Individualni pristup i personalizirani program", "Priprema za nastupe"],
-    secondaryText: "DJ Edukacija",
+    bullets: m.home_service_4_bullets().split('|'),
+    secondaryText: m.home_service_4_sec(),
   }
 ];
 
@@ -444,10 +428,10 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
             poster={poster}
             className="w-full h-auto block aspect-[16/7] object-cover"
             style={{ objectPosition: mediaPosition }}
-            aria-label={`${title} - DJ Vrana usluge video`}
+            aria-label={m.home_video_aria({ title })}
           >
             <source src={video} type="video/mp4" />
-            Vaš preglednik ne podržava video sadržaj.
+            {m.home_video_fallback()}
           </video>
         </div>
       )}
@@ -504,10 +488,10 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
           
           <Link
             to={path}
-            aria-label={`Saznajte više o usluzi: ${title}`}
+            aria-label={m.home_card_aria_more({ title })}
             className="inline-flex cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85 transition hover:border-[rgba(212,175,55,0.4)] hover:bg-[rgba(212,175,55,0.1)] hover:text-white"
           >
-            Detalji
+            {m.home_card_btn()}
           </Link>
         </div>
       </div>
@@ -516,6 +500,7 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
 }
 
 function ServicesPremium() {
+  const services = getServices();
   const featured = services.find((s) => s.featured);
   const rest = services.filter((s) => !s.featured);
 

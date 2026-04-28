@@ -6,21 +6,34 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useParams,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./styles.css";
 
-export function meta({}: Route.MetaArgs) {
+import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
+import * as m from '~/paraglide/messages.js';
+
+export function meta({ params }: Route.MetaArgs) {
+  const ogLocale = params.locale === 'en' ? 'en_US' : 'hr_HR';
+
   return [
-    { title: "DJ Vrana | Vrhunski DJ za Vjenčanja i Proslave" },
-    { name: "description", content: "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente. Više od 5 godina iskustva i vrhunska oprema. Rezervirajte svoj termin!" },
+    { title: m.app_meta_title() },
+    { name: "description", content: m.app_meta_desc() },
     { name: "theme-color", content: "#0a0a0a" },
     { name: "author", content: "Ivan Vraneša" },
     
     { property: "og:site_name", content: "DJ Vrana" },
-    { property: "og:locale", content: "hr_HR" },
+    { property: "og:locale", content: ogLocale },
     { property: "og:type", content: "website" },
+    
+    { property: "og:site_name", content: "DJ Vrana" },
+    { property: "og:locale", content: ogLocale },
+    { property: "og:type", content: "website" },
+    
+    { property: "og:title", content: m.app_meta_title() },
+    { property: "og:description", content: m.app_meta_desc() },
     
     { name: "twitter:card", content: "summary_large_image" },
     { name: "apple-mobile-web-app-title", content: "DJ Vrana" },
@@ -50,14 +63,24 @@ export function HydrateFallback() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#111111] text-white p-8 text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div>
-      <p className="mt-4 text-lg">Učitavam stranicu...</p>
+      <p className="mt-4 text-lg">{m.app_loading_text()}</p>
     </div>
   );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const params = useParams();
+  const urlLocale = params.locale;
+  
+  // @ts-ignore
+  const locale: "hr" | "en" = locales.includes(urlLocale) 
+    ? urlLocale 
+    : baseLocale;
+
+  setLocale(locale);
+
   return (
-    <html lang="hr">
+    <html lang={locale}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,15 +101,15 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Ups!";
-  let details = "Došlo je do neočekivane pogreške.";
+  let message = "Oops!";
+  let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404 - Stranica nije pronađena" : `Greška ${error.status}`;
+    message = error.status === 404 ? "404 - Page Not Found" : `Error ${error.status}`;
     details =
       error.status === 404
-        ? "Nažalost, stranica koju tražite ne postoji ili je premještena."
+        ? "Sorry, the page you are looking for does not exist or has been moved."
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
@@ -105,7 +128,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           to="/" 
           className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
         >
-          Vrati se na početnu
+          Return to Homepage
         </Link>
       ) : null}
 

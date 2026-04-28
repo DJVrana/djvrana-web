@@ -1,40 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Početna -->
   <url>
     <loc>https://djvrana.com/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/" />
+  </url>
+
+  <!-- O meni -->
   <url>
     <loc>https://djvrana.com/o-meni/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/o-meni/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/o-meni/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/o-meni/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/o-meni/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/o-meni/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/o-meni/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/o-meni/" />
+  </url>
+
+  <!-- Usluge -->
   <url>
     <loc>https://djvrana.com/usluge/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/usluge/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/usluge/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/usluge/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/usluge/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/usluge/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/usluge/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/usluge/" />
+  </url>
+
+  <!-- Galerija -->
   <url>
     <loc>https://djvrana.com/galerija/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/galerija/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/galerija/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/galerija/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/galerija/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/galerija/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/galerija/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/galerija/" />
+  </url>
+
+  <!-- Kontakt -->
   <url>
     <loc>https://djvrana.com/kontakt/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/kontakt/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/kontakt/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/kontakt/" />
+  </url>
+
+  <!-- DJ za Vjenčanja -->
   <url>
     <loc>https://djvrana.com/dj-za-vjencanja/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-vjencanja/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-vjencanja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-vjencanja/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/dj-za-vjencanja/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-vjencanja/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-vjencanja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-vjencanja/" />
+  </url>
+
+  <!-- DJ za Korporativni događaj -->
   <url>
     <loc>https://djvrana.com/dj-za-korporativni-dogadaj/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-korporativni-dogadaj/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-korporativni-dogadaj/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-korporativni-dogadaj/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/dj-za-korporativni-dogadaj/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-korporativni-dogadaj/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-korporativni-dogadaj/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-korporativni-dogadaj/" />
+  </url>
+
+  <!-- DJ za Proslave -->
   <url>
     <loc>https://djvrana.com/dj-za-proslave/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-proslave/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-proslave/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-proslave/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/dj-za-proslave/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-za-proslave/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-za-proslave/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-za-proslave/" />
+  </url>
+
+  <!-- DJ Edukacija -->
   <url>
     <loc>https://djvrana.com/dj-edukacija/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-edukacija/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-edukacija/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-edukacija/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/dj-edukacija/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/dj-edukacija/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/dj-edukacija/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/dj-edukacija/" />
+  </url>
+
+  <!-- Najam opreme -->
   <url>
     <loc>https://djvrana.com/najam-opreme/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/najam-opreme/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/najam-opreme/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/najam-opreme/" />
   </url>
+  <url>
+    <loc>https://djvrana.com/en/najam-opreme/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/najam-opreme/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/najam-opreme/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/najam-opreme/" />
+  </url>
+
+  <!-- Politika privatnosti -->
   <url>
     <loc>https://djvrana.com/politika-privatnosti/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/politika-privatnosti/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/politika-privatnosti/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/politika-privatnosti/" />
   </url>
   <url>
-    <loc>https://djvrana.com/uvjeti-koristenja/</loc>
+    <loc>https://djvrana.com/en/politika-privatnosti/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/politika-privatnosti/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/politika-privatnosti/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/politika-privatnosti/" />
   </url>
+
+  <!-- Uvjeti korištenja -->
+  <url>
+    <loc>https://djvrana.com/uvjeti-koristenja/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/uvjeti-koristenja/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/uvjeti-koristenja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/uvjeti-koristenja/" />
+  </url>
+  <url>
+    <loc>https://djvrana.com/en/uvjeti-koristenja/</loc>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://djvrana.com/uvjeti-koristenja/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://djvrana.com/en/uvjeti-koristenja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://djvrana.com/uvjeti-koristenja/" />
+  </url>
+
 </urlset>

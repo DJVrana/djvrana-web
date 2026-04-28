@@ -20,37 +20,18 @@ import weddingsImg from '../../../assets/images/weddings.webp';
 import service from '../../../assets/videos/weddings.mp4';
 import servicePoster from '../../../assets/images/weddings-poster.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ za Vjenčanja | Vrhunski Svadbeni DJ | DJ Vrana";
-  const description = "Učinite svoje vjenčanje nezaboravnim uz profesionalnog DJ-a. Vrhunska glazba, rasvjeta, vođenje protokola i savršena atmosfera za vaš najvažniji dan.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ za vjenčanja, svadbeni DJ, DJ za svadbe Zagreb, glazba za vjenčanje, DJ Vrana, glazba za prvi ples, najam DJ-a za svadbu" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/dj-za-vjencanja/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/dj-za-vjencanja/` }
-  ];
+  return getMultilingualMeta(
+    "dj-za-vjencanja", 
+    m.weddings_meta_title(), 
+    m.weddings_meta_desc(),
+    m.weddings_meta_keywords()
+  )
 }
 
 export default function Vjencanja() {
@@ -67,18 +48,28 @@ export default function Vjencanja() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const currentLang = getLocale();
+
+  const currentWeddingsUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/dj-za-vjencanja/' 
+    : 'https://djvrana.com/dj-za-vjencanja/';
+
+  const areaServedTranslated = currentLang === 'en' ? 'Croatia' : 'Hrvatska';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "DJ za Vjenčanja i Svadbe",
+    "@id": `${currentWeddingsUrl}#service`,
+    "name": m.weddings_schema_name(),
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${currentWeddingsUrl}#business`, 
       "name": "DJ Vrana",
       "image": "https://djvrana.com/dj-vrana-og-image.png"
     },
-    "description": "Profesionalna DJ usluga za vjenčanja. Uključuje vođenje protokola, personaliziranu glazbu, vrhunsko ozvučenje i rasvjetu za zabavu do jutra.",
-    "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/dj-za-vjencanja/",
+    "description": m.weddings_schema_desc(),
+    "areaServed": areaServedTranslated,
+    "url": currentWeddingsUrl,
     "category": "Wedding Entertainment"
   };
 
@@ -93,12 +84,12 @@ export default function Vjencanja() {
         <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative wedding-hero-bg-img py-30 md:py-40 px-4 overflow-y-hidden">
-            <div className="hero-badge">DJ Za Svadbe i Vjenčanja Zagreb</div>
+            <div className="hero-badge">{m.weddings_hero_badge()}</div>
             <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-                DJ Za Vjenčanja
+                {m.weddings_hero_title()}
             </h1>
             <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-                Profesionalni DJ za svadbe i vjenčanja koji stvara vrhunsku atmosferu, ispunjen plesni podij i nezaboravne trenutke tijekom cijele večeri.
+                {m.weddings_hero_desc()}
             </p>
         </section>
 
@@ -121,11 +112,11 @@ export default function Vjencanja() {
                                     playsInline
                                     preload="metadata"
                                     poster={servicePoster}
-                                    aria-label={"DJ Vrana na vjenčanju video"}
+                                    aria-label={m.weddings_video_aria()}
                                 >
                                     <source src={service} type="video/mp4" />
-                                    <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
-                                    Vaš preglednik ne podržava video sadržaj.
+                                    <track kind='captions' src="" srcLang='hr' label={m.weddings_video_track()}></track>
+                                    {m.weddings_video_fallback()}
                                 </video>
                             </div>
                         </div>
@@ -133,16 +124,16 @@ export default function Vjencanja() {
 
                     <div className="py-5 order-1 md:order-2">
                         <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                            DJ Vrana
+                            {m.weddings_intro_badge()}
                         </span>
                         <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                            Učinite svoje vjenčanje nezaboravnim
+                            {m.weddings_intro_title()}
                         </h2>
                         <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                            Kao DJ na vjenčanju, osiguravam profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak vašeg slavlja. Moj cilj je stvoriti ugođaj koji je potpuno prilagođen vašim željama i stilu svadbe.
+                            {m.weddings_intro_text_1()}
                         </p>
                         <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                            Od elegantne ceremonije do posljednjeg plesa, svaki detalj je pažljivo isplaniran kako biste vi i vaši gosti bezbrižno uživali u nezaboravnim trenucima.
+                            {m.weddings_intro_text_2()}
                         </p>
                     </div>
                 </div>
@@ -151,9 +142,9 @@ export default function Vjencanja() {
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
                     <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
                     <header>
-                        <p className="section-subtitle text-center">Što Očekivati</p>
+                        <p className="section-subtitle text-center">{m.weddings_features_subtitle()}</p>
                         <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                            Što uključuje usluga DJ Za Vjenčanje i Svadbu
+                            {m.weddings_features_title()}
                         </h2>
                     </header>
                     
@@ -165,9 +156,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faMusic} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_1_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Glazbu u potpunosti prilagođavam vašim željama, uzimajući u obzir stil vjenčanja i preferencije vas i vaših gostiju.
+                                {m.weddings_feature_1_desc()}
                             </p>
                         </div>
 
@@ -177,9 +168,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faMicrophone} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_2_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Ne samo da pratim energiju publike i biram prave pjesme u pravom trenutku, već i vodim cijeli tijek večeri – od ceremonije do posljednjeg plesa – kako bi sve proteklo glatko i bez stresa.
+                                {m.weddings_feature_2_desc()}
                             </p>
                         </div>
 
@@ -189,9 +180,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faHeadphones} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_3_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od intimne ceremonije do energičnog večernjeg partyja. Svaki trenutak vašeg slavlja bit će jasno i savršeno zvučno doživljen.
+                                {m.weddings_feature_3_desc()}
                             </p>
                         </div>
 
@@ -201,9 +192,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faLightbulb} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_4_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Osvjetljenje koje naglašava svaki trenutak i pretvara svadbeni prostor u čarobnu pozornicu vašeg posebnog dana.
+                                {m.weddings_feature_4_desc()}
                             </p>
                         </div>
 
@@ -213,9 +204,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faComments} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Dogovor i planiranje prije vjenčanja</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_5_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi sve prošlo bez stresa.
+                                {m.weddings_feature_5_desc()}
                             </p>
                         </div>
 
@@ -225,9 +216,9 @@ export default function Vjencanja() {
                                     <FontAwesomeIcon icon={faBolt} />
                                 </div>
                             </div>
-                            <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
+                            <h3 className="text-xl mb-3 text-white font-semibold">{m.weddings_feature_6_title()}</h3>
                             <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                                Iskustvo u radu na vjenčanjima daje mi osjećaj za publiku i ritam, stvarajući savršenu atmosferu i nezaboravne trenutke.
+                                {m.weddings_feature_6_desc()}
                             </p>
                         </div>
                         
@@ -245,7 +236,7 @@ export default function Vjencanja() {
                             <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                                 <img 
                                 src={weddingsImg}
-                                alt="Profesionalni DJ za vjenčanja - DJ Vrana stvara romantičnu i zabavnu atmosferu za mladence" 
+                                alt={m.weddings_details_img_alt()}
                                 loading="lazy"
                                 className="w-full h-auto block object-cover"
                                 />
@@ -255,16 +246,16 @@ export default function Vjencanja() {
 
                     <div className="py-5 order-1 md:order-1">
                         <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                            Energija koja spaja generacije
+                            {m.weddings_details_badge()}
                         </span>
                         <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                            Ritam koji drži plesni podij ispunjenim
+                            {m.weddings_details_title()}
                         </h3>
                         <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                            Tajna vrhunske svadbene zabave leži u vještom čitanju publike. Kroz dinamične i neprimjetne prijelaze između glazbenih žanrova, osiguravam da mlađe i starije generacije vaših uzvanika zajedno uživaju na plesnom podiju.
+                            {m.weddings_details_text_1()}
                         </p>
                         <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                            Uz kristalno čist zvuk i modernu rasvjetu koja vizualno prati atmosferu, svaki prostor pretvaram u ekskluzivnu pozornicu. Vaš jedini zadatak je prepustiti se zabavi, dok ja brinem za energiju koja traje do ranih jutarnjih sati.
+                            {m.weddings_details_text_2()}
                         </p>
                     </div>
                 </div>
@@ -277,17 +268,17 @@ export default function Vjencanja() {
                 <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
                 <div className="container mx-auto">
                     <div className='max-w-3xl mx-auto text-center'>
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.weddings_cta_title()}</h2>
                         <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                            Spremni ste za nezaboravno vjenčanje uz vrhunsku glazbu? Kontaktirajte me i zajedno ćemo stvoriti atmosferu koju ćete pamtiti cijeli život.
+                            {m.weddings_cta_desc()}
                         </p>
-                        <Link 
+                        <LocalizedLink 
                             to="/kontakt/" 
-                            aria-label="Pošaljite upit i rezervirajte DJ-a za Vaše vjenčanje"
+                            aria-label={m.weddings_cta_aria()}
                             className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                         >
-                            Pošaljite Upit
-                        </Link>
+                            {m.weddings_cta_btn()}
+                        </LocalizedLink>
                         
                         <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>
                             <DJControllerApp></DJControllerApp>

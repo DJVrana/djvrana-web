@@ -20,37 +20,18 @@ import corporateEventsImg from '../../../assets/images/corporate-events.webp';
 import service from '../../../assets/videos/corporate-events.mp4';
 import servicePoster from '../../../assets/images/corporate-events-poster.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ za Korporativne Događaje i Evente | DJ Vrana";
-  const description = "Profesionalni DJ za poslovne domjenke, team buildinge i korporativne evente. Vrhunska glazba, ozvučenje, rasvjeta i vođenje programa za vaš tim.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ za korporativne događaje, DJ za evente Zagreb, poslovni domjenak glazba, team building DJ, DJ za tvrtke, zabava za firme" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/dj-za-korporativni-dogadaj/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/dj-za-korporativni-dogadaj/` }
-  ];
+  return getMultilingualMeta(
+    "dj-za-korporativni-dogadaj", 
+    m.corporate_events_meta_title(), 
+    m.corporate_events_meta_desc(),
+    m.corporate_events_meta_keywords()
+  );
 }
 
 export default function KorporativniDogadaji() {
@@ -67,18 +48,28 @@ export default function KorporativniDogadaji() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const currentLang = getLocale();
+
+  const currentCorporateUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/dj-za-korporativni-dogadaj/' 
+    : 'https://djvrana.com/dj-za-korporativni-dogadaj/';
+
+  const areaServedTranslated = currentLang === 'en' ? 'Croatia' : 'Hrvatska';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "DJ za Korporativne Događaje i Evente",
+    "@id": `${currentCorporateUrl}#service`,
+    "name": m.corporate_events_schema_name(),
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${currentCorporateUrl}#business`, 
       "name": "DJ Vrana",
       "image": "https://djvrana.com/dj-vrana-og-image.png"
     },
-    "description": "Profesionalna DJ usluga, uključujući odabir glazbe, ozvučenje, ambijentalnu rasvjetu i vođenje programa za poslovne događaje, domjenke i team buildinge.",
-    "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/dj-za-korporativni-dogadaj/",
+    "description": m.corporate_events_schema_desc(),
+    "areaServed": areaServedTranslated,
+    "url": currentCorporateUrl,
     "category": "Event Entertainment"
   };
 
@@ -93,12 +84,12 @@ export default function KorporativniDogadaji() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative corporate-events-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">DJ ZA KORPORATIVNE DOGAĐAJE</div>
+          <div className="hero-badge">{m.corporate_events_hero_badge()}</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            Korporativni Događaji
+            {m.corporate_events_hero_title()}
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.
+            {m.corporate_events_hero_desc()}
           </p>
         </section>
 
@@ -121,11 +112,11 @@ export default function KorporativniDogadaji() {
                       playsInline
                       preload="metadata"
                       poster={servicePoster}
-                      aria-label={"Korporativni event s DJ Vranom video"}
+                      aria-label={m.corporate_events_video_aria()}
                     >
                       <source src={service} type="video/mp4" />
-                      <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
-                      Vaš preglednik ne podržava video sadržaj.
+                      <track kind='captions' src="" srcLang='hr' label={m.corporate_events_video_track()}></track>
+                      {m.corporate_events_video_fallback()}
                     </video>
                   </div>
                 </div>
@@ -133,16 +124,16 @@ export default function KorporativniDogadaji() {
 
               <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ Vrana
+                  {m.corporate_events_intro_badge()}
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Nezaboravni trenuci izvan ureda
+                  {m.corporate_events_intro_title()}
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Korporativni događaji su savršena prilika za povezivanje, opuštanje i zajedničko stvaranje nezaboravnih trenutaka izvan svakodnevnog radnog okruženja.
+                  {m.corporate_events_intro_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Kroz pažljivo odabranu glazbu i usklađenu atmosferu potičem timsku energiju, i vrhunsko iskustvo koje će zaposlenici i gosti pamtiti dugo nakon završetka događaja.
+                  {m.corporate_events_intro_text_2()}
                 </p>
               </div>
             </div>
@@ -152,9 +143,9 @@ export default function KorporativniDogadaji() {
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
               
               <header>
-                <p className="section-subtitle text-center">Što Očekivati</p>
+                <p className="section-subtitle text-center">{m.corporate_events_features_subtitle()}</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Što uključuje usluga DJ za Korporativne Događaje
+                  {m.corporate_events_features_title()}
                 </h2>
               </header>
               
@@ -166,9 +157,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_1_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Glazbu potpuno prilagođavam vašem događaju, uzimajući u obzir vrstu eventa, preferencije tima i atmosferu koju želite postići.
+                    {m.corporate_events_feature_1_desc()}
                   </p>
                 </div>
 
@@ -178,9 +169,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faMicrophone} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_2_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Pratim energiju publike i biram prave pjesme u pravom trenutku, ali i vodim tijek događaja – od uvodnih aktivnosti do završnog trenutka – kako bi sve proteklo glatko i bez stresa.
+                    {m.corporate_events_feature_2_desc()}
                   </p>
                 </div>
 
@@ -190,9 +181,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faHeadphones} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_3_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od formalnih prezentacija do energičnih dijelova eventa. Svaki trenutak bit će jasno i savršeno zvučno doživljen.
+                    {m.corporate_events_feature_3_desc()}
                   </p>
                 </div>
 
@@ -202,9 +193,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faLightbulb} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_4_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osvjetljenje koje naglašava ključne trenutke i transformira prostor, stvarajući atmosferu koja podržava energiju tima i duh događaja.
+                    {m.corporate_events_feature_4_desc()}
                   </p>
                 </div>
 
@@ -214,9 +205,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faComments} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Planiranje i koordinacija prije događaja</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_5_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi sve prošlo bez stresa.
+                    {m.corporate_events_feature_5_desc()}
                   </p>
                 </div>
 
@@ -226,9 +217,9 @@ export default function KorporativniDogadaji() {
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.corporate_events_feature_6_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Iskustvo u vođenju korporativnih događaja daje mi osjećaj za publiku i ritam, stvarajući atmosferu u kojoj se tim opušta, povezuje i stvara nezaboravne trenutke.
+                    {m.corporate_events_feature_6_desc()}
                   </p>
                 </div>
 
@@ -246,7 +237,7 @@ export default function KorporativniDogadaji() {
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img 
                       src={corporateEventsImg}
-                      alt="DJ Vrana pušta glazbu i stvara vrhunsku atmosferu na korporativnom događaju tvrtke"
+                      alt={m.corporate_events_details_img_alt()}
                       loading="lazy" 
                       className="w-full h-auto block object-cover"
                     />
@@ -256,16 +247,16 @@ export default function KorporativniDogadaji() {
 
               <div className="py-5 order-1 md:order-1">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Profesionalnost i elegancija
+                  {m.corporate_events_details_badge()}
                 </span>
                 <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Dojam koji ostavlja trag
+                  {m.corporate_events_details_title()}
                 </h3>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Svaki poslovni domjenak, gala večera ili promocija prilika je za isticanje identiteta vaše tvrtke. Glazbenu pozadinu u potpunosti prilagođavam viziji vašeg brenda, stvarajući sofisticiran ambijent idealan za umrežavanje i razgovore s partnerima.
+                  {m.corporate_events_details_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Uz vrhunsku zvučnu opremu i elegantan pristup, osiguravam nesmetan tijek cijelog programa. Od nenametljivih ritmova tijekom službenog dijela do dinamičnijeg seta za opuštanje na kraju večeri, svaki detalj je pažljivo isplaniran.
+                  {m.corporate_events_details_text_2()}
                 </p>
               </div>
             </div>
@@ -278,17 +269,17 @@ export default function KorporativniDogadaji() {
             <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
             <div className="container mx-auto">
               <div className='max-w-3xl mx-auto text-center'>
-                <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.corporate_events_cta_title()}</h2>
                 <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                  Organizirate event, konferenciju ili party za zaposlenike? Prepustite glazbeni dio DJ Vrani i osigurajte vrhunsku atmosferu.
+                  {m.corporate_events_cta_desc()}
                 </p>
-                <Link 
+                <LocalizedLink 
                   to="/kontakt/"
-                  aria-label="Pošaljite upit za rezervaciju DJ-a za Vaš korporativni događaj"
+                  aria-label={m.corporate_events_cta_aria()}
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošaljite Upit
-                </Link>
+                  {m.corporate_events_cta_btn()}
+                </LocalizedLink>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] max-w-[595px] overflow-hidden'>
                   <DJControllerApp></DJControllerApp>

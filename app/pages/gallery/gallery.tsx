@@ -40,35 +40,17 @@ import galleryThumbnail16 from '../../assets/images/gallery-thumbnails/gallery16
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight, faChevronRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 
+import * as m from '~/paraglide/messages.js';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com";
-  const title = "Galerija slika i videa | DJ Vrana - Atmosfera s nastupa";
-  const description = "Pogledajte galeriju fotografija i videozapise s vjenčanja, korporativnih proslava i klupskih nastupa. Uvjerite se u vrhunsku atmosferu koju stvara DJ Vrana.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ Vrana galerija, video DJ za vjenčanja, slike s vjenčanja DJ, klupski nastupi, DJ atmosfera" },
-    { name: "robots", content: "index, follow" },
-    
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/galerija/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    { tagName: "link", rel: "canonical", href: `${domain}/galerija/` }
-  ];
+  return getMultilingualMeta(
+    "galerija", 
+    m.gallery_meta_title(), 
+    m.gallery_meta_desc(),
+    m.gallery_meta_keywords()
+  );
 }
 
 interface GalleryItem {
@@ -92,58 +74,58 @@ interface VideoItem {
   uploadDate: string;
 }
 
-const galleryData: GalleryItem[] = [
-  { id: 1, category: 'club', title: 'Klub Katran', description: 'Noć ispunjena energijom, plesom i hitovima koji drže podij punim do jutra.', image: gallery01, thumbnailImage: galleryThumbnail01 },
-  { id: 2, category: 'club', title: 'Platinum & Gold Club', description: 'Vrhunac večeri uz prskalice i CO2 efekte koji podižu atmosferu na maksimum.', image: gallery02, thumbnailImage: galleryThumbnail02 },
-  { id: 3, category: 'club', title: 'Platinum & Gold Club', description: 'Atmosfera iza DJ pulta — fokus, energija i kontrola nad plesnim podijem.', image: gallery03, thumbnailImage: galleryThumbnail03 },
-  { id: 4, category: 'parties', title: 'House Music Night', description: 'Osmijeh i dobra glazba koja drži atmosferu cijelu noć.', image: gallery04, thumbnailImage: galleryThumbnail04 },
-  { id: 5, category: 'parties', title: 'DJ Vrana – Party u Zagrebu', description: 'Profesionalni DJ nastup u Zagrebu, savršena glazba i energija za svaki event.', image: gallery05, thumbnailImage: galleryThumbnail05 },
-  { id: 6, category: 'parties', title: 'DJ Za Korporativni događaj', description: 'Profesionalna glazba, rasvjeta i atmosfera prilagođena poslovnim i korporativnim eventima.', image: gallery06, thumbnailImage: galleryThumbnail06 },
-  { id: 7, category: 'parties', title: 'Proslava rođendana', description: 'Party u Zagrebu s vrhunskom glazbom i plesnom atmosferom do ranih jutarnjih sati.', image: gallery07, thumbnailImage: galleryThumbnail07 },
-  { id: 8, category: 'parties', title: 'DJ Za Rođendane', description: 'DJ Vrana u akciji dok Tanja Savić oduševljava publiku na mikrofonu.', image: gallery08, thumbnailImage: galleryThumbnail08 },
-  { id: 9, category: 'parties', title: 'DJ Za Proslave Zagreb', description: 'Druženje i fešta za glumce uz DJ Vranu.', image: gallery09, thumbnailImage: galleryThumbnail09 },
-  { id: 10, category: 'parties', title: 'Team building i poslovni eventi uz DJ nastup', description: 'Uz dobru glazbu i osmijeh na licu, DJ Vrana stvara nezaboravnu atmosferu na svakom događaju.', image: gallery10, thumbnailImage: galleryThumbnail10 },
-  { id: 11, category: 'wedding', title: 'DJ Vjenčanje - Westin Zagreb', description: 'Glazba, ples i nezaboravna večer uz DJ Vranu.', image: gallery11, thumbnailImage: galleryThumbnail11 },
-  { id: 12, category: 'wedding', title: 'Profesionalni DJ za vjenčanja u Zagrebu', description: 'Kratka priprema prije samog početka eventa.', image: gallery12, thumbnailImage: galleryThumbnail12 },
-  { id: 13, category: 'wedding', title: 'Vjenčanja i proslave – DJ Zagreb', description: 'LED štapovi.', image: gallery13, thumbnailImage: galleryThumbnail13 },
-  { id: 14, category: 'wedding', title: 'DJ za vjenčanje u Zagrebu', description: 'Djelić atmosfere.', image: gallery14, thumbnailImage: galleryThumbnail14 },
-  { id: 15, category: 'wedding', title: 'DJ i bend suradnja', description: 'DJ Vrana u suradnji s bendom – spoj live glazbe i vrhunskog DJ seta za nezaboravan doživljaj.', image: gallery15, thumbnailImage: galleryThumbnail15 },
-  { id: 16, category: 'wedding', title: 'DJ setup s plavim kontrolerom', description: 'Alat za stvaranje energije, ritma i potpune kontrole nad plesnim podijem.', image: gallery16, thumbnailImage: galleryThumbnail16 },
-];
-
-const videoData: VideoItem[] = [
-  { id: 1, title: 'I love It x Samba de Janeiro 🕺', embedUrl: 'https://www.youtube.com/embed/6QLlmMBR7M4', uploadDate: "2026-01-19T12:00:00+01:00" },
-  { id: 2, title: 'Ne Zovi Mama Doktora x Linđo 💃', embedUrl: 'https://www.youtube.com/embed/McuOUAMXpWc', uploadDate: "2026-01-17T12:00:00+01:00" },
-  { id: 3, title: 'Forza x Najbolje od Svega 🕺', embedUrl: 'https://www.youtube.com/embed/4V5H3rfRwWM', uploadDate: "2026-01-16T12:00:00+01:00" },
-  { id: 4, title: 'DJ Vrana Promo Video', embedUrl: 'https://www.youtube.com/embed/xf_R-eEJoUI', uploadDate: "2026-02-20T12:00:00+01:00" },
-  { id: 5, title: '2025 recap', embedUrl: 'https://www.youtube.com/embed/Y7kbiqNnuD4', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 6, title: 'Maturalna Zabava Westin', embedUrl: 'https://www.youtube.com/embed/kI1O_YqYCMY', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 7, title: 'Vjenčanje - Wedding Corberon', embedUrl: 'https://www.youtube.com/embed/xrMuE-NM-e8', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 8, title: 'Maturalna Večer - Hotel Sheraton', embedUrl: 'https://www.youtube.com/embed/Y_a0muJv32k', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 9, title: 'Birthday Party - Gin Garden', embedUrl: 'https://www.youtube.com/embed/9_JscLl-BO0', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 10, title: '20th Birthday - Kvatric', embedUrl: 'https://www.youtube.com/embed/fd3JR7YeaAY', uploadDate: "2026-03-12T12:00:00+01:00" },
-  { id: 11, title: 'DJ na rođendanu', embedUrl: 'https://www.youtube.com/embed/xkXCgT9mdwI', uploadDate: "2026-03-13T12:00:00+01:00" },
-  { id: 12, title: 'Pivnica Budweiser - Nova Godina', embedUrl: 'https://www.youtube.com/embed/SF5BOd3WW3o', uploadDate: "2026-03-13T12:00:00+01:00" },
-];
-
-const categoryLabels: Record<string, string> = {
-  'wedding': 'Vjenčanje',
-  'parties': 'Proslava',
-  'club': 'Klub',
-};
-
-const filters: FilterItem[] = [
-  { id: 'all', label: 'Sve' },
-  { id: 'wedding', label: 'Vjenčanja' },
-  { id: 'parties', label: 'Proslave' },
-  { id: 'club', label: 'Klubovi' },
-];
-
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<string>('galerija');
+
+  const galleryData: GalleryItem[] = [
+    { id: 1, category: 'club', title: m.gallery_img_1_title(), description: m.gallery_img_1_desc(), image: gallery01, thumbnailImage: galleryThumbnail01 },
+    { id: 2, category: 'club', title: m.gallery_img_2_title(), description: m.gallery_img_2_desc(), image: gallery02, thumbnailImage: galleryThumbnail02 },
+    { id: 3, category: 'club', title: m.gallery_img_3_title(), description: m.gallery_img_3_desc(), image: gallery03, thumbnailImage: galleryThumbnail03 },
+    { id: 4, category: 'parties', title: m.gallery_img_4_title(), description: m.gallery_img_4_desc(), image: gallery04, thumbnailImage: galleryThumbnail04 },
+    { id: 5, category: 'parties', title: m.gallery_img_5_title(), description: m.gallery_img_5_desc(), image: gallery05, thumbnailImage: galleryThumbnail05 },
+    { id: 6, category: 'parties', title: m.gallery_img_6_title(), description: m.gallery_img_6_desc(), image: gallery06, thumbnailImage: galleryThumbnail06 },
+    { id: 7, category: 'parties', title: m.gallery_img_7_title(), description: m.gallery_img_7_desc(), image: gallery07, thumbnailImage: galleryThumbnail07 },
+    { id: 8, category: 'parties', title: m.gallery_img_8_title(), description: m.gallery_img_8_desc(), image: gallery08, thumbnailImage: galleryThumbnail08 },
+    { id: 9, category: 'parties', title: m.gallery_img_9_title(), description: m.gallery_img_9_desc(), image: gallery09, thumbnailImage: galleryThumbnail09 },
+    { id: 10, category: 'parties', title: m.gallery_img_10_title(), description: m.gallery_img_10_desc(), image: gallery10, thumbnailImage: galleryThumbnail10 },
+    { id: 11, category: 'wedding', title: m.gallery_img_11_title(), description: m.gallery_img_11_desc(), image: gallery11, thumbnailImage: galleryThumbnail11 },
+    { id: 12, category: 'wedding', title: m.gallery_img_12_title(), description: m.gallery_img_12_desc(), image: gallery12, thumbnailImage: galleryThumbnail12 },
+    { id: 13, category: 'wedding', title: m.gallery_img_13_title(), description: m.gallery_img_13_desc(), image: gallery13, thumbnailImage: galleryThumbnail13 },
+    { id: 14, category: 'wedding', title: m.gallery_img_14_title(), description: m.gallery_img_14_desc(), image: gallery14, thumbnailImage: galleryThumbnail14 },
+    { id: 15, category: 'wedding', title: m.gallery_img_15_title(), description: m.gallery_img_15_desc(), image: gallery15, thumbnailImage: galleryThumbnail15 },
+    { id: 16, category: 'wedding', title: m.gallery_img_16_title(), description: m.gallery_img_16_desc(), image: gallery16, thumbnailImage: galleryThumbnail16 },
+  ];
+
+  const videoData: VideoItem[] = [
+    { id: 1, title: m.gallery_vid_1_title(), embedUrl: 'https://www.youtube.com/embed/6QLlmMBR7M4', uploadDate: "2026-01-19T12:00:00+01:00" },
+    { id: 2, title: m.gallery_vid_2_title(), embedUrl: 'https://www.youtube.com/embed/McuOUAMXpWc', uploadDate: "2026-01-17T12:00:00+01:00" },
+    { id: 3, title: m.gallery_vid_3_title(), embedUrl: 'https://www.youtube.com/embed/4V5H3rfRwWM', uploadDate: "2026-01-16T12:00:00+01:00" },
+    { id: 4, title: m.gallery_vid_4_title(), embedUrl: 'https://www.youtube.com/embed/xf_R-eEJoUI', uploadDate: "2026-02-20T12:00:00+01:00" },
+    { id: 5, title: m.gallery_vid_5_title(), embedUrl: 'https://www.youtube.com/embed/Y7kbiqNnuD4', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 6, title: m.gallery_vid_6_title(), embedUrl: 'https://www.youtube.com/embed/kI1O_YqYCMY', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 7, title: m.gallery_vid_7_title(), embedUrl: 'https://www.youtube.com/embed/xrMuE-NM-e8', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 8, title: m.gallery_vid_8_title(), embedUrl: 'https://www.youtube.com/embed/Y_a0muJv32k', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 9, title: m.gallery_vid_9_title(), embedUrl: 'https://www.youtube.com/embed/9_JscLl-BO0', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 10, title: m.gallery_vid_10_title(), embedUrl: 'https://www.youtube.com/embed/fd3JR7YeaAY', uploadDate: "2026-03-12T12:00:00+01:00" },
+    { id: 11, title: m.gallery_vid_11_title(), embedUrl: 'https://www.youtube.com/embed/xkXCgT9mdwI', uploadDate: "2026-03-13T12:00:00+01:00" },
+    { id: 12, title: m.gallery_vid_12_title(), embedUrl: 'https://www.youtube.com/embed/SF5BOd3WW3o', uploadDate: "2026-03-13T12:00:00+01:00" },
+  ];
+
+  const categoryLabels: Record<string, string> = {
+    'wedding': m.gallery_cat_wedding(),
+    'parties': m.gallery_cat_parties(),
+    'club': m.gallery_cat_club(),
+  };
+
+  const filters: FilterItem[] = [
+    { id: 'all', label: m.gallery_filter_all() },
+    { id: 'wedding', label: m.gallery_filter_wedding() },
+    { id: 'parties', label: m.gallery_filter_parties() },
+    { id: 'club', label: m.gallery_filter_club() },
+  ];
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
@@ -188,17 +170,23 @@ export default function Gallery() {
   const toAbsoluteUrl = (src: string) =>
   src.startsWith("http") ? src : `https://djvrana.com${src}`;
 
+  const currentLang = getLocale();
+
+  const currentGalleryUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/galerija/' 
+    : 'https://djvrana.com/galerija/';
+
   const gallerySchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://djvrana.com/galerija/",
-    "url": "https://djvrana.com/galerija/",
-    "name": "DJ Vrana galerija",
-    "description": "Galerija fotografija i video isječaka s vjenčanja, klubskih večeri, privatnih i korporativnih događanja DJ Vrane.",
+    "@id": currentGalleryUrl,
+    "url": currentGalleryUrl,
+    "name": m.gallery_schema_name(),
+    "description": m.gallery_schema_desc(),
     "hasPart": [
       ...galleryData.map((item) => ({
         "@type": "ImageObject",
-        "@id": `https://djvrana.com/galerija/#image-${item.id}`,
+        "@id": `${currentGalleryUrl}#image-${item.id}`,
         "contentUrl": toAbsoluteUrl(item.image),
         "name": item.title,
         "description": item.description
@@ -208,9 +196,9 @@ export default function Gallery() {
 
         return {
           "@type": "VideoObject",
-          "@id": `https://djvrana.com/galerija/#video-${video.id}`,
+          "@id": `${currentGalleryUrl}#video-${video.id}`,
           "name": `DJ Vrana - ${video.title}`,
-          "description": `Video isječak s nastupa DJ Vrane: ${video.title}`,
+          "description": `${m.gallery_schema_video_desc()} ${video.title}`,
           "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
           "embedUrl": video.embedUrl,
           "uploadDate": video.uploadDate
@@ -236,10 +224,10 @@ export default function Gallery() {
                   <div className="relative text-center pt-8 pb-12">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight leading-tight">
-                      Video Atmosfera
+                      {m.gallery_video_title()}
                     </h1>
                     <p className="text-base md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed px-4">
-                      Pogledajte energiju i atmosferu s mojih brojnih nastupa!
+                      {m.gallery_video_desc()}
                     </p>
                   </div>
             </header>
@@ -253,7 +241,7 @@ export default function Gallery() {
                   <div className="relative w-full aspect-[9/16]">
                     <iframe
                       src={video.embedUrl}
-                      title={`DJ Vrana nastup - ${video.title}`}
+                      title={`${m.gallery_alt_video_iframe()} ${video.title}`}
                       className="absolute top-0 left-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -280,10 +268,10 @@ export default function Gallery() {
               <header className="relative text-center pt-8 pb-8 md:pb-12">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight leading-tight">
-                  Galerija Događaja
+                  {m.gallery_photo_title()}
                 </h2>
                 <p className="text-base md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed px-4">
-                  Nezaboravne noći, vrhunska atmosfera – pogledajte trenutke koje smo zajedno stvorili i doživite energiju svakog događaja.
+                  {m.gallery_photo_desc()}
                 </p>
               </header>
 
@@ -315,7 +303,7 @@ export default function Gallery() {
                   </span>
                   <img 
                       src={item.thumbnailImage} 
-                      alt={`DJ Vrana na nastupu - ${item.title}, ${categoryLabels[item.category] || item.category}`}
+                      alt={`${m.gallery_alt_gallery_img()} ${item.title}, ${categoryLabels[item.category] || item.category}`}
                       className="w-full h-[320px] object-cover block transition-transform duration-700 md:group-hover:scale-110"
                       loading="lazy"
                       height={320}
@@ -342,7 +330,7 @@ export default function Gallery() {
                   
                   <button 
                     onClick={closeLightbox}
-                    aria-label="Zatvori galeriju"
+                    aria-label={m.gallery_aria_close()}
                     className="absolute top-4 right-4 md:absolute md:top-4 md:right-8 bg-[#d4af37] text-[#0a0a0a] w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center hover:bg-[#e6c04e] hover:rotate-90 transition-all duration-300 z-50 shadow-lg"
                   >
                       <FontAwesomeIcon icon={faXmark} className="text-[18px] md:text-[24px]" />
@@ -351,7 +339,7 @@ export default function Gallery() {
                   <div className="relative flex items-center justify-center w-full group">
                     <button 
                       onClick={() => navigateLightbox(-1)}
-                      aria-label="Prethodna slika"
+                      aria-label={m.gallery_aria_prev()}
                       className="absolute left-2 md:left-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg"
                     >
                       <FontAwesomeIcon icon={faAngleLeft} className="text-[16px] md:text-[24px]" />
@@ -365,7 +353,7 @@ export default function Gallery() {
 
                     <button 
                       onClick={() => navigateLightbox(1)}
-                      aria-label="Sljedeća slika"
+                      aria-label={m.gallery_aria_next()}
                       className="absolute right-2 md:right-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg"
                     >
                       <FontAwesomeIcon icon={faAngleRight} className="text-[16px] md:text-[24px]" />

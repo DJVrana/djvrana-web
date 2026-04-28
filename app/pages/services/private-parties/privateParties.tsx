@@ -20,37 +20,18 @@ import privatePartiesImg from '../../../assets/images/private-parties.webp';
 import service from '../../../assets/videos/private-parties.mp4';
 import servicePoster from '../../../assets/images/private-parties-poster.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ za Privatne Proslave, Rođendane i Maturalne | DJ Vrana";
-  const description = "Rezervirajte DJ Vranu za nezaboravne privatne proslave, rođendane, maturalne zabave i djevojačke večeri. Vrhunska glazba, rasvjeta i nevjerojatna atmosfera.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ za privatne proslave, DJ za rođendane, DJ za maturalnu zabavu, DJ za djevojačku, party DJ Zagreb, glazba za proslave" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/dj-za-proslave/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/dj-za-proslave/` }
-  ];
+  return getMultilingualMeta(
+    "dj-za-proslave", 
+    m.private_parties_meta_title(), 
+    m.private_parties_meta_desc(),
+    m.private_parties_meta_keywords()
+  )
 }
 
 export default function PrivatneProslave() {
@@ -67,18 +48,28 @@ export default function PrivatneProslave() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const currentLang = getLocale();
+
+  const currentPartiesUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/dj-za-proslave/' 
+    : 'https://djvrana.com/dj-za-proslave/';
+
+  const areaServedTranslated = currentLang === 'en' ? 'Croatia' : 'Hrvatska';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "DJ za Privatne Proslave i Rođendane",
+    "@id": `${currentPartiesUrl}#service`,
+    "name": m.private_parties_schema_name(),
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${currentPartiesUrl}#business`, 
       "name": "DJ Vrana",
       "image": "https://djvrana.com/dj-vrana-og-image.png"
     },
-    "description": "Profesionalne DJ usluge za rođendane, maturalne zabave, djevojačke večeri i ostale privatne proslave. Uključuje personaliziranu glazbu, profesionalno ozvučenje i rasvjetu.",
-    "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/dj-za-proslave/",
+    "description": m.private_parties_schema_desc(),
+    "areaServed": areaServedTranslated,
+    "url": currentPartiesUrl,
     "category": "Event Entertainment"
   };
 
@@ -93,12 +84,12 @@ export default function PrivatneProslave() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative private-parties-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">DJ ZA PROSLAVE</div>
+          <div className="hero-badge">{m.private_parties_hero_badge()}</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            DJ Za Proslave
+            {m.private_parties_hero_title()}
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Bez obzira radi li se o rođendanu, maturalnoj zabavi ili djevojačkoj večeri, Vaš događaj zaslužuje glazbu koja pokreće, energiju koja spaja ljude i atmosferu koja se pamti.
+            {m.private_parties_hero_desc()}
           </p>
         </section>
 
@@ -121,11 +112,11 @@ export default function PrivatneProslave() {
                       playsInline
                       preload="metadata"
                       poster={servicePoster}
-                      aria-label={"DJ za proslavu rođendana i privatne zabave"}
+                      aria-label={m.private_parties_video_aria()}
                     >
                       <source src={service} type="video/mp4" />
-                      <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
-                      Vaš preglednik ne podržava video sadržaj.
+                      <track kind='captions' src="" srcLang='hr' label={m.private_parties_video_track()}></track>
+                      {m.private_parties_video_fallback()}
                     </video>
                   </div>
                 </div>
@@ -133,16 +124,16 @@ export default function PrivatneProslave() {
 
               <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ Vrana
+                  {m.private_parties_intro_badge()}
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Trenuci koji ostaju u sječanju
+                  {m.private_parties_intro_title()}
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Svaka proslava zaslužuje jedinstvenu energiju i ritam koji pokreću ljude. Prilagođavam program Vašim željama i ritmu gostiju, stvarajući iskustvo koje svi dugo pamte.
+                  {m.private_parties_intro_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Podižem vašu proslavu na novi nivo! Uz pažljivo odabranu glazbu, profesionalnu opremu i rasvjetu, svaki trenutak postaje poseban – od prvog plesa do posljednje pjesme. Zajedno stvaramo atmosferu koju gosti neće zaboraviti.
+                  {m.private_parties_intro_text_2()}
                 </p>
               </div>
             </div>
@@ -151,9 +142,9 @@ export default function PrivatneProslave() {
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
               <header>
-                <p className="section-subtitle text-center">Što Očekivati</p>
+                <p className="section-subtitle text-center">{m.private_parties_features_subtitle()}</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Što uključuje usluga DJ Za Proslave
+                  {m.private_parties_features_title()}
                 </h2>
               </header>
               
@@ -165,9 +156,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Personalizirani glazbeni odabir</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_1_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Glazbu u potpunosti prilagođavam vašim željama i stilu proslave, uzimajući u obzir preferencije vas i vaših gostiju. Svaka pjesma bira se kako bi podigla energiju i stvorila nezaboravnu atmosferu.
+                    {m.private_parties_feature_1_desc()}
                   </p>
                 </div>
 
@@ -177,9 +168,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faMicrophone} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Vođenje večeri i atmosfere</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_2_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Pratim energiju publike i biram prave pjesme u pravom trenutku, ali i vodim tijek cijele proslave – od dolaska gostiju do posljednjeg plesa – kako bi sve proteklo glatko i opušteno.
+                    {m.private_parties_feature_2_desc()}
                   </p>
                 </div>
 
@@ -189,9 +180,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faHeadphones} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Profesionalna razglasna oprema</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_3_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Koristim visokokvalitetnu i pouzdanu zvučnu opremu koja pokriva cijeli prostor, od mirnijih trenutaka do energičnih plesnih dijelova. Svaki trenutak proslave bit će jasno i savršeno zvučno doživljen.
+                    {m.private_parties_feature_3_desc()}
                   </p>
                 </div>
 
@@ -201,9 +192,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faLightbulb} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Ambijentalna rasvjeta</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_4_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osvjetljenje koje naglašava ključne trenutke i transformira prostor, stvarajući čarobnu i zabavnu atmosferu koja potiče druženje i ples.
+                    {m.private_parties_feature_4_desc()}
                   </p>
                 </div>
 
@@ -213,9 +204,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faComments} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Planiranje i dogovor prije proslave</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_5_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Zajedno prolazimo sve detalje, posebne želje i ključne trenutke kako bi proslava protekla bez stresa i s maksimalnim užitkom.
+                    {m.private_parties_feature_5_desc()}
                   </p>
                 </div>
 
@@ -225,9 +216,9 @@ export default function PrivatneProslave() {
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Iskustvo</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.private_parties_feature_6_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Iskustvo u vođenju privatnih proslava daje mi osjećaj za ritam i energiju publike, stvarajući atmosferu u kojoj se svi gosti opuštaju i zabavljaju.
+                    {m.private_parties_feature_6_desc()}
                   </p>
                 </div>
 
@@ -245,7 +236,7 @@ export default function PrivatneProslave() {
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img
                       src={privatePartiesImg}
-                      alt="DJ Vrana pušta glazbu i stvara odličnu atmosferu na rođendanu i privatnoj proslavi"
+                      alt={m.private_parties_details_img_alt()}
                       loading="lazy"
                       className="w-full h-auto block object-cover"
                     />
@@ -255,16 +246,16 @@ export default function PrivatneProslave() {
 
               <div className="py-5 order-1 md:order-1">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Bezbrižna organizacija
+                  {m.private_parties_details_badge()}
                 </span>
                 <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Vi uživajte s gostima, ja vodim zabavu
+                  {m.private_parties_details_title()}
                 </h3>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bilo da slavite okrugli rođendan, važnu obljetnicu ili organizirate privatni tulum, vaš jedini zadatak je opustiti se. Preuzimam potpunu kontrolu nad glazbom kako biste se mogli posvetiti svojim uzvanicima bez stresa oko atmosfere.
+                  {m.private_parties_details_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bilo koji prostor možemo pretvoriti u vrhunski plesni podij. Kroz pomno osmišljenu dinamiku večeri – od laganog glazbenog zagrijavanja do plesa uz najveće hitove – osiguravam da energija raste u pravom trenutku, stvarajući pravi klupski doživljaj na vašoj proslavi.
+                  {m.private_parties_details_text_2()}
                 </p>
               </div>
             </div>
@@ -277,17 +268,17 @@ export default function PrivatneProslave() {
             <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
             <div className="container mx-auto">
               <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.private_parties_cta_title()}</h2>
                 <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                  Podignite svaki događaj uz DJ Vranu! Kontaktirajte me danas i rezervirajmo datum za vašu proslavu.
+                  {m.private_parties_cta_desc()}
                 </p>
-                <Link
+                <LocalizedLink
                   to="/kontakt/"
-                  aria-label="Pošaljite upit za rezervaciju DJ-a za vašu privatnu proslavu"
+                  aria-label={m.private_parties_cta_aria()}
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošaljite Upit
-                </Link>
+                  {m.private_parties_cta_btn()}
+                </LocalizedLink>
                 
                 <div className="mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden">
                   <DJControllerApp></DJControllerApp>

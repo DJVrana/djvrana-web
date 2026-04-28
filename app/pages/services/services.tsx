@@ -24,37 +24,18 @@ import services02Poster from '../../assets/images/corporate-events-poster.webp';
 import services03Poster from '../../assets/images/private-parties-poster.webp';
 import services04Poster from '../../assets/images/dj-education-poster.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ Usluge | Vjenčanja, Eventi i Najam Opreme | DJ Vrana";
-  const description = "Vrhunske DJ usluge za vjenčanja, korporativne evente i privatne proslave. Nudimo i profesionalnu DJ edukaciju te najam razglasa i rasvjete.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ usluge, DJ za vjenčanja Zagreb, korporativni event DJ, najam DJ opreme, DJ edukacija tečaj, glazba za proslave" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/usluge/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/usluge/` }
-  ];
+  return getMultilingualMeta(
+    "usluge", 
+    m.services_meta_title(), 
+    m.services_meta_desc(),
+    m.services_meta_keywords()
+  )
 }
 
 const PremiumDJUsluge: React.FC = () => {
@@ -107,69 +88,72 @@ const PremiumDJUsluge: React.FC = () => {
     };
   }, []);
 
+  const currentLang = getLocale();
+  const baseUrl = currentLang === 'en' ? 'https://djvrana.com/en' : 'https://djvrana.com';
+
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "DJ Vrana usluge",
-    "serviceType": "DJ usluge za vjenčanja, korporativne događaje i privatne proslave",
+    "name": m.services_schema_name(),
+    "serviceType": m.services_schema_desc(),
     "provider": {
       "@type": "ProfessionalService",
+      "@id": "https://djvrana.com/#business",
       "name": "DJ Vrana",
       "url": "https://djvrana.com/"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "DJ Vrana usluge",
+      "name": m.services_schema_name(),
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "DJ za Vjenčanja",
-            "description": "Profesionalno odabrana glazba i savršena atmosfera za vjenčanja.",
-            "url": "https://djvrana.com/dj-za-vjencanja/"
+            "name": m.services_schema_1_name(),
+            "description": m.services_schema_1_desc(),
+            "url": `${baseUrl}/dj-za-vjencanja/`
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "DJ za Korporativne Događaje",
-            "description": "Glazba i atmosfera za korporativne evente i team buildinge.",
-            "url": "https://djvrana.com/dj-za-korporativni-dogadaj/"
+            "name": m.services_schema_2_name(),
+            "description": m.services_schema_2_desc(),
+            "url": `${baseUrl}/dj-za-korporativni-dogadaj/`
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Privatne Proslave",
-            "description": "Nezaboravna glazba za rođendane, maturalne zabave i ostale proslave.",
-            "url": "https://djvrana.com/dj-za-proslave/"
+            "name": m.services_schema_3_name(),
+            "description": m.services_schema_3_desc(),
+            "url": `${baseUrl}/dj-za-proslave/`
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "DJ Edukacija",
-            "description": "Tečajevi i radionice za početnike i napredne DJ-eve.",
-            "url": "https://djvrana.com/dj-edukacija/"
+            "name": m.services_schema_4_name(),
+            "description": m.services_schema_4_desc(),
+            "url": `${baseUrl}/dj-edukacija/`
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Najam Opreme",
-            "description": "Najam profesionalnog ozvučenja, rasvjete i DJ miksera.",
-            "url": "https://djvrana.com/najam-opreme/"
+            "name": m.services_schema_5_name(),
+            "description": m.services_schema_5_desc(),
+            "url": `${baseUrl}/najam-opreme/`
           }
         }
       ]
     }
   };
-
 
   return (
     <main className="overflow-x-hidden">
@@ -189,10 +173,10 @@ const PremiumDJUsluge: React.FC = () => {
                 <div className="relative text-center pt-8 pb-16 md:pb-24">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 pt-2 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight leading-tight">
-                        Što Nudim
+                        {m.services_header_title()}
                     </h1>
                     <p className="text-base md:text-lg lg:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed px-2">
-                      Profesionalne DJ usluge i oprema koja podiže svaki događaj na novu razinu. Svaki set prilagođavam Vašim željama i atmosferi, kako bi svaki trenutak bio poseban.
+                        {m.services_header_desc()}
                     </p>
                 </div>
             </header>
@@ -200,23 +184,23 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ za Svadbe i Vjenčanja
+                  {m.services_weddings_badge()}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">DJ Za Vjenčanje</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">{m.services_weddings_title()}</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                  Učinite svoje vjenčanje nezaboravnim uz DJ Vranu. DJ na vjenčanju osigurava profesionalno odabranu glazbu i savršenu atmosferu koja prati svaki trenutak – od ceremonije do posljednjeg plesa, potpuno prilagođeno vašim željama i stilu svadbe.
+                  {m.services_weddings_desc()}
                 </p>
                 <ul className="space-y-3 md:space-y-4 pt-2 md:pt-4 text-gray-300 text-sm md:text-base">
-                {['Prilagođavanje glazbenog seta Vašim željama i stilu vjenčanja', 'Jedinstvena atmosfera', 'Interakcija s gostima', 'Vođenje protokola', 'Profesionalna oprema', 'Rasvjeta koja prati atmosferu i prostor'].map((item, i) => (
+                {m.services_weddings_bullets().split('|').map((item, i) => (
                     <li key={i} className="flex items-start gap-3 md:gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1" />
                     <span>{item}</span>
                     </li>
                 ))}
                 </ul>
-                  <Link to="/dj-za-vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za vjenčanja">
-                    Saznajte Više
-                  </Link>
+                  <LocalizedLink to="/dj-za-vjencanja/" className="btn btn-primary mt-4 inline-block" aria-label={m.services_weddings_aria_more()}>
+                    {m.services_weddings_btn()}
+                  </LocalizedLink>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
               <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
@@ -231,10 +215,10 @@ const PremiumDJUsluge: React.FC = () => {
                 playsInline
                 preload="metadata"
                 poster={services01Poster}
-                aria-label={"DJ Vrana na vjenčanju video"}
+                aria-label={m.services_weddings_video_aria()}
               >
                 <source src={services01} type="video/mp4" />
-                Vaš preglednik ne podržava video sadržaj.
+                {m.services_video_fallback()}
               </video>
             </div>
             </section>
@@ -242,23 +226,23 @@ const PremiumDJUsluge: React.FC = () => {
             <section id='dogadaji' className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out scroll-mt-[160px]">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ za Korporativne Događaje
+                  {m.services_corp_badge()}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Korporativni Događaji</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">{m.services_corp_title()}</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                  Korporativni događaji su prilika za povezivanje, opuštanje i zajedničko stvaranje nezaboravnih trenutaka izvan ureda. Glazbom i atmosferom potičem timsku energiju, dobru vibru i iskustvo koje će zaposlenici pamtiti dugo nakon završetka događaja.
+                  {m.services_corp_desc()}
                 </p>
                 <ul className="space-y-3 md:space-y-4 pt-2 md:pt-4 text-gray-300 text-sm md:text-base">
-                {['Odabir glazbe prilagođen tipu događaja i publici', 'Profesionalno ozvučenje cijelog prostora', 'Ambijentalna i dinamična rasvjeta', 'Vođenje važnih trenutaka događaja', 'Iskustvo s VIP događajima'].map((item, i) => (
+                {m.services_corp_bullets().split('|').map((item, i) => (
                     <li key={i} className="flex items-start gap-3 md:gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1" />
                     <span>{item}</span>
                     </li>
                 ))}
                 </ul>
-                <Link to="/dj-za-korporativni-dogadaj/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za korporativne događaje">
-                  Detaljnije
-                </Link>
+                <LocalizedLink to="/dj-za-korporativni-dogadaj/" type="button" className="btn btn-primary mt-4 inline-block" aria-label={m.services_corp_aria_more()}>
+                  {m.services_corp_btn()}
+                </LocalizedLink>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 lg:left-auto lg:-right-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
@@ -272,10 +256,10 @@ const PremiumDJUsluge: React.FC = () => {
                   playsInline
                   preload="metadata"
                   poster={services02Poster}
-                  aria-label={"Korporativni event s DJ Vranom video"}
+                  aria-label={m.services_corp_video_aria()}
                 >
                   <source src={services02} type="video/mp4" />
-                  Vaš preglednik ne podržava video sadržaj.
+                  {m.services_video_fallback()}
                 </video>
             </div>
             </section>
@@ -283,23 +267,23 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ za Proslave
+                  {m.services_parties_badge()}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Privatne Proslave</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">{m.services_parties_title()}</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                  Bez obzira radi li se o rođendanu, maturalnoj zabavi ili djevojačkoj večeri, svaki događaj zaslužuje glazbu koja pokreće, energiju koja okuplja i atmosferu koja se pamti. DJ Vrana stvara trenutke koji ostaju u sjećanju i čine vašu proslavu jedinstvenom.
+                  {m.services_parties_desc()}
                 </p>
                 <ul className="space-y-3 md:space-y-4 pt-2 md:pt-4 text-gray-300 text-sm md:text-base">
-                {['Personalizirani glazbeni pristup', 'Prilagodba za sve dobne skupine', 'Interaktivna zabava i angažman gostiju', 'Fleksibilni paketi i trajanje', 'Profesionalna rasvjeta i efekti'].map((item, i) => (
+                {m.services_parties_bullets().split('|').map((item, i) => (
                     <li key={i} className="flex items-start gap-3 md:gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1" />
                     <span>{item}</span>
                     </li>
                 ))}
                 </ul>
-                <Link to="/dj-za-proslave/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o DJ uslugama za privatne proslave">
-                  Saznajte Više
-                </Link>
+                <LocalizedLink to="/dj-za-proslave/" type="button" className="btn btn-primary mt-4 inline-block" aria-label={m.services_parties_aria_more()}>
+                  {m.services_parties_btn()}
+                </LocalizedLink>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
@@ -313,10 +297,10 @@ const PremiumDJUsluge: React.FC = () => {
                   playsInline
                   preload="metadata"
                   poster={services03Poster}
-                  aria-label={"DJ za proslavu rođendana i privatne zabave"}
+                  aria-label={m.services_parties_video_aria()}
                 >
                   <source src={services03} type="video/mp4" />
-                  Vaš preglednik ne podržava video sadržaj.
+                  {m.services_video_fallback()}
                 </video>
             </div>
             </section>
@@ -324,23 +308,23 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  DJ Edukacije i Radionice
+                  {m.services_edu_badge()}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">DJ Edukacija</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">{m.services_edu_title()}</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                  Naučite osnove i napredne vještine DJ-anja uz DJ Vranu. Radionice su praktične, zabavne i prilagođene svim razinama – od početnika do onih koji žele usavršiti svoje miksanje.
+                  {m.services_edu_desc()}
                 </p>
                 <ul className="space-y-3 md:space-y-4 pt-2 md:pt-4 text-gray-300 text-sm md:text-base">
-                {['Osnove DJ opreme', 'Upoznavanje s glazbenim žanrovima i strukturama pjesama', 'Tehnike miksanja i beatmatching', 'Praktično snalaženje s digitalnim DJ softverima', 'Savjeti za izgradnju DJ karijere i nastupe uživo', 'Personalizirane vježbe'].map((item, i) => (
+                {m.services_edu_bullets().split('|').map((item, i) => (
                     <li key={i} className="flex items-start gap-3 md:gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1" />
                     <span>{item}</span>
                     </li>
                 ))}
                 </ul>
-                <Link to="/dj-edukacija/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o tečajevima i radionicama">
-                  Više Informacija
-                </Link>
+                <LocalizedLink to="/dj-edukacija/" type="button" className="btn btn-primary mt-4 inline-block" aria-label={m.services_edu_aria_more()}>
+                  {m.services_edu_btn()}
+                </LocalizedLink>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 lg:left-auto lg:-right-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
@@ -354,10 +338,10 @@ const PremiumDJUsluge: React.FC = () => {
                   playsInline
                   preload="metadata"
                   poster={services04Poster}
-                  aria-label={"Tečaj DJ-anja"}
+                  aria-label={m.services_edu_video_aria()}
                 >
                   <source src={services04} type="video/mp4" />
-                  Vaš preglednik ne podržava video sadržaj.
+                  {m.services_video_fallback()}
                 </video>
             </div>
             </section>
@@ -365,30 +349,30 @@ const PremiumDJUsluge: React.FC = () => {
             <section className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-24 lg:mb-32 reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
             <div className="flex-1 space-y-5 lg:space-y-6">
                 <span className="inline-block px-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Najam DJ Opreme
+                  {m.services_rent_badge()}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-bold">Najam Opreme</h3>
+                <h3 className="text-3xl md:text-4xl font-bold">{m.services_rent_title()}</h3>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                  Vrhunska DJ oprema za svaki događaj – ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.
+                  {m.services_rent_desc()}
                 </p>
                 <ul className="space-y-3 md:space-y-4 pt-2 md:pt-4 text-gray-300 text-sm md:text-base">
-                {['Ozvučenje', 'DJ kontroleri i mikseri', 'Rasvjeta', 'Mikrofoni', 'Tehnička podrška'].map((item, i) => (
+                {m.services_rent_bullets().split('|').map((item, i) => (
                     <li key={i} className="flex items-start gap-3 md:gap-4">
                     <FontAwesomeIcon icon={faCheck} className="text-[#d4af37] mt-1" />
                     <span>{item}</span>
                     </li>
                 ))}
                 </ul>
-                <Link to="/najam-opreme/" type="button" className="btn btn-primary mt-4 inline-block" aria-label="Saznajte više o najmu opreme">
-                  Saznajte Više
-                </Link>
+                <LocalizedLink to="/najam-opreme/" type="button" className="btn btn-primary mt-4 inline-block" aria-label={m.services_rent_aria_more()}>
+                  {m.services_rent_btn()}
+                </LocalizedLink>
             </div>
             <div className="flex-1 relative w-full mt-6 lg:mt-0">
                 <div className="absolute -top-4 -left-2 md:-top-6 md:-left-6 w-12 h-12 md:w-20 md:h-20 bg-[#121212] rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.2)] border border-[#d4af37]/20 z-10">
                 <FontAwesomeIcon icon={faCompactDisc} className="text-[16px] md:text-[32px]" />
                 </div>
                 <img 
-                alt="Najam profesionalnog zvučnika" 
+                alt={m.services_rent_img_alt()}
                 loading="lazy"
                 className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-[0_0_40px_rgba(212,175,55,0.1)] grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
                 src={services05}
@@ -400,13 +384,13 @@ const PremiumDJUsluge: React.FC = () => {
 
         <section className="bg-[#121212] py-16 md:py-24 px-4 text-center border-t border-[#d4af37]/10 w-full relative z-20">
             <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Spremni za Nezaboravno Iskustvo?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">{m.services_cta_title()}</h2>
               <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
-                Kontaktirajte me danas i razgovarajmo o Vašim potrebama. Zajedno ćemo stvoriti glazbeno iskustvo koje će Vaš događaj učiniti jedinstvenim i nezaboravnim.
+                {m.services_cta_desc()}
               </p>
-              <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label="Pošaljite upit i rezervirajte DJ-a">
-                Kontaktiraj Me
-              </Link>
+              <LocalizedLink to="/kontakt/" type="button" className="btn btn-primary" aria-label={m.services_cta_aria()}>
+                {m.services_cta_btn()}
+              </LocalizedLink>
             </div>
         </section>
         </div>

@@ -76,11 +76,11 @@
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after {
+.nav-links a.active-nav::after {
   width: 100%;
 }
 
-.nav-links a.active {
+.nav-links a.active-nav {
   color: var(--color-accent-gold, #d4af37);
 }
 
@@ -111,7 +111,7 @@
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   }
 
-  .nav-links.active {
+  .nav-links.active-nav {
     left: 0;
   }
 

@@ -20,37 +20,18 @@ import djEducationImg from '../../../assets/images/dj-education.webp';
 import service from '../../../assets/videos/dj-education.mp4';
 import servicePoster from '../../../assets/images/dj-education-poster.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "DJ Škola i Edukacija | Tečaj Miksanja | DJ Vrana";
-  const description = "Naučite osnove i napredne vještine DJ-anja. Praktične radionice, učenje beatmatchinga, upoznavanje opreme i mentorstvo za izgradnju DJ karijere.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ edukacija, DJ škola, tečaj za DJ-a, kako postati DJ, instrukcije miksanje glazbe, učenje DJ opreme" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/dj-edukacija/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/dj-edukacija/` }
-  ];
+  return getMultilingualMeta(
+    "dj-edukacija", 
+    m.dj_education_meta_title(), 
+    m.dj_education_meta_desc(),
+    m.dj_education_meta_keywords()
+  )
 }
 
 export default function DJEdukacija() {
@@ -67,22 +48,35 @@ export default function DJEdukacija() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+const currentLang = getLocale();
+
+  const currentCourseUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/dj-edukacija/' 
+    : 'https://djvrana.com/dj-edukacija/';
+
+  const currentAboutUrl = currentLang === 'en'
+    ? 'https://djvrana.com/en/o-meni/'
+    : 'https://djvrana.com/o-meni/';
+
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Edukacija i radionice za DJ-eve",
-    "description": "Praktični tečaj DJ-anja koji pokriva osnove opreme, tehnike miksanja, beatmatching i mentorstvo za live nastupe.",
+    "@id": `${currentCourseUrl}#course`,
+    "name": m.dj_education_schema_name(),
+    "description": m.dj_education_schema_desc(),
+    "url": currentCourseUrl,
     "provider": {
       "@type": "Person",
-      "name": "Ivan Vraneša (DJ Vrana)",
-      "url": "https://djvrana.com/o-meni/"
+      "@id": `${currentAboutUrl}#ivanvranesa`,
+      "name": m.dj_education_schema_provider(),
+      "url": currentAboutUrl
     },
-    "coursePrerequisites": "Nije potrebno prethodno predznanje.",
-    "educationalCredentialAwarded": "Znanje za samostalan DJ nastup",
+    "coursePrerequisites": m.dj_education_schema_prereq(),
+    "educationalCredentialAwarded": m.dj_education_schema_credential(),
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseMode": "Onsite",
-      "location": "Zagreb, Hrvatska"
+      "location": m.dj_education_schema_location()
     }
   };
 
@@ -96,12 +90,12 @@ export default function DJEdukacija() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative dj-education-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">DJ EDUKACIJA I RADIONICE</div>
+          <div className="hero-badge">{m.dj_education_hero_badge()}</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            DJ Edukacija
+            {m.dj_education_hero_title()}
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Naučite osnove i napredne vještine DJ-anja. Radionice su praktične, zabavne i prilagođene svim razinama – od početnika do onih koji žele usavršiti svoje miksanje.
+            {m.dj_education_hero_desc()}
           </p>
         </section>
 
@@ -124,11 +118,11 @@ export default function DJEdukacija() {
                       playsInline
                       preload="metadata"
                       poster={servicePoster}
-                      aria-label={"Tečaj DJ-anja"}
+                      aria-label={m.dj_education_video_aria()}
                     >
                       <source src={service} type="video/mp4" />
-                      <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
-                      Vaš preglednik ne podržava video sadržaj.
+                      <track kind='captions' src="" srcLang='hr' label={m.dj_education_video_track()}></track>
+                      {m.dj_education_video_fallback()}
                     </video>
                   </div>
                 </div>
@@ -136,16 +130,16 @@ export default function DJEdukacija() {
 
               <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  MENTORSTVO & EDUKACIJA
+                  {m.dj_education_intro_badge()}
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Ostvarite svoj potencijal za DJ pultom
+                  {m.dj_education_intro_title()}
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Kroz individualni pristup i personalizirani program, fokusiram se na tvoj napredak – bilo da se tek upoznaješ s opremom ili već pripremaš za svoje prve nastupe.
+                  {m.dj_education_intro_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Praktične vježbe i live miks sesije pomažu ti savladati tehnike miksanja, beatmatchinga i snalaženje s najmodernijim digitalnim DJ softverima, pripremajući te za samostalne nastupe i nastupe pred publikom.
+                  {m.dj_education_intro_text_2()}
                 </p>
               </div>
             </div>
@@ -154,9 +148,9 @@ export default function DJEdukacija() {
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
               <header>
-                <p className="section-subtitle text-center">Što Očekivati</p>
+                <p className="section-subtitle text-center">{m.dj_education_features_subtitle()}</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Program DJ Edukacije
+                  {m.dj_education_features_title()}
                 </h2>
               </header>
               
@@ -168,9 +162,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faHeadphones} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Upoznavanje s opremom i softverom</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_1_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osnove DJ opreme – kontroleri, CDJ-i, mikseri – te najpopularniji digitalni softveri poput rekordBoxa i Serata. Učim te kako sve povezati i koristiti na pravilan način.
+                    {m.dj_education_feature_1_desc()}
                   </p>
                 </div>
 
@@ -180,9 +174,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faSliders} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Tehnike miksanja</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_2_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Učenje osnovnih i naprednijih tehnika miksanja, uključujući beatmatching i usklađivanje ritmova za glatke prijelaze između pjesama.
+                    {m.dj_education_feature_2_desc()}
                   </p>
                 </div>
 
@@ -192,9 +186,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faMusic} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Glazba i struktura seta</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_3_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Učim te kako pravilno birati glazbu i slagati setove prema energiji, žanru i tijeku večeri, stvarajući logičan i dinamičan glazbeni put od početka do kraja.
+                    {m.dj_education_feature_3_desc()}
                   </p>
                 </div>
 
@@ -204,9 +198,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faBolt} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Učenje o atmosferi i energiji publike</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_4_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Kako pratiti reakcije publike i prilagođavati glazbu u skladu s energijom, čineći svaki nastup dinamičnim i zanimljivim.
+                    {m.dj_education_feature_4_desc()}
                   </p>
                 </div>
 
@@ -216,9 +210,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faBriefcase} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Nastupi i izgradnja karijere</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_5_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Priprema za prve nastupe, razvoj samopouzdanja iza pulta te savjeti za izgradnju vlastitog DJ identiteta i pronalazak prilika za nastupe.
+                    {m.dj_education_feature_5_desc()}
                   </p>
                 </div>
 
@@ -228,9 +222,9 @@ export default function DJEdukacija() {
                       <FontAwesomeIcon icon={faComments} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Individualni pristup</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.dj_education_feature_6_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Svaki polaznik je drugačiji, zato program prilagođavam tvom znanju, tempu i ciljevima kako bi napredak bio što učinkovitiji i prirodniji.
+                    {m.dj_education_feature_6_desc()}
                   </p>
                 </div>
 
@@ -248,7 +242,7 @@ export default function DJEdukacija() {
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img 
                       src={djEducationImg}
-                      alt="Praktična DJ edukacija i učenje rada na profesionalnim DJ kontrolerima" 
+                      alt={m.dj_education_details_img_alt()} 
                       loading="lazy"
                       className="w-full h-auto block object-cover"
                     />
@@ -258,16 +252,16 @@ export default function DJEdukacija() {
 
               <div className="py-5 order-1 md:order-1">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Stvarno iskustvo s terena
+                  {m.dj_education_details_badge()}
                 </span>
                 <h3 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Više od tehnike: Umijeće čitanja publike
+                  {m.dj_education_details_title()}
                 </h3>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Tehničke vještine su temelj, no prava tajna uspješnog nastupa leži u upravljanju energijom u prostoriji. Naučit ću te kako prepoznati raspoloženje publike, kada promijeniti ritam i kako pravilno graditi set koji drži ljude na plesnom podiju.
+                  {m.dj_education_details_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Također prolazimo kroz ključne korake pripreme "iza kulisa" – od napredne organizacije glazbene biblioteke do snalaženja u nepredvidivim situacijama na gaži. Dobit ćeš konkretne savjete iz prve ruke koji će ti pomoći da izgradiš samopouzdanje i vlastiti prepoznatljiv stil.
+                  {m.dj_education_details_text_2()}
                 </p>
               </div>
             </div>
@@ -281,17 +275,17 @@ export default function DJEdukacija() {
             
             <div className="container mx-auto">
               <div className='max-w-3xl mx-auto text-center'>
-                <h2 className="text-3xl md:text-5xl font-bold mb-6">Započni Svoju DJ Priču</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.dj_education_cta_title()}</h2>
                 <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                  Spremni ste stati za pult i savladati umjetnost miksanja? Prijavite se na edukaciju i rezervirajte svoj prvi termin.
+                  {m.dj_education_cta_desc()}
                 </p>
-                <Link 
+                <LocalizedLink 
                   to="/kontakt/"
-                  aria-label="Pošaljite upit i prijavite se na DJ edukaciju"
+                  aria-label={m.dj_education_cta_aria()}
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošaljite Upit Za Radionicu
-                </Link>
+                  {m.dj_education_cta_btn()}
+                </LocalizedLink>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>
                   <DJControllerApp></DJControllerApp>

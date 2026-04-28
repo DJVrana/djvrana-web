@@ -17,37 +17,18 @@ import type { Route } from './+types/equipmentRental';
 
 import equipmentRentalImg from '../../../assets/images/equipment-rental.webp';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com"; 
-  const title = "Najam Opreme | Ozvučenje, Rasvjeta i Mikseri | DJ Vrana";
-  const description = "Vrhunska DJ oprema za svaki događaj – ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "najam opreme, najam dj opreme, ozvučenje, rasvjeta, dj mikseri, najam mikrofona, tehnička podrška" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/najam-opreme/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/najam-opreme/` }
-  ];
+  return getMultilingualMeta(
+    "najam-opreme", 
+    m.equipment_rental_meta_title(), 
+    m.equipment_rental_meta_desc(),
+    m.equipment_rental_meta_keywords()
+  )
 }
 
 export default function NajamOpreme() {
@@ -64,18 +45,28 @@ export default function NajamOpreme() {
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+  const currentLang = getLocale();
+
+  const currentRentalUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/najam-opreme/' 
+    : 'https://djvrana.com/najam-opreme/';
+
+  const areaServedTranslated = currentLang === 'en' ? 'Croatia' : 'Hrvatska';
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Najam DJ Opreme i Rasvjete",
+    "@id": `${currentRentalUrl}#service`,
+    "name": m.equipment_rental_schema_name(),
     "provider": {
       "@type": "LocalBusiness",
+      "@id": `${currentRentalUrl}#business`, 
       "name": "DJ Vrana",
       "image": "https://djvrana.com/dj-vrana-og-image.png"
     },
-    "description": "Vrhunska DJ oprema za svaki događaj – ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu uz stručnu tehničku podršku.",
-    "areaServed": "Hrvatska",
-    "url": "https://djvrana.com/najam-opreme/",
+    "description": m.equipment_rental_schema_desc(),
+    "areaServed": areaServedTranslated,
+    "url": currentRentalUrl,
     "category": "Equipment Rental"
   };
 
@@ -90,12 +81,12 @@ export default function NajamOpreme() {
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
         <section className="text-center mb-16 relative equipment-rental-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">PREMIUM OPREMA</div>
+          <div className="hero-badge">{m.equipment_rental_hero_badge()}</div>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            Najam Opreme
+            {m.equipment_rental_hero_title()}
           </h1>
           <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            Vrhunska DJ oprema za svaki događaj – ozvučenje, rasvjeta i mikseri koji osiguravaju savršen zvuk i atmosferu.
+            {m.equipment_rental_hero_desc()}
           </p>
         </section>
 
@@ -112,7 +103,7 @@ export default function NajamOpreme() {
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
                     <img 
                       src={equipmentRentalImg}
-                      alt="Profesionalna DJ oprema, mikseri i ozvučenje za najam" 
+                      alt={m.equipment_rental_intro_img_alt()} 
                       loading="lazy"
                       className="w-full h-auto block object-cover"
                     />
@@ -122,16 +113,16 @@ export default function NajamOpreme() {
 
               <div className="py-5 order-1 md:order-2">
                 <span className="inline-block px-4 mb-4 py-1.5 border border-[#d4af37] text-[#d4af37] rounded-full text-xs font-bold tracking-widest uppercase bg-[#d4af37]/5">
-                  Audio & Svijetla
+                  {m.equipment_rental_intro_badge()}
                 </span>
                 <h2 className="text-[1.5rem] md:text-[2rem] mb-6 text-white font-semibold">
-                  Sve što vam treba za nezaboravan događaj
+                  {m.equipment_rental_intro_title()}
                 </h2>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Bez obzira organizirate li privatnu proslavu, korporativni event ili veći nastup, osiguravam opremu koja garantira vrhunski doživljaj. Pouzdana i profesionalna oprema visoke klase koja pruža snažan i kristalno čist zvuk u svakom prostoru.
+                  {m.equipment_rental_intro_text_1()}
                 </p>
                 <p className="text-[1.125rem] text-[#a0a0a0] mb-5 leading-[1.8]">
-                  Asortiman pokriva sve tehničke potrebe – od kvalitetnog ozvučenja i osnovne ambijentalne rasvjete do DJ kontrolera, mikrofona i kompletne tehničke podrške na terenu, kako bi vaš događaj protekao bez stresa i komplikacija.
+                  {m.equipment_rental_intro_text_2()}
                 </p>
               </div>
             </div>
@@ -140,9 +131,9 @@ export default function NajamOpreme() {
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
               <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
               <header>
-                <p className="section-subtitle text-center">Što Očekivati</p>
+                <p className="section-subtitle text-center">{m.equipment_rental_features_subtitle()}</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
-                  Naša ponuda opreme
+                  {m.equipment_rental_features_title()}
                 </h2>
               </header>
               
@@ -154,9 +145,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faVolumeHigh} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Ozvučenje</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_1_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Snažni zvučnici i bas binovi vrhunske kvalitete koji isporučuju jasan zvuk visoke definicije prilagodljiv veličini vašeg prostora.
+                    {m.equipment_rental_feature_1_desc()}
                   </p>
                 </div>
 
@@ -166,9 +157,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faSliders} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">DJ Kontroleri i Mikseri</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_2_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Profesionalna klupska oprema idealna za izvođače, spremna za jednostavno spajanje i osiguravanje fluidnih prijelaza i setova.
+                    {m.equipment_rental_feature_2_desc()}
                   </p>
                 </div>
 
@@ -178,9 +169,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faLightbulb} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Rasvjeta</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_3_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osnovna ambijentalna rasvjeta i moving head svjetla za dinamičnu i efektno osvijetljenu atmosferu.
+                    {m.equipment_rental_feature_3_desc()}
                   </p>
                 </div>
 
@@ -190,9 +181,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faCube} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">DJ Pult</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_4_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Moderan i uredan DJ stol koji se vizualno uklapa u prostor i osigurava profesionalan izgled.
+                    {m.equipment_rental_feature_4_desc()}
                   </p>
                 </div>
 
@@ -202,9 +193,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faMicrophone} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Mikrofoni</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_5_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Kvalitetni bežični i žični mikrofoni koji osiguravaju jasan i pouzdan prijenos govora i glazbe u svakom trenutku.
+                    {m.equipment_rental_feature_5_desc()}
                   </p>
                 </div>
 
@@ -214,9 +205,9 @@ export default function NajamOpreme() {
                       <FontAwesomeIcon icon={faWrench} />
                     </div>
                   </div>
-                  <h3 className="text-xl mb-3 text-white font-semibold">Tehnička podrška</h3>
+                  <h3 className="text-xl mb-3 text-white font-semibold">{m.equipment_rental_feature_6_title()}</h3>
                   <p className="text-[0.95rem] text-[#a0a0a0] leading-[1.6]">
-                    Osigurana tehnička podrška tijekom cijelog događaja kako bi sve funkcioniralo besprijekorno i bez stresa.
+                    {m.equipment_rental_feature_6_desc()}
                   </p>
                 </div>
 
@@ -231,17 +222,17 @@ export default function NajamOpreme() {
             <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
             <div className="container mx-auto">
               <div className='max-w-3xl mx-auto text-center'>
-                <h2 className="text-3xl md:text-5xl font-bold mb-6">Zatražite Ponudu Opreme</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.equipment_rental_cta_title()}</h2>
                 <p className="text-lg md:text-xl text-[#b8b8b8] mb-10">
-                  Trebate pouzdano ozvučenje i rasvjetu? Kontaktirajte me danas kako bismo osigurali opremu koja najbolje odgovara vašim potrebama.
+                  {m.equipment_rental_cta_desc()}
                 </p>
-                <Link 
+                <LocalizedLink 
                   to="/kontakt/"
-                  aria-label="Pošaljite upit za najam DJ opreme, ozvučenja i rasvjete"
+                  aria-label={m.equipment_rental_cta_aria()}
                   className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                 >
-                  Pošaljite Upit
-                </Link>
+                  {m.equipment_rental_cta_btn()}
+                </LocalizedLink>
                 
                 <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] w-full max-w-[595px] overflow-hidden'>
                   <DJControllerApp></DJControllerApp>

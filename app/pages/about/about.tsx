@@ -23,40 +23,18 @@ import about02 from '../../assets/images/about02.webp'
 import about03 from '../../assets/images/about03.webp'
 import type { Route } from './+types/about';
 
+import * as m from '~/paraglide/messages.js';
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
+import { getMultilingualMeta } from '~/utils/seo/seo';
+import { getLocale } from '~/paraglide/runtime';
+
 export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com";
-  const title = "O meni | DJ Vrana - Ivan Vraneša";
-  const description = "Upoznajte DJ Vranu. Više od 5 godina iskustva u stvaranju nezaboravne atmosfere na vjenčanjima, rođendanima i korporativnim eventima uz profesionalni pristup.";
-
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ Vrana o meni, Ivan Vraneša DJ, iskustvo DJ za svadbe, profesionalni DJ biografija" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph (Facebook, Instagram, LinkedIn)
-    { property: "og:type", content: "profile" }, // Ovdje koristimo "profile" umjesto "website"
-    { property: "profile:first_name", content: "Ivan" },
-    { property: "profile:last_name", content: "Vraneša" },
-    { property: "profile:username", content: "DJ Vrana" },
-    { property: "og:url", content: `${domain}/o-meni/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/o-meni/` }
-  ];
+    return getMultilingualMeta(
+    "o-meni", 
+    m.about_meta_title(), 
+    m.about_meta_desc(),
+    m.about_meta_keywords()
+    );
 }
 
 const AboutMe = () => {
@@ -90,23 +68,38 @@ const AboutMe = () => {
     return () => observer.disconnect();
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("active"));
     });
     document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
   }, []);
 
+    const currentLang = getLocale();
+
+  const currentAboutUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/o-meni/' 
+    : 'https://djvrana.com/o-meni/';
+
+  const jobTitleTranslated = currentLang === 'en' 
+    ? 'Professional DJ' 
+    : 'Profesionalni DJ';
+
+  const knowsAboutTranslated = currentLang === 'en'
+    ? ["DJing", "Wedding Entertainment", "Event Management", "Sound Engineering"]
+    : ["DJ-iranje", "Zabava za vjenčanja", "Organizacija događaja", "Oblikovanje zvuka"];
+
   const personStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${currentAboutUrl}#ivanvranesa`,
     "name": "Ivan Vraneša",
     "alternateName": "DJ Vrana",
-    "jobTitle": "Professional DJ",
-    "description": "Profesionalni DJ za vjenčanja, privatne proslave i korporativne evente s preko 5 godina iskustva.",
-    "url": "https://djvrana.com/o-meni/",
+    "jobTitle": jobTitleTranslated,
+    "description": m.about_meta_desc(),
+    "url": currentAboutUrl,
     "image": "https://djvrana.com/ivan-vranesa-profil.png",
-    "knowsAbout": ["DJing", "Wedding Entertainment", "Event Management", "Sound Engineering"],
+    "knowsAbout": knowsAboutTranslated,
     "sameAs": [
       "https://www.instagram.com/ivan.vranesa/",
       "https://www.tiktok.com/@dj.proslave",
@@ -133,10 +126,10 @@ const AboutMe = () => {
                 <div className="relative text-center pt-8 pb-10">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                     <h1 className="text-4xl h-18 md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight">
-                      Tko Sam Ja
+                      {m.about_header_title()}
                     </h1>
                     <p className="text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed">
-                        Strast prema ritmu, iskustvo za pultom i posvećenost detaljima koji vaš događaj čine besprijekornim.
+                        {m.about_header_desc()}
                     </p>
                 </div>
             </header>
@@ -145,7 +138,7 @@ const AboutMe = () => {
                     <div className="profile-image">
                     <img 
                         src={djVranaLogo}
-                        alt="DJ Vrana logo - Ivan Vraneša, profesionalni DJ za događaje"
+                        alt={m.about_img_alt_logo()}
                     />
                     </div>
                 </div>
@@ -160,14 +153,14 @@ const AboutMe = () => {
             <div className="container">
 
             <header className="mx-auto max-w-2xl text-center section-header scroll-animate">
-                <p className="section-subtitle">Moja Priča</p>
+                <p className="section-subtitle">{m.about_story_subtitle()}</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                    Strast Koja Stvara Atmosferu
+                    {m.about_story_title()}
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                    Već više od 5 godina stvaram nezaboravnu glazbenu atmosferu koja pokreće emocije i okuplja ljude. Sa svakim nastupom težim učiniti svaki trenutak posebnim, bilo da je riječ o prvom plesu, proslavi rođendana ili klupskom događaju.
+                    {m.about_story_desc()}
                 </p>
             </header>
 
@@ -180,14 +173,14 @@ const AboutMe = () => {
                         <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
                             <FontAwesomeIcon icon={faMusic} className='text-[24px]' />
                         </div>
-                            <h3 className="text-xl font-bold mb-4">Početak putovanja</h3>
+                            <h3 className="text-xl font-bold mb-4">{m.about_card_1_title()}</h3>
                             <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                                Moja ljubav prema glazbi počela je još u osnovnoj školi. Eksperimentirao sam s miksanjem raznih žanrova, promatrao dj-eve na internetu i samostalno učio. Od prvih mikseva u malim klubovima do velikih događaja s tisuću ljudi, svaki nastup bio je lekcija i korak naprijed.
+                                {m.about_card_1_desc()}
                             </p>
                             <div className="rounded-xl overflow-hidden h-48">
                                 <img 
                                 src={about01}
-                                alt="DJ Vrana miksa glazbu na početku karijere" 
+                                alt={m.about_card_1_img_alt()} 
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
                             </div>
@@ -202,15 +195,15 @@ const AboutMe = () => {
                         <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
                             <FontAwesomeIcon icon={faHeadphones} className='text-[24px]' />
                         </div>
-                        <h3 className="text-xl font-bold mb-4">Posebnost</h3>
+                        <h3 className="text-xl font-bold mb-4">{m.about_card_2_title()}</h3>
                         <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                            Ono što me izdvaja je sposobnost brzog čitanja publike i prilagođavanja trenutku. Ne puštam samo glazbu – stvaram iskustvo koje miješa emocije i posebnost trenutka, ostavljajući trajni dojam na svakog prisutnog.
+                            {m.about_card_2_desc()}
                         </p>
                     </div>
                     <div className="rounded-xl overflow-hidden h-48">
                         <img 
                         src={about02}
-                        alt="Profesionalna DJ oprema i slušalice na nastupu" 
+                        alt={m.about_card_2_img_alt()} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                     </div>
@@ -224,15 +217,15 @@ const AboutMe = () => {
                         <div className="w-12 h-12 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-[#d4af37] mb-6 group-hover:scale-110 transition-transform">
                             <FontAwesomeIcon icon={faZap} className='text-[24px]' />
                         </div>
-                        <h3 className="text-xl font-bold mb-4">Profesionalni pristup</h3>
+                        <h3 className="text-xl font-bold mb-4">{m.about_card_3_title()}</h3>
                         <p className="text-[#808080] mb-6 text-sm leading-relaxed">
-                            S godinama iskustva dolazi i razumijevanje da svaki događaj ima svoju priču. Koristim profesionalnu opremu najnovije generacije i detaljno planiram svaki set kako bih osigurao energiju na najvišoj razini.
+                            {m.about_card_3_desc()}
                         </p>
                     </div>
                     <div className="rounded-xl overflow-hidden h-48">
                         <img 
                         src={about03}
-                        alt="DJ Vrana pušta glazbu i zabavlja publiku na noćnom događaju" 
+                        alt={m.about_card_3_img_alt()} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                     </div>
@@ -245,10 +238,10 @@ const AboutMe = () => {
             <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                { num: '300+', label: 'Događaja' },
-                { num: '5+', label: 'Godina Iskustva' },
-                { num: '100%', label: 'Zadovoljnih Klijenata' },
-                { num: '50+', label: 'Vjenčanja' }
+                { num: m.about_stat_1_num(), label: m.about_stat_1_label() },
+                { num: m.about_stat_2_num(), label: m.about_stat_2_label() },
+                { num: m.about_stat_3_num(), label: m.about_stat_3_label() },
+                { num: m.about_stat_4_num(), label: m.about_stat_4_label() }
                 ].map((stat, i) => (
                 <div key={i}>
                     <div className="text-4xl md:text-5xl font-bold text-[#d4af37] mb-2">{stat.num}</div>
@@ -266,10 +259,10 @@ const AboutMe = () => {
             <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
             <div className="max-w-4xl mx-auto">
             <header className="mx-auto max-w-2xl text-center section-header scroll-animate">
-                <p className="section-subtitle">Filozofija</p>
+                <p className="section-subtitle">{m.about_philosophy_subtitle()}</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                Moj Pristup
+                {m.about_philosophy_title()}
                 </h2>
             </header>
 
@@ -279,24 +272,24 @@ const AboutMe = () => {
                     <div className="rounded-2xl overflow-hidden shadow-2xl shadow-[#d4af37]/5 border border-[#d4af37]/20">
                         <img 
                         src={myApproachImg} 
-                        alt="DJ Vrana u akciji na svadbi - stvaranje savršene atmosfere" 
+                        alt={m.about_philosophy_img_alt()} 
                         className="w-full h-auto"
                         />
                     </div>
                     </div>
                     <div className="w-full md:w-1/2 space-y-6">
-                    <h3 className="text-2xl font-bold text-[#d4af37]">Iza Pulta</h3>
+                    <h3 className="text-2xl font-bold text-[#d4af37]">{m.about_philosophy_text_title()}</h3>
                     <p className="text-[#b8b8b8] leading-relaxed">
-                        Vjerujem da glazba nije samo zvuk, nego iskustvo koje povezuje ljude. Moj pristup temelji se na slušanju, prilagodbi i stvaranju trenutaka koji se pamte. Svaki događaj tretiram kao jedinstvenu priču, gdje je cilj više od samog miksa – stvaranje emocija i atmosfere koja će se pamtiti.
+                        {m.about_philosophy_text_1()}
                     </p>
                     <p className="text-[#b8b8b8] leading-relaxed">
-                        Za mene to nije samo još jedan datum u kalendaru – svaki događaj je priča koju želim prenijeti. Kroz glazbu stvaram trenutke, emocije i uspomene koje ostaju s vama dugo nakon posljednjeg plesa.
+                        {m.about_philosophy_text_2()}
                     </p>
                     </div>
                 </div>
 
                 <blockquote className="text-2xl md:text-3xl font-light italic text-center mb-16 px-8 py-12 border-l-4 border-r-4 border-[#d4af37] bg-gradient-to-r from-transparent via-[#1a1a1a] to-transparent">
-                    "Glazba nije samo zvuk - to je emocija, energija i veza između ljudi. Moj posao je stvoriti trenutke koji se pamte zauvijek."
+                    {m.about_philosophy_quote()}
                 </blockquote>
                 </div>
             </div>
@@ -309,23 +302,23 @@ const AboutMe = () => {
             <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
             <div className="container">
             <header className="mx-auto max-w-2xl text-center section-header scroll-animate">
-                <p className="section-subtitle">Specijalizacija</p>
+                <p className="section-subtitle">{m.about_spec_subtitle()}</p>
 
                 <h2 className="text-balance text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                    U Čemu Sam Najbolji
+                    {m.about_spec_title()}
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                    Svaki događaj nosi svoju priču, energiju i publiku. Kroz iskustvo sam razvio sposobnost da prepoznam što publika želi u pravom trenutku i stvorim atmosferu koja se pamti.
+                    {m.about_spec_desc()}
                 </p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/dj-za-vjencanja/", title: 'Vjenčanja', desc: 'Bilo da se radi o intimnom ili velikom vjenčanju, znam kako stvoriti pravu atmosferu i držati plesni podij punim cijelu večer. Prilagođavam glazbu vašim željama, tempu večeri i gostima kako bi svaki trenutak bio poseban i nezaboravan.' },
-                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/dj-za-proslave/", title: 'Rođendani', desc: 'Proslava tvog posebnog dana zaslužuje glazbu koja pokreće, energiju koja zarazi i atmosferu koja ostaje u sjećanju. Bilo da je manja zabava ili veći party, svaki rođendan pretvaram u događaj o kojem će se pričati danima.' },
-                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/dj-za-proslave/", title: 'Maturalne zabave', desc: 'Ovo je noć koju dugo čekate – završetak jedne faze i početak novih avantura. Glazbom stvaram energiju koja povezuje sve prisutne, od prvog do posljednjeg plesa, i osiguravam da se smijeh, ples i dobre vibracije pamte još dugo nakon što se svjetla ugase.' },
-                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/dj-za-korporativni-dogadaj/", title: 'Korporativni Događaji', desc: 'Korporativni događaji su prilika za povezivanje i opuštanje od posla. Svakom događaju pristupam s ciljem da glazba i atmosfera potaknu zajedništvo, dobre vibracije i nezaboravne trenutke za cijeli tim.' }
+                { icon: <FontAwesomeIcon icon={faDiamond} className="w-8 h-8" />, path: "/dj-za-vjencanja/", title: m.about_spec_1_title(), desc: m.about_spec_1_desc() },
+                { icon: <FontAwesomeIcon icon={faChampagneGlasses} className="w-8 h-8" />, path: "/dj-za-proslave/", title: m.about_spec_2_title(), desc: m.about_spec_2_desc() },
+                { icon: <FontAwesomeIcon icon={faMicrophone} className="w-8 h-8" />, path: "/dj-za-proslave/", title: m.about_spec_3_title(), desc: m.about_spec_3_desc() },
+                { icon: <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8" />, path: "/dj-za-korporativni-dogadaj/", title: m.about_spec_4_title(), desc: m.about_spec_4_desc() }
                 ].map((spec, i) => (
                 <div key={i} className="bg-[#1a1a1a] p-8 rounded-2xl border border-transparent hover:border-[#d4af37]/30 transition-all duration-300 group flex flex-col justify-between">
                     <div>
@@ -338,13 +331,13 @@ const AboutMe = () => {
                         <p className="text-[#808080] text-sm leading-relaxed">{spec.desc}</p>
                     </div>
                     <div className='mt-6'>
-                        <Link
+                        <LocalizedLink
                             to={spec.path}
-                            aria-label={`Saznajte više o usluzi: ${spec.title}`}
+                            aria-label={m.about_spec_aria_more({ title: spec.title })}
                             className="inline-flex cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85 transition hover:border-[rgba(212,175,55,0.4)] hover:bg-[rgba(212,175,55,0.1)] hover:text-white"
                         >
-                            Detalji
-                        </Link>
+                            {m.about_spec_btn()}
+                        </LocalizedLink>
                     </div>
                 </div>
                 ))}
@@ -358,16 +351,16 @@ const AboutMe = () => {
                 <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
                 <div className="container mx-auto">
                     <div className='max-w-3xl mx-auto text-center'>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">Rezervirajte Svoj Termin</h2>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6">{m.about_cta_title()}</h2>
                         <p className="text-xl text-[#b8b8b8] mb-10">
-                            Osigurajte svoj datum i učinite svoj događaj nezaboravnim. Kontaktirajte me već danas i krenimo zajedno stvarati savršenu atmosferu!
+                            {m.about_cta_desc()}
                         </p>
-                        <Link 
+                        <LocalizedLink 
                             to="/kontakt/" 
                             className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] mb-10"
                         >
-                            Pošaljite Upit
-                        </Link>
+                            {m.about_cta_btn()}
+                        </LocalizedLink>
                         <div className='mx-auto rounded-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 backdrop-blur-[10px] hover:-translate-y-[10px] max-w-[595px] overflow-hidden'>
                             <DJControllerApp></DJControllerApp>
                         </div>

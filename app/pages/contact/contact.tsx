@@ -8,37 +8,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router';
 import type { Route } from './+types/contact';
 
-export function meta({}: Route.MetaArgs) {
-  const domain = "https://djvrana.com";
-  const title = "Kontakt i Rezervacije | DJ Vrana Zagreb";
-  const description = "Rezervirajte DJ Vranu za vaše vjenčanje, rođendan ili korporativni event. Provjerite slobodne termine, cijene i pročitajte česta pitanja. Zagreb i cijela Hrvatska.";
+import * as m from '~/paraglide/messages.js';
+import { getLocale } from '~/paraglide/runtime.js';
+import { getMultilingualMeta } from '~/utils/seo/seo';
 
-  return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: "DJ Vrana kontakt, rezervacija DJ za vjenčanje, cijena DJ za svadbu, kontakt DJ Zagreb, upit za DJ-a" },
-    { name: "robots", content: "index, follow" },
-    
-    // Open Graph
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: `${domain}/kontakt/` },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:secure_url", content: `${domain}/dj-vrana-og-image.png` },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-
-    // Twitter Card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${domain}/dj-vrana-og-image.png` },
-    
-    // Canonical link
-    { tagName: "link", rel: "canonical", href: `${domain}/kontakt/` }
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return getMultilingualMeta(
+    "kontakt", 
+    m.contact_meta_title(), 
+    m.contact_meta_desc(),
+    m.contact_meta_keywords()
+  );
 }
 
 interface FormState {
@@ -129,36 +109,22 @@ const PremiumContact: React.FC = () => {
   }
 
   const faqs: FaqItem[] = [
-    {
-      q: "Po čemu se izdvajate od ostalih DJ-eva?",
-      a: "DJ Vrana stvara <span class=\"text-[rgba(212,175,55,1)] font-semibold\">jedinstvenu atmosferu</span> na Vašem događaju. Kroz iskustvo, pažljivo praćenje atmosfere i kombinaciju raznih glazbenih žanrova vodi Vas na <span class=\"text-[rgba(212,175,55,1)] font-semibold\">nezaboravno glazbeno putovanje</span> – bilo da je riječ o vjenčanju, rođendanu ili proslavi."
-    },
-    {
-      q: "Koje usluge nudite?",
-      a: "Nudim <span class=\"text-[rgba(212,175,55,1)] font-semibold\">profesionalne DJ usluge</span> za vjenčanja, korporativne događaje i privatne proslave, kao i <span class=\"text-[rgba(212,175,55,1)] font-semibold\">DJ edukaciju</span> te <span class=\"text-[rgba(212,175,55,1)] font-semibold\">najam DJ opreme</span>."
-    },
-    {
-      q: "Nudite li pakete DJ + saksofon ili DJ + violina?",
-      a: "Da, nudim <span class=\"text-[rgba(212,175,55,1)] font-semibold\">kombinacije DJ-a s live glazbenicima</span>. Najpopularniji izbor je <span class=\"text-[rgba(212,175,55,1)] font-semibold\">DJ + saksofon</span> za energičan party dio večeri, dok je <span class=\"text-[rgba(212,175,55,1)] font-semibold\">violina</span> savršen dodatak za ceremoniju i cocktail prijem.<br><br>Svaki paket prilagođavam <span class=\"text-[rgba(212,175,55,1)] font-semibold\">vašem rasporedu, prostoru i željenoj atmosferi</span> kako bismo zajedno stvorili jedinstveno iskustvo."
-    },
-    {
-      q: "Nastupate li izvan Zagreba?",
-      a: "Da! DJ Vrana nastupa <span class=\"text-[rgba(212,175,55,1)] font-semibold\">diljem Hrvatske</span> – od Zagreba i okolice, preko Splita i Dalmacije, do Rijeke, Istre, Slavonije i Dubrovnika."
-    },
-    {
-      q: "Imate li ZAMP licencu?",
-      a: "Da, DJ Vrana posjeduje ZAMP licencu i sve nastupe izvodi u skladu s autorskim pravima, tako da je Vaš događaj <span class=\"text-[rgba(212,175,55,1)] font-semibold\">potpuno legalan i bez brige</span>."
-    },
-    {
-      q: "Kako se dogovara playlista za vjenčanje?",
-      a: "Playlistu za Vaše vjenčanje <span class=\"text-[rgba(212,175,55,1)] font-semibold\">dogovaramo zajedno na sastanku</span> prije samog događaja. Možete poslati popis omiljenih pjesama, posebne želje i pjesme koje želite izbjeći, a DJ Vrana ih spaja sa svojim iskustvom kako bi stvorio <span class=\"text-[rgba(212,175,55,1)] font-semibold\">savršenu glazbenu atmosferu</span> tijekom cijelog događaja."
-    },
-    {
-      q: "Kako rezervirati DJ Vranu?",
-      a: "Kontaktirajte me telefonom (+385 98 958 2676) ili putem kontakt forme. Dogovorit ćemo <span class=\"text-[rgba(212,175,55,1)] font-semibold\">besplatne konzultacije</span> kako bismo zajedno prošli Vaše želje, glazbene preferencije i sve detalje Vašeg događaja.<br><br><a href=\"#kontakt-forma\" class=\"text-[rgba(212,175,55,1)] font-semibold underline hover:opacity-80 transition-opacity inline-block mt-2\">Ispunite formu ovdje</a>"
-    }
+    { q: m.contact_faq_1_q(), a: m.contact_faq_1_a() },
+    { q: m.contact_faq_2_q(), a: m.contact_faq_2_a() },
+    { q: m.contact_faq_3_q(), a: m.contact_faq_3_a() },
+    { q: m.contact_faq_4_q(), a: m.contact_faq_4_a() },
+    { q: m.contact_faq_5_q(), a: m.contact_faq_5_a() },
+    { q: m.contact_faq_6_q(), a: m.contact_faq_6_a() },
+    { q: m.contact_faq_7_q(), a: m.contact_faq_7_a() }
   ];
 
+  const currentLang = getLocale();
+
+  const currentContactUrl = currentLang === 'en' 
+    ? 'https://djvrana.com/en/kontakt/' 
+    : 'https://djvrana.com/kontakt/';
+
+  const areaServedTranslated = currentLang === 'en' ? 'Croatia' : 'Hrvatska';
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -168,7 +134,7 @@ const PremiumContact: React.FC = () => {
       "name": faq.q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.a.replace(/<[^>]*>?/gm, '') 
+        "text": faq.a.replace(/<[^>]*>?/gm, '')
       }
     }))
   };
@@ -176,8 +142,10 @@ const PremiumContact: React.FC = () => {
   const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    "url": currentContactUrl,
     "mainEntity": {
       "@type": "LocalBusiness",
+      "@id": `${currentContactUrl}#localbusiness`,
       "name": "DJ Vrana",
       "image": "https://djvrana.com/dj-vrana-og-image.png",
       "telephone": "+3850989582676",
@@ -187,8 +155,8 @@ const PremiumContact: React.FC = () => {
         "addressLocality": "Zagreb",
         "addressCountry": "HR"
       },
-      "areaServed": "Hrvatska",
-      "url": "https://djvrana.com/kontakt/"
+      "areaServed": areaServedTranslated,
+      "url": currentContactUrl
     }
   };
 
@@ -216,10 +184,10 @@ const PremiumContact: React.FC = () => {
                 <div className="relative text-center pt-8 pb-12 md:pb-24">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight leading-tight">
-                      Upiti i Rezervacije
+                      {m.contact_header_title()}
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-[#b8b8b8] max-w-2xl mx-auto leading-relaxed mt-4">
-                      Javite se i stvorimo zajedno energiju i trenutke koji se pamte.
+                      {m.contact_header_subtitle()}
                     </p>
                 </div>
             </header>
@@ -228,7 +196,7 @@ const PremiumContact: React.FC = () => {
                 <div className="space-y-10 md:space-y-12">
                     <div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
-                        Kontakt <span className="text-[rgba(212,175,55,1)]">informacije</span>
+                        {m.contact_info_title()} <span className="text-[rgba(212,175,55,1)]">{m.contact_info_highlight()}</span>
                     </h2>
                     <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-[rgba(212,175,55,1)] to-transparent mt-6 rounded-full"></div>
                     </div>
@@ -241,7 +209,7 @@ const PremiumContact: React.FC = () => {
                         </svg>
                         </div>
                         <div>
-                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">Telefon</h3>
+                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">{m.contact_phone()}</h3>
                         <p className="text-lg md:text-xl text-white font-light"><Link to="tel:+3850989582676" className="hover:text-[rgba(212,175,55,1)] transition-colors">+385 098 958 2676</Link></p>
                         </div>
                     </div>
@@ -253,7 +221,7 @@ const PremiumContact: React.FC = () => {
                         </svg>
                         </div>
                         <div className="truncate">
-                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">Email</h3>
+                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">{m.contact_email()}</h3>
                         <p className="text-lg md:text-xl text-white font-light truncate"><Link to="mailto:proslave.dj@gmail.com" className="hover:text-[rgba(212,175,55,1)] transition-colors">proslave.dj@gmail.com</Link></p>
                         </div>
                     </div>
@@ -266,15 +234,15 @@ const PremiumContact: React.FC = () => {
                         </svg>
                         </div>
                         <div>
-                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">Lokacija</h3>
-                        <p className="text-lg md:text-xl text-white font-light">Zagreb, Hrvatska</p>
-                        <p className="text-xs md:text-sm text-[rgba(212,175,55,0.8)] mt-1 italic">Pokrivam sve gradove u Hrvatskoj</p>
+                        <h3 className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">{m.contact_location_title()}</h3>
+                        <p className="text-lg md:text-xl text-white font-light">{m.contact_location()}</p>
+                        <p className="text-xs md:text-sm text-[rgba(212,175,55,0.8)] mt-1 italic">{m.contact_location_desc()}</p>
                         </div>
                     </div>
                     </div>
 
                     <div className="pt-6 md:pt-8 border-t border-white/10">
-                    <p className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4 md:mb-6">Pratite me</p>
+                    <p className="text-xs md:text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4 md:mb-6">{m.contact_follow_me()}</p>
                     <div className="flex space-x-3 md:space-x-4">
                         <Link to="https://www.instagram.com/ivan.vranesa/" target='blank' aria-label="Instagram" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 bg-[#d4af37]/5 transition-all duration-300 hover:text-[rgba(212,175,55,1)] hover:border-[rgba(212,175,55,0.5)] hover:bg-[rgba(212,175,55,0.1)] hover:-translate-y-[3px] hover:shadow-[0_5px_15px_rgba(212,175,55,0.3)]">
                             <FontAwesomeIcon icon={faInstagram} className="text-[18px] md:text-[20px]" />
@@ -297,47 +265,47 @@ const PremiumContact: React.FC = () => {
                     
                     <div className="relative bg-[#111] border border-white/5 p-6 sm:p-10 rounded-2xl shadow-2xl backdrop-blur-sm">
                     <div className="mb-6 md:mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Pošaljite Upit</h2>
-                        <p className="text-sm md:text-base text-gray-400 font-light">Ispunite formu i javiti ću Vam se u najkraćem roku</p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">{m.contact_form_title()}</h2>
+                        <p className="text-sm md:text-base text-gray-400 font-light">{m.contact_form_desc()}</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} id="kontakt-forma" className="scroll-mt-[220px] md:scroll-mt-[280px] space-y-5 md:space-y-6" aria-label="Kontakt forma za upite i rezervacije">
+                    <form onSubmit={handleSubmit} id="kontakt-forma" className="scroll-mt-[220px] md:scroll-mt-[280px] space-y-5 md:space-y-6" aria-label={m.contact_form_title()}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                         <div className="space-y-2">
-                            <label htmlFor="name" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">Ime i Prezime <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                            <label htmlFor="name" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_name()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
                             <input 
                             type="text" 
                             id="name" 
                             name="name" 
                             value={formState.name}
                             onChange={handleInputChange}
-                            placeholder="Vaše ime i prezime" 
+                            placeholder={m.contact_form_placeholder_name()} 
                             required 
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="email" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">Email Adresa <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                            <label htmlFor="email" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_email()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
                             <input 
                             type="email" 
                             id="email" 
                             name="email" 
                             value={formState.email}
                             onChange={handleInputChange}
-                            placeholder="vas@email.com" 
+                            placeholder={m.contact_form_placeholder_email()} 
                             required 
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="date" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">Datum Događaja</label>
+                            <label htmlFor="date" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_date()}</label>
                             <input 
                             type="date" 
                             id="date" 
                             name="date" 
-                            lang="hr"
+                            lang={getLocale()}
                             min={today}
                             value={formState.date}
                             onChange={handleInputChange}
@@ -346,27 +314,27 @@ const PremiumContact: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="phone" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">Broj Telefona <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                            <label htmlFor="phone" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_phone()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
                             <input 
                             type="tel" 
                             id="phone" 
                             name="phone" 
                             value={formState.phone}
                             onChange={handleInputChange}
-                            placeholder="099 123 4567" 
+                            placeholder={m.contact_form_placeholder_phone()} 
                             required
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2 md:col-span-2">
-                            <label htmlFor="message" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">Vaša Poruka <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                            <label htmlFor="message" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_message()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
                             <textarea 
                             id="message" 
                             name="message" 
                             value={formState.message}
                             onChange={handleInputChange}
-                            placeholder="Postavite pitanje, opišite svoje želje, lokaciju, broj gostiju..." 
+                            placeholder={m.contact_form_placeholder_message()} 
                             required 
                             rows={4}
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 resize-none"
@@ -378,13 +346,13 @@ const PremiumContact: React.FC = () => {
                             type="submit" 
                             className="btn btn-primary w-full py-3 mt-2 font-semibold tracking-wide text-sm md:text-base"
                             >
-                            Pošaljite Upit
+                            {m.contact_form_btn_submit()}
                         </button>
 
                         {showSuccess && (
                         <div className="mt-4 p-4 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center space-x-3 text-green-400 animate-pulse">
                             <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                            <p className="text-sm">Hvala! Vaša poruka je uspješno poslana. Javit ćemo vam se uskoro.</p>
+                            <p className="text-sm">{m.contact_form_success_msg()}</p>
                         </div>
                         )}
 
@@ -393,7 +361,7 @@ const PremiumContact: React.FC = () => {
                             <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <p className="text-sm">Došlo je do greške prilikom slanja. Molimo pokušajte ponovno ili nas kontaktirajte izravno putem emaila.</p>
+                            <p className="text-sm">{m.contact_form_error_msg()}</p>
                         </div>
                         )}
                     </form>
@@ -407,14 +375,14 @@ const PremiumContact: React.FC = () => {
                 <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-150px] left-[-200px] [animation-delay:0s]"></div>
                 
                 <header className="mx-auto max-w-2xl text-center mb-12 md:mb-20">
-                    <p className="section-subtitle text-sm md:text-base">Pomoć</p>
+                    <p className="section-subtitle text-sm md:text-base">{m.contact_faq_subtitle()}</p>
 
                     <h2 className="text-balance text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2">
-                      Česta pitanja
+                      {m.contact_faq_title()}
                     </h2>
 
                     <p className="mx-auto mt-4 md:mt-5 max-w-xl text-pretty text-sm md:text-base leading-relaxed text-white/70">
-                      Sve što trebate znati o DJ usluzi za vjenčanja, proslave i korporativne događaje.
+                      {m.contact_faq_desc()}
                     </p>
                 </header> 
 

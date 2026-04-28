@@ -140,7 +140,7 @@ export default function Home() {
         <div className="hero-wrapper relative isolate min-h-[100svh]">
           <div className="hero-bg-img relative min-h-[100svh] overflow-hidden flex flex-col items-center justify-center pt-24 md:pt-32 px-4 pb-20 font-sans">
 
-            <div className="flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full">
+            <div className="flex flex-col items-center text-center max-w-2xl mx-auto mt-12 w-full">
               <header className="flex flex-col items-center text-center w-full">
                 <div className="hero-badge mb-4">{m.home_hero_badge()}</div>
 

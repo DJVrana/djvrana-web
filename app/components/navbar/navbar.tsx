@@ -19,13 +19,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Zatvori meni pri promjeni rute i postavi jezik
   useEffect(() => {
     setCurrentLang(getLocale());
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Handle scroll state
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -35,7 +33,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Isključi scroll na bodyu kad je menu otvoren (bolji UX)
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -93,7 +90,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           DJ VRANA
         </NavLink>
         
-        {/* Animirani Hamburger Button */}
         <button 
           type="button"
           className={`mobile-menu-btn relative z-[10000] p-2 cursor-pointer md:hidden flex items-center justify-center ${isMobileMenuOpen ? 'open' : ''}`}
@@ -109,7 +105,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </div>
         </button>
 
-        {/* Klasa je sada 'active', a ne 'active-nav' */}
         <ul id="mobile-menu" className={`nav-links z-[9999] ${isMobileMenuOpen ? 'active' : ''}`}>
           {navLinks.map((link, index) => {
             const localizedTo = localizePath(link.page);

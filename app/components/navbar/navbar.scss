@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 9999; /* Osiguravamo da je uvijek na vrhu */
+  z-index: 9999;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -92,7 +92,6 @@
   z-index: 10000;
 }
 
-/* Animirani Hamburger Icon */
 .hamburger {
   width: 28px;
   height: 20px;
@@ -142,37 +141,33 @@
     padding: 100px 2rem 2rem;
     gap: 1.5rem;
     
-    /* Početno stanje menija (Zatvoreno) */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-    z-index: 9998; /* Iza navbar wrappera (zbog loga/gumba) */
+    z-index: 9998;
     
     li {
-      /* Početno stanje pojedinih linkova */
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
     
     .nav-link {
-      font-size: 1.5rem; /* Veći font za mobile */
+      font-size: 1.5rem;
       display: inline-block;
     }
   }
 
-  /* Otvoreno stanje menija */
+
   .nav-links.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 
-    /* Animacija za svaki link u nizu (staggered efekt) */
     li {
       opacity: 1;
       transform: translateY(0);
-      /* Formula koristi inline style --item-index iz React komponente */
       transition-delay: calc(0.1s + (var(--item-index) * 0.05s));
     }
   }

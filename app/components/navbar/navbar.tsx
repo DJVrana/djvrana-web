@@ -10,17 +10,37 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  const [currentLang, setCurrentLang] = useState('hr');
-  const defaultLang = 'hr';
-
   const location = useLocation();
   const navigate = useNavigate();
+  const defaultLang = 'hr';
+
+  const [currentLang, setCurrentLang] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const urlLocale = window.location.pathname.split('/')[1];
+      if (urlLocale === 'en' || urlLocale === 'hr') {
+        return urlLocale;
+      }
+    }
+    return getLocale() || defaultLang;
+  });
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setCurrentLang(getLocale());
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const urlLocale = location.pathname.split('/')[1];
+    
+    if (urlLocale === 'en' || urlLocale === 'hr') {
+      if (currentLang !== urlLocale) setCurrentLang(urlLocale);
+    } else if (currentLang !== defaultLang) {
+      setCurrentLang(defaultLang);
+    }
+    
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
@@ -52,6 +72,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   const handleLanguageChange = (newLang: string) => {
     if (newLang === currentLang) return;
+    
+    // @ts-ignore
+    setCurrentLang(newLang);
+    
     let currentPath = location.pathname;
     let newPath = currentPath;
 
@@ -125,31 +149,32 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               </li>
             );
           })}
-          
-          <li className="lang-switcher-item flex items-center justify-center mt-6 md:mt-0 md:ml-4 md:justify-start" style={{ '--item-index': navLinks.length } as React.CSSProperties}>
-            <div className="inline-flex bg-white/5 border border-[#d4af37]/20 rounded-full p-1 transition-all duration-300 hover:border-[#d4af37]/50">
-              <button 
-                type="button"
-                onClick={() => handleLanguageChange('hr')}
-                aria-label="Promijeni na Hrvatski"
-                className={`px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wider transition-all duration-300 outline-none ${
-                  currentLang === 'hr' ? 'bg-[#d4af37] text-[#111] shadow-[0_4px_10px_rgba(212,175,55,0.3)]' : 'bg-transparent text-[#a0a0a0] hover:text-white'
-                }`}
-              >
-                HR
-              </button>
-              <button 
-                type="button"
-                onClick={() => handleLanguageChange('en')}
-                aria-label="Switch to English"
-                className={`px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wider transition-all duration-300 outline-none ${
-                  currentLang === 'en' ? 'bg-[#d4af37] text-[#111] shadow-[0_4px_10px_rgba(212,175,55,0.3)]' : 'bg-transparent text-[#a0a0a0] hover:text-white'
-                }`}
-              >
-                EN
-              </button>
-            </div>
-          </li>
+          <div className={`nav-link transition-opacity duration-700 ease-in-out ${!isClient ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+            <li className="lang-switcher-item flex items-center justify-center mt-6 md:mt-0 md:ml-4 md:justify-start" style={{ '--item-index': navLinks.length } as React.CSSProperties}>
+              <div className="inline-flex bg-white/5 border border-[#d4af37]/20 rounded-full p-1 transition-all duration-300 hover:border-[#d4af37]/50">
+                <button
+                  type="button"
+                  onClick={() => handleLanguageChange('hr')}
+                  aria-label="Promijeni na Hrvatski"
+                  className={`px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wider transition-all duration-300 outline-none ${
+                    isClient && currentLang === 'hr' ? 'bg-[#d4af37] text-[#111] shadow-[0_4px_10px_rgba(212,175,55,0.3)]' : 'bg-transparent text-[#a0a0a0] hover:text-white'
+                  }`}
+                >
+                  HR
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleLanguageChange('en')}
+                  aria-label="Switch to English"
+                  className={`px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wider transition-all duration-300 outline-none ${
+                    isClient && currentLang === 'en' ? 'bg-[#d4af37] text-[#111] shadow-[0_4px_10px_rgba(212,175,55,0.3)]' : 'bg-transparent text-[#a0a0a0] hover:text-white'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+            </li>
+          </div>
         </ul>
       </div>
     </nav>

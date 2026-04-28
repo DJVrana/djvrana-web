@@ -14,6 +14,7 @@ import "./styles.css";
 
 import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
 import * as m from '~/paraglide/messages.js';
+import { useEffect, useState } from "react";
 
 export function meta({ params }: Route.MetaArgs) {
   const ogLocale = params.locale === 'en' ? 'en_US' : 'hr_HR';
@@ -59,24 +60,44 @@ export function HydrateFallback() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#111111] text-white p-8 text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div>
-      <p className="mt-4 text-lg">{m.app_loading_text()}</p>
+      <p className="mt-4 text-lg">Loading...</p>
     </div>
   );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const params = useParams();
-  const urlLocale = params.locale;
+  const [mounted, setMounted] = useState(false);
   
-  // @ts-ignore
-  const locale: "hr" | "en" = locales.includes(urlLocale) 
-    ? urlLocale 
-    : baseLocale;
+  useEffect(() => {
+    const urlLocale = window.location.pathname.split('/')[1];
+    
+    // @ts-ignore
+    const locale: "hr" | "en" = locales.includes(urlLocale) ? urlLocale : baseLocale;
+    setLocale(locale);
+    
+    setMounted(true);
+  }, [params]);
 
-  setLocale(locale);
+  if (!mounted) {
+    return (
+      <html lang={baseLocale}>
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <Links />
+        </head>
+        <body className="bg-[#0a0a0a] text-white">
+          <HydrateFallback />
+          <Scripts />
+        </body>
+      </html>
+    );
+  }
 
   return (
-    <html lang={locale}>
+    // @ts-ignore
+    <html lang={locales.includes(params.locale) ? params.locale : baseLocale}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

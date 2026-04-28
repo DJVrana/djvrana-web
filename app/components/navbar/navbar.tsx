@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   ];
 
   return (
-    <nav className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`} aria-label={m.navbar_main_nav()}>
+    <nav className={`navbar-wrapper z-9999 ${isScrolled ? 'scrolled' : ''}`} aria-label={m.navbar_main_nav()}>
       <div className="nav-container">
         <NavLink className="logo" to={localizePath('/')} aria-label={m.navbar_logo_aria()}>
           DJ VRANA

@@ -28,10 +28,6 @@ export function meta({ params }: Route.MetaArgs) {
     { property: "og:locale", content: ogLocale },
     { property: "og:type", content: "website" },
     
-    { property: "og:site_name", content: "DJ Vrana" },
-    { property: "og:locale", content: ogLocale },
-    { property: "og:type", content: "website" },
-    
     { property: "og:title", content: m.app_meta_title() },
     { property: "og:description", content: m.app_meta_desc() },
     

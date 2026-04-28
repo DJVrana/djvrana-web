@@ -127,6 +127,7 @@ export default function DJEdukacija() {
                       aria-label={"Tečaj DJ-anja"}
                     >
                       <source src={service} type="video/mp4" />
+                      <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
                       Vaš preglednik ne podržava video sadržaj.
                     </video>
                   </div>

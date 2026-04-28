@@ -124,6 +124,7 @@ export default function KorporativniDogadaji() {
                       aria-label={"Korporativni event s DJ Vranom video"}
                     >
                       <source src={service} type="video/mp4" />
+                      <track kind='captions' src="" srcLang='hr' label='Bez zvuka'></track>
                       Vaš preglednik ne podržava video sadržaj.
                     </video>
                   </div>

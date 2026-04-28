@@ -6,7 +6,6 @@ import "../../styles.css";
 import "./home.scss";
 import { Link } from "react-router";
 
-// Slike i videi
 import aboutImg from '../../assets/images/about.webp'
 import serviceImg01 from '../../assets/images/service01.webp';
 import serviceImg02 from '../../assets/images/service02.webp';
@@ -29,6 +28,7 @@ import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/fre
 import * as m from '~/paraglide/messages.js';
 import { getMultilingualMeta } from "~/utils/seo/seo";
 import { getLocale } from "~/paraglide/runtime";
+import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
 
 export function meta({}: Route.MetaArgs) {
   return getMultilingualMeta(
@@ -235,10 +235,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Link to="/o-meni/" aria-label={m.home_about_btn()} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
+                <LocalizedLink to="/o-meni/" aria-label={m.home_about_btn()} className="cta-button group inline-flex items-center justify-center w-full sm:w-auto gap-[12px] py-[15px] sm:py-[18px] px-[30px] sm:px-[40px] text-[0.95rem] sm:text-[1rem] font-semibold uppercase tracking-[1px] text-[#0a0a0a] bg-[#d4af37] rounded-full transition-all duration-400 shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-[3px] hover:shadow-[0_15px_40px_rgba(212,175,55,0.5)] relative overflow-hidden no-underline">
                   {m.home_about_btn()}
                   <span className="transition-transform duration-300 group-hover:translate-x-[5px]">→</span>
-                </Link>
+                </LocalizedLink>
               </div>
 
             </div>
@@ -296,9 +296,9 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-10 flex justify-center w-full">
-            <Link to="/galerija/" aria-label={m.home_video_aria_more()} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
+            <LocalizedLink to="/galerija/" aria-label={m.home_video_aria_more()} className="w-full sm:w-auto px-8 md:px-20 btn btn-primary text-center mx-4 sm:mx-0 py-3 sm:py-4">
               {m.home_video_btn()}
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </section>
@@ -309,9 +309,9 @@ export default function Home() {
           <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
             {m.home_cta_desc()}
           </p>
-          <Link to="/kontakt/" type="button" className="btn btn-primary" aria-label={m.home_cta_aria()}>
+          <LocalizedLink to="/kontakt/" type="button" className="btn btn-primary" aria-label={m.home_cta_aria()}>
             {m.home_cta_btn()}
-          </Link>
+          </LocalizedLink>
         </div>
       </section>
 
@@ -486,13 +486,13 @@ function Card({ title, badge, icon, image, video, poster, mediaPosition = "cente
             {secondaryText}
           </span>
           
-          <Link
+          <LocalizedLink
             to={path}
             aria-label={m.home_card_aria_more({ title })}
             className="inline-flex cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85 transition hover:border-[rgba(212,175,55,0.4)] hover:bg-[rgba(212,175,55,0.1)] hover:text-white"
           >
             {m.home_card_btn()}
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     </article>

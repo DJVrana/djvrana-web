@@ -1,24 +1,36 @@
 import type { Config } from "@react-router/dev/config";
 
 export default {
-  // Config options...
-  // Server-side render by default, to enable SPA mode set this to `false` 
-  ssr: false,
-  // prerender: true, 
+  ssr: false, 
+  
   async prerender() {
-    return [
+    const baseRoutes = [
       "/",
       "/o-meni",
       "/usluge",
       "/galerija",
       "/kontakt",
-      "/dj-za-vjencanja",
       "/dj-za-korporativni-dogadaj",
       "/dj-za-proslave",
+      "/dj-za-vjencanja",
       "/dj-edukacija",
       "/najam-opreme",
       "/politika-privatnosti",
-      "/uvjeti-koristenja",
+      "/uvjeti-koristenja"
     ];
+
+    const paths: string[] = [];
+
+    baseRoutes.forEach((route) => {
+      paths.push(route); 
+      
+      if (route === "/") {
+        paths.push("/en/");
+      } else {
+        paths.push(`/en${route}`);
+      }
+    });
+
+    return paths;
   },
 } satisfies Config;

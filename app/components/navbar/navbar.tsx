@@ -67,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     if (path.startsWith(`/${currentLang}/`) || path === `/${currentLang}`) {
       return path;
     }
-    return path === '/' ? `/${currentLang}` : `/${currentLang}${path}`;
+    return path === '/' ? `/${currentLang}/` : `/${currentLang}${path}`;
   };
 
   const handleLanguageChange = (newLang: string) => {
@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     }
 
     if (newLang !== defaultLang) {
-      newPath = newPath === '/' ? `/${newLang}` : `/${newLang}${newPath}`;
+      newPath = newPath === '/' ? `/${newLang}/` : `/${newLang}${newPath}`;
     }
 
     navigate(newPath + location.search + location.hash);
@@ -132,7 +132,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <ul id="mobile-menu" className={`nav-links z-[9999] ${isMobileMenuOpen ? 'active' : ''}`}>
           {navLinks.map((link, index) => {
             const localizedTo = localizePath(link.page);
-            const isActive = location.pathname === localizedTo || (localizedTo !== '/' && localizedTo !== `/${currentLang}` && location.pathname.startsWith(localizedTo));
+            const isActive = location.pathname === localizedTo || (localizedTo !== '/' && localizedTo !== `/${currentLang}/` && location.pathname.startsWith(localizedTo));
             
             return (
               <li key={link.page} style={{ '--item-index': index } as React.CSSProperties}>

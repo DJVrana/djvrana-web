@@ -37,7 +37,7 @@ export function getMultilingualMeta(path: string, title: string, description: st
     // Alternate links
     { tagName: "link", rel: "alternate", hrefLang: "hr", href: urlHr },
     { tagName: "link", rel: "alternate", hrefLang: "en", href: urlEn },
-    { tagName: "link", rel: "alternate", hrefLang: "x-default", href: urlHr }, // x-default govori Googleu da je 'hr' glavni jezik ako korisnik dolazi iz npr. Njemačke
+    { tagName: "link", rel: "alternate", hrefLang: "x-default", href: urlEn }, // x-default govori Googleu da je 'en' glavni jezik ako korisnik dolazi iz npr. Njemačke
     
     // Canonical link
     { tagName: "link", rel: "canonical", href: currentUrl }

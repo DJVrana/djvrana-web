@@ -15,7 +15,7 @@ import "./styles.css";
 import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
 import * as m from '~/paraglide/messages.js';
 import { useEffect, useState } from "react";
-import FloatingContactButton from "~/components/floating-contact-button/FloatingContactButton";
+import FloatingContactButton from "~/components/floating-contact-button/floatingContactButton";
 
 export function meta({ params }: Route.MetaArgs) {
   const ogLocale = params.locale === 'en' ? 'en_US' : 'hr_HR';
@@ -25,14 +25,14 @@ export function meta({ params }: Route.MetaArgs) {
     { name: "description", content: m.app_meta_desc() },
     { name: "theme-color", content: "#0a0a0a" },
     { name: "author", content: "Ivan Vraneša" },
-    
+
     { property: "og:site_name", content: "DJ Vrana" },
     { property: "og:locale", content: ogLocale },
     { property: "og:type", content: "website" },
-    
+
     { property: "og:title", content: m.app_meta_title() },
     { property: "og:description", content: m.app_meta_desc() },
-    
+
     { name: "twitter:card", content: "summary_large_image" },
     { name: "apple-mobile-web-app-title", content: "DJ Vrana" },
   ];
@@ -49,7 +49,7 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
-  
+
   { rel: "icon", type: "image/png", sizes: "96x96", href: "/favicon-96x96.png" },
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
   { rel: "shortcut icon", href: "/favicon.ico" },
@@ -69,14 +69,14 @@ export function HydrateFallback() {
 export function Layout({ children }: { children: React.ReactNode }) {
   const params = useParams();
   const [mounted, setMounted] = useState(false);
-  
+
   useEffect(() => {
     const urlLocale = window.location.pathname.split('/')[1];
-    
+
     // @ts-ignore
     const locale: "hr" | "en" = locales.includes(urlLocale) ? urlLocale : baseLocale;
     setLocale(locale);
-    
+
     setMounted(true);
   }, [params]);
 
@@ -141,10 +141,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         {message}
       </h1>
       <p className="text-xl text-[#a0a0a0] mb-8 max-w-lg">{details}</p>
-      
+
       {(isRouteErrorResponse(error) && error.status === 404) || !import.meta.env.DEV ? (
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="inline-block px-8 py-4 bg-[#d4af37] text-[#0a0a0a] font-bold rounded-full hover:bg-[#c9a227] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
         >
           Return to Homepage

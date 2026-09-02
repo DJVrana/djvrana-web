@@ -4,6 +4,7 @@ import Navbar from '~/components/navbar/navbar';
 import emailjs from '@emailjs/browser';
 
 import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/free-brands-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router';
 import type { Route } from './+types/contact';
@@ -21,13 +22,6 @@ export function meta({ location }: Route.MetaArgs) {
   );
 }
 
-interface FormState {
-  name: string;
-  email: string;
-  date: string;
-  phone: string;
-  message: string;
-}
 
 interface FaqItem {
   q: string;
@@ -35,16 +29,31 @@ interface FaqItem {
 }
 
 const PremiumContact: React.FC = () => {
-  const [formState, setFormState] = useState<FormState>({
-    name: '',
+  const [userContactData, setUserContactData] = useState({
+    fullName: '',
     email: '',
     date: '',
     phone: '',
-    message: ''
+    eventType: '',
+    location: '',
+    numberOfGuests: '',
+    howDidYouHear: '',
+    additionalNotice: ''
   });
   
-  const [showSuccess, setShowSuccess] = useState<boolean>(false);
-  const [showError, setShowError] = useState<boolean>(false);
+  const [userContactDataValidation, setUserContactDataValidation] = useState<any>({});
+  
+  const [succesSubmit, setSuccesSubmit] = useState<string | null>(null);
+  const [errorSubmit, setErrorSubmit] = useState<string | null>(null);
+  
+  const [isEventTypeOpen, setIsEventTypeOpen] = useState(false);
+  const [isHowDidYouHearOpen, setIsHowDidYouHearOpen] = useState(false);
+  const eventTypeRef = React.useRef<HTMLDivElement>(null);
+  const howDidYouHearRef = React.useRef<HTMLDivElement>(null);
+
+  const eventTypeOptions = m.contact_form_event_types().split('|');
+  const howDidYouHearOptions = m.contact_form_how_did_you_hear_options().split('|');
+
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   const [currentPage, setCurrentPage] = useState<string>('kontakt');
@@ -55,16 +64,47 @@ const PremiumContact: React.FC = () => {
     setCurrentPage(page);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormState(prev => ({ ...prev, [name]: value }));
+    setUserContactData(prev => ({ ...prev, [name]: value }));
+    setUserContactDataValidation((prev: any) => ({ ...prev, [name]: undefined }));
   };
+
+  const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setUserContactData(prev => ({ ...prev, [name]: value }));
+    setUserContactDataValidation((prev: any) => ({ ...prev, [name]: undefined }));
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (eventTypeRef.current && !eventTypeRef.current.contains(event.target as Node)) {
+        setIsEventTypeOpen(false);
+      }
+      if (howDidYouHearRef.current && !howDidYouHearRef.current.contains(event.target as Node)) {
+        setIsHowDidYouHearOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY!), []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (formState.name && formState.email && formState.phone && formState.message) {
+  const submitForm = async () => {
+    let isValid = true;
+    let errors: any = {};
+    if (!userContactData.fullName) { errors.fullName = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.email) { errors.email = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.phone) { errors.phone = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.eventType) { errors.eventType = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.location) { errors.location = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.numberOfGuests) { errors.numberOfGuests = 'Polje je obavezno'; isValid = false; }
+    if (!userContactData.howDidYouHear) { errors.howDidYouHear = 'Polje je obavezno'; isValid = false; }
+    
+    setUserContactDataValidation(errors);
+    
+    if (isValid) {
       const formatDateHR = (dateStr: string): string => {
         if (!dateStr) return '';
         const [year, month, day] = dateStr.split('-');
@@ -76,23 +116,29 @@ const PremiumContact: React.FC = () => {
           import.meta.env.VITE_EMAIL_SERVICE_ID!, 
           import.meta.env.VITE_EMAIL_TEMPLATE_ID!,
           {
-            name: formState.name,
-            email: formState.email,
-            date: formatDateHR(formState.date),
-            phone: formState.phone,
-            message: formState.message
+            name: userContactData.fullName,
+            email: userContactData.email,
+            date: formatDateHR(userContactData.date),
+            phone: userContactData.phone,
+            eventType: userContactData.eventType,
+            location: userContactData.location,
+            numberOfGuests: userContactData.numberOfGuests,
+            howDidYouHear: userContactData.howDidYouHear,
+            message: userContactData.additionalNotice
           },
           import.meta.env.VITE_EMAIL_PUBLIC_KEY!
         );
 
-        setShowSuccess(true);
-        setFormState({ name: '', email: '', date: '', phone: '', message: '' });
-        setTimeout(() => setShowSuccess(false), 5000);
+        setSuccesSubmit(m.contact_form_success_msg());
+        setUserContactData({
+          fullName: '', email: '', date: '', phone: '',
+          eventType: '', location: '', numberOfGuests: '', howDidYouHear: '', additionalNotice: ''
+        });
+        setTimeout(() => setSuccesSubmit(null), 5000);
 
       } catch (err) {
-        setShowError(true);
-        setShowSuccess(false);
-        setTimeout(() => setShowError(false), 5000);
+        setErrorSubmit(m.contact_form_error_msg());
+        setTimeout(() => setErrorSubmit(null), 5000);
       }
     }
   };
@@ -269,102 +315,210 @@ const PremiumContact: React.FC = () => {
                         <p className="text-sm md:text-base text-gray-400 font-light">{m.contact_form_desc()}</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} id="kontakt-forma" className="scroll-mt-[220px] md:scroll-mt-[280px] space-y-5 md:space-y-6" aria-label={m.contact_form_title()}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-                        <div className="space-y-2">
-                            <label htmlFor="name" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_name()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
-                            <input 
-                            type="text" 
-                            id="name" 
-                            name="name" 
-                            value={formState.name}
-                            onChange={handleInputChange}
-                            placeholder={m.contact_form_placeholder_name()} 
-                            required 
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
-                            />
-                        </div>
+                    <form id="kontakt-forma" className="scroll-mt-[220px] md:scroll-mt-[280px] space-y-5 md:space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="fullName" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_name()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <input 
+                      type="text" 
+                      id="fullName" 
+                      name="fullName" 
+                      value={userContactData.fullName}
+                      onChange={handleChange}
+                      placeholder={m.contact_form_placeholder_name()} 
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
+                    />
+                    { userContactDataValidation.fullName && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.fullName}</p> }
+                  </div>
 
-                        <div className="space-y-2">
-                            <label htmlFor="email" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_email()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
-                            <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            value={formState.email}
-                            onChange={handleInputChange}
-                            placeholder={m.contact_form_placeholder_email()} 
-                            required 
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
-                            />
-                        </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_email()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      value={userContactData.email}
+                      onChange={handleChange}
+                      placeholder={m.contact_form_placeholder_email()} 
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
+                    />
+                    { userContactDataValidation.email && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.email}</p> }
+                  </div>
 
-                        <div className="space-y-2">
-                            <label htmlFor="date" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_date()}</label>
-                            <input 
-                            type="date" 
-                            id="date" 
-                            name="date" 
-                            lang={getLocale()}
-                            min={today}
-                            value={formState.date}
-                            onChange={handleInputChange}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 [color-scheme:dark]"
-                            />
-                        </div>
+                  <div className="space-y-2">
+                    <label htmlFor="date" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_date()}</label>
+                    <input 
+                      type="date" 
+                      id="date" 
+                      name="date" 
+                      lang={getLocale()}
+                      min={today}
+                      value={userContactData.date}
+                      onChange={handleChange}
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 [color-scheme:dark]"
+                    />
+                    { userContactDataValidation.date && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.date}</p> }
+                  </div>
 
-                        <div className="space-y-2">
-                            <label htmlFor="phone" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_phone()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
-                            <input 
-                            type="tel" 
-                            id="phone" 
-                            name="phone" 
-                            value={formState.phone}
-                            onChange={handleInputChange}
-                            placeholder={m.contact_form_placeholder_phone()} 
-                            required
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
-                            />
-                        </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_phone()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      value={userContactData.phone}
+                      onChange={handleChange}
+                      placeholder={m.contact_form_placeholder_phone()} 
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
+                    />
+                    { userContactDataValidation.phone && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.phone}</p> }
+                  </div>
+                  
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="eventType" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_event_type()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <div className="relative" ref={eventTypeRef}>
+                      <div 
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-3 text-sm md:text-base flex justify-between items-center cursor-pointer transition-all duration-300 ${isEventTypeOpen ? 'border-[rgba(212,175,55,1)] ring-1 ring-[rgba(212,175,55,1)]' : 'border-white/10 hover:border-white/20'}`}
+                        onClick={() => setIsEventTypeOpen(!isEventTypeOpen)}
+                      >
+                        <span className={userContactData.eventType ? 'text-white' : 'text-gray-500'}>
+                          {userContactData.eventType || m.contact_form_placeholder_event_type()}
+                        </span>
+                        <FontAwesomeIcon 
+                          icon={faChevronDown} 
+                          className={`text-gray-400 text-sm transition-transform duration-300 ${isEventTypeOpen ? 'rotate-180' : ''}`} 
+                        />
+                      </div>
+                      
+                      <div
+                        className={`absolute z-50 w-full mt-2 bg-[#0a0a0d] border border-white/10 rounded-lg shadow-2xl overflow-hidden origin-top transition-all duration-300 ease-out ${
+                            isEventTypeOpen ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-0 pointer-events-none'
+                        }`}
+                      >
+                        {eventTypeOptions.map((option, idx) => (
+                          <div
+                            key={idx}
+                            className={`px-4 py-3 text-sm md:text-base cursor-pointer transition-colors ${userContactData.eventType === option ? 'bg-[rgba(212,175,55,0.15)] text-[rgba(212,175,55,1)]' : 'text-white hover:bg-white/5'}`}
+                            onClick={() => {
+                              setUserContactData(prev => ({ ...prev, eventType: option }));
+                              setUserContactDataValidation((prev: any) => ({ ...prev, eventType: undefined }));
+                              setIsEventTypeOpen(false);
+                            }}
+                          >
+                            {option}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    { userContactDataValidation.eventType && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.eventType}</p> }
+                  </div>
 
-                        <div className="space-y-2 md:col-span-2">
-                            <label htmlFor="message" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_message()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
-                            <textarea 
-                            id="message" 
-                            name="message" 
-                            value={formState.message}
-                            onChange={handleInputChange}
-                            placeholder={m.contact_form_placeholder_message()} 
-                            required 
-                            rows={4}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 resize-none"
-                            ></textarea>
-                        </div>
-                        </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="location" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_location()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <input 
+                      type="text" 
+                      id="location" 
+                      name="location" 
+                      value={userContactData.location}
+                      onChange={handleChange}
+                      placeholder={m.contact_form_placeholder_location()} 
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
+                    />
+                    { userContactDataValidation.location && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.location}</p> }
+                  </div>
+                  
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="numberOfGuests" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_guests()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <input 
+                      type="text" 
+                      id="numberOfGuests" 
+                      name="numberOfGuests" 
+                      value={userContactData.numberOfGuests}
+                      onChange={handleChange}
+                      placeholder={m.contact_form_placeholder_guests()} 
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300"
+                    />
+                    { userContactDataValidation.numberOfGuests && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.numberOfGuests}</p> }
+                  </div>
 
-                        <button 
-                            type="submit" 
-                            className="btn btn-primary w-full py-3 mt-2 font-semibold tracking-wide text-sm md:text-base"
-                            >
-                            {m.contact_form_btn_submit()}
-                        </button>
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="howDidYouHear" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_how_did_you_hear()} <span className="text-[rgba(212,175,55,1)]">*</span></label>
+                    <div className="relative" ref={howDidYouHearRef}>
+                      <div 
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-3 text-sm md:text-base flex justify-between items-center cursor-pointer transition-all duration-300 ${isHowDidYouHearOpen ? 'border-[rgba(212,175,55,1)] ring-1 ring-[rgba(212,175,55,1)]' : 'border-white/10 hover:border-white/20'}`}
+                        onClick={() => setIsHowDidYouHearOpen(!isHowDidYouHearOpen)}
+                      >
+                        <span className={userContactData.howDidYouHear ? 'text-white' : 'text-gray-500'}>
+                          {userContactData.howDidYouHear || m.contact_form_placeholder_how_did_you_hear()}
+                        </span>
+                        <FontAwesomeIcon 
+                          icon={faChevronDown} 
+                          className={`text-gray-400 text-sm transition-transform duration-300 ${isHowDidYouHearOpen ? 'rotate-180' : ''}`} 
+                        />
+                      </div>
+                      
+                      <div
+                        className={`absolute z-50 w-full mt-2 bg-[#0a0a0d] border border-white/10 rounded-lg shadow-2xl overflow-hidden origin-top transition-all duration-300 ease-out ${
+                            isHowDidYouHearOpen ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-0 pointer-events-none'
+                        }`}
+                      >
+                        {howDidYouHearOptions.map((option, idx) => (
+                          <div
+                            key={idx}
+                            className={`px-4 py-3 text-sm md:text-base cursor-pointer transition-colors ${userContactData.howDidYouHear === option ? 'bg-[rgba(212,175,55,0.15)] text-[rgba(212,175,55,1)]' : 'text-white hover:bg-white/5'}`}
+                            onClick={() => {
+                              setUserContactData(prev => ({ ...prev, howDidYouHear: option }));
+                              setUserContactDataValidation((prev: any) => ({ ...prev, howDidYouHear: undefined }));
+                              setIsHowDidYouHearOpen(false);
+                            }}
+                          >
+                            {option}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    { userContactDataValidation.howDidYouHear && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.howDidYouHear}</p> }
+                  </div>
 
-                        {showSuccess && (
-                        <div className="mt-4 p-4 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center space-x-3 text-green-400 animate-pulse">
-                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                            <p className="text-sm">{m.contact_form_success_msg()}</p>
-                        </div>
-                        )}
+                  <div className="space-y-2 md:col-span-2">
+                    <label htmlFor="additionalNotice" className="text-xs uppercase tracking-widest text-gray-500 font-semibold">{m.contact_form_label_additional_notice()}</label>
+                    <textarea 
+                      id="additionalNotice" 
+                      name="additionalNotice" 
+                      value={userContactData.additionalNotice}
+                      onChange={handleChangeTextArea}
+                      placeholder={m.contact_form_placeholder_additional_notice()} 
+                      rows={4}
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[rgba(212,175,55,1)] focus:ring-1 focus:ring-[rgba(212,175,55,1)] transition-all duration-300 resize-none"
+                    ></textarea>
+                    { userContactDataValidation.additionalNotice && <p className='text-red-400 text-xs m-0 font-medium'>{userContactDataValidation.additionalNotice}</p> }
+                  </div>
+                </div>
 
-                        {showError && (
-                        <div className="mt-4 p-4 bg-red-900/30 border border-red-500/30 rounded-lg flex items-center space-x-3 text-red-400 animate-pulse">
-                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <p className="text-sm">{m.contact_form_error_msg()}</p>
-                        </div>
-                        )}
-                    </form>
+                <button 
+                  type="button" 
+                  onClick={() => submitForm()}
+                  className="w-full py-4 mt-2 font-extrabold tracking-[0.1em] text-sm md:text-base inline-flex justify-center items-center bg-gradient-to-r from-[color:var(--color-accent-gold)] to-[#ffdf73] text-black rounded-xl hover:scale-[1.02] transition-transform duration-300 uppercase shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                >
+                  {m.contact_form_btn_submit()}
+                </button>
+
+                {succesSubmit && (
+                  <div className="mt-4 p-4 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center space-x-3 text-green-400 animate-pulse">
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p className="text-sm m-0">{succesSubmit}</p>
+                  </div>
+                )}
+
+                {errorSubmit && (
+                  <div className="mt-4 p-4 bg-red-900/30 border border-red-500/30 rounded-lg flex items-center space-x-3 text-red-400 animate-pulse">
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p className="text-sm m-0">{errorSubmit}</p>
+                  </div>
+                )}
+              </form>
                     </div>
                 </div>
             </div>

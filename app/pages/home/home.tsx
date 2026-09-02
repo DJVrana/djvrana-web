@@ -22,6 +22,7 @@ import {
   faGraduationCap,
   faCompactDisc,
   faChampagneGlasses,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faTiktok, faYoutube, faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 
@@ -39,7 +40,34 @@ export function meta({}: Route.MetaArgs) {
   );
 }
 
+const reviewsData = [
+  { author: "Ana Cvitanović", text: "Na maturalnoj napravljena top atmosfera, sve naše želje ispunjene i sve ispoštovano🔝🔝", textEn: "Top atmosphere created at the prom, all our wishes were fulfilled and respected 🔝🔝", date: new Date('2026-07-15') },
+  { author: "Matija Matković", text: "Preporuka za vjenčanje! Svi zadovoljni i mladenci i djeca i bake i djedovi! Bilo je top od organizacije do realizacije!", textEn: "Recommendation for a wedding! Everyone was satisfied, the newlyweds, kids, and grandparents! It was top-notch from organization to realization!", date: new Date('2026-07-15') },
+  { author: "Ivana Kuzek Vatavuk", text: "Sve pohvale DJ-u! Odlična glazba, super atmosfera, ali i dogovor i komunikacija prije svadbe. Preporuke! ☺️", textEn: "All praise to the DJ! Great music, super atmosphere, but also great communication before the wedding. Highly recommended! ☺️", date: new Date('2026-07-15') },
+  { author: "kristina vučić", text: "Proslava mog 50-tog rođendana ne bi bila tulum stoljeca bez DJ Vrane...sve što smo dogovorili ispoštovao, mix pjesama savršen,prepoznaje kada treba mjenjati ritam tuluma, susretljiv prema željama ekipe, izuzetno profesionalan..sve u svemu za svaku preporuku 🫶", textEn: "My 50th birthday celebration wouldn't have been the party of the century without DJ Vrana... he respected everything we agreed on, the song mix was perfect, he recognizes when to change the rhythm of the party, accommodating to the crew's wishes, extremely professional... highly recommended 🫶", date: new Date('2026-04-15') },
+  { author: "Ivan Maravić", text: "DJ za sve prigode, uvijek transparentan, pristupačan te se drži dogovora. Sve preporuke!", textEn: "DJ for all occasions, always transparent, approachable, and sticks to the agreement. Highly recommended!", date: new Date('2026-03-15') },
+  { author: "Maja Gabrek", text: "Odlican DJ, simpatičan, napravio super ugođaj i atmosferu, sve pohvale👏🏻👏🏻", textEn: "Excellent DJ, friendly, created a great vibe and atmosphere, all praise 👏🏻👏🏻", date: new Date('2026-04-15') },
+  { author: "Sonja Čičak", text: "top, odlicno pustao i svima se svidjelo!!", textEn: "Top, played excellently and everyone loved it!!", date: new Date('2026-04-15') },
+  { author: "Mario Tica", text: "Odlican decko. Sve prema dogovoru. Za svaku preporuku.", textEn: "Great guy. Everything went exactly as agreed. Highly recommended.", date: new Date('2026-05-15') },
+  { author: "Ana Šarić", text: "Za svaku preporuku!!! Top!!!", textEn: "Highly recommended!!! Top!!!", date: new Date('2026-03-15') },
+  { author: "D S", text: "Najbolji DJ…sigurno se nećete požaliti ako ga bukirate..mi smo ga uzeli za vjenčanje trebao je dečko biti tu kao prateća glazba uz bend ali je totalno preuzeo show i napravio ludnicu..definitvno za svaku preporuku…i Btw dečko je super pristojan i ljubazan i dostupan u svakom trenu..", textEn: "The best DJ... you certainly won't regret booking him.. we hired him for our wedding, he was supposed to be background music alongside the band, but he totally stole the show and created absolute madness.. definitely highly recommended... and btw the guy is super polite, kind, and available at all times..", date: new Date('2026-08-09') },
+  { author: "Ana Miha", text: "Preporuka za vjencanje!", textEn: "Highly recommended for a wedding!", date: new Date('2026-07-15') },
+  { author: "Tara Ivišić", text: "Odličan DJ za maturalnu večer! Atmosfera je bila vrhunska od samog početka do kraja. Glazba je bila odlično odabrana, prilagođena svim generacijama i nitko nije ostao sjediti. DJ je znao podići raspoloženje, pratiti želje gostiju i …", textEn: "Excellent DJ for a prom night! The atmosphere was top-notch from start to finish. The music was perfectly selected, adapted to all generations, and no one stayed seated. The DJ knew how to lift the mood, follow the guests' wishes and...", date: new Date('2026-07-15') },
+  { author: "Lauraa", text: "Sve pohvale za izvrsnu organizaciju i atmosferu koju je DJ stvorio na 18. rođendanu. Spoj profesionalnosti i odlične zabave. Svakako bismo ga ponovno angažirali.", textEn: "All praise for the excellent organization and atmosphere the DJ created at the 18th birthday. A perfect blend of professionalism and great entertainment. We would definitely hire him again.", date: new Date('2026-03-15') }
+];
+
 export default function Home() {
+  const [displayedReviews, setDisplayedReviews] = useState(() => reviewsData.slice(0, 5));
+  const [translatedReviews, setTranslatedReviews] = useState<Record<number, boolean>>({});
+
+  const toggleTranslation = (index: number) => {
+    setTranslatedReviews(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+
+  useEffect(() => {
+    const shuffled = [...reviewsData].sort(() => 0.5 - Math.random());
+    setDisplayedReviews(shuffled.slice(0, 5));
+  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("active"));
@@ -156,6 +184,26 @@ export default function Home() {
                 <p className="text-base sm:text-lg md:text-[1.1rem] text-[#a1a1aa] max-w-2xl mb-8 md:mb-10 mt-6 md:mt-6 leading-relaxed px-2">
                   {m.home_hero_desc()}
                 </p>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2 w-full px-4 sm:px-0">
+                  <Link 
+                    to="/kontakt" 
+                    className="inline-flex justify-center items-center px-8 py-4 text-sm md:text-base font-extrabold tracking-widest bg-gradient-to-r from-[color:var(--color-accent-gold)] to-[#ffdf73] text-black rounded-full hover:scale-[1.02] transition-transform duration-300 uppercase shadow-[0_0_20px_rgba(212,175,55,0.3)] w-full sm:w-auto"
+                  >
+                    {m.home_hero_btn_quote()}
+                  </Link>
+                  <button 
+                    onClick={() => {
+                        const aboutSection = document.querySelector('.about');
+                        if (aboutSection) {
+                          aboutSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
+                    className="inline-flex justify-center items-center px-8 py-4 text-sm md:text-base font-extrabold tracking-widest bg-white/5 border border-white/10 text-white rounded-full hover:bg-white/10 transition-colors duration-300 uppercase w-full sm:w-auto"
+                  >
+                    {m.home_hero_btn_more()}
+                  </button>
+                </div>
               </header>
             </div>
           </div>
@@ -269,6 +317,76 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="reviews-section relative pt-10 pb-10 sm:pb-30 overflow-hidden">
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[radial-gradient(circle,rgba(212,175,55,0.07),transparent)] blur-[100px] rounded-full z-0 pointer-events-none'></div>
+
+        <div className="container relative px-4 sm:px-6 mx-auto z-10">
+          <header className="section-header scroll-animate text-center mx-auto mb-10 sm:mb-16 px-4">
+            <p className="section-subtitle">{m.home_reviews_subtitle()}</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              {m.home_reviews_title()}
+            </h2>
+            <div className='flex items-center justify-center gap-3 mb-4 mt-2'>
+              <div className='flex gap-1 text-[#fbbc04] text-xl'>
+                {[...Array(5)].map((_, idx) => (
+                  <FontAwesomeIcon key={idx} icon={faStar} />
+                ))}
+              </div>
+              <span className='text-white font-bold text-lg'>5.0</span>
+            </div>
+            <div className="mx-auto flex items-center justify-center gap-2.5 mt-4 text-sm leading-relaxed text-white/70 md:text-base">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-5 h-5 shrink-0">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+              <span>{m.home_reviews_desc()}</span>
+            </div>
+          </header>
+
+          <div className='flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto'>
+            {displayedReviews.map((review, i) => (
+              <div 
+                key={i}
+                className='w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-white/5 backdrop-blur-xl border border-[rgba(212,175,55,0.2)] shadow-[0_20px_80px_-30px_rgba(0,0,0,0.9)] rounded-3xl p-6 md:p-8 flex flex-col transition duration-300 hover:-translate-y-1 hover:border-[#d4af37] hover:shadow-[0_20px_60px_-30px_rgba(212,175,55,0.2)] cursor-default reveal-on-scroll opacity-0 translate-y-12'
+              >
+                <div className='flex items-center gap-4 mb-6'>
+                  <div className='w-12 h-12 rounded-full border border-[rgba(212,175,55,0.4)] bg-[rgba(212,175,55,0.1)] flex items-center justify-center text-lg font-bold text-[#d4af37] shrink-0'>
+                    {review.author.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className='text-white font-semibold'>{review.author}</h4>
+                    <p className='text-white/50 text-xs'>{getTimeAgo(review.date, currentLang)}</p>
+                  </div>
+                </div>
+                
+                <div className='flex gap-1 text-[#fbbc04] mb-4 text-xs'>
+                  {[...Array(5)].map((_, idx) => (
+                    <FontAwesomeIcon key={idx} icon={faStar} />
+                  ))}
+                </div>
+                
+                <p className='text-white/75 font-light leading-relaxed italic relative text-sm md:text-[15px]'>
+                  <span className='text-4xl text-[rgba(212,175,55,0.2)] font-serif absolute -top-4 -left-2'>"</span>
+                  <span className='relative z-10'>
+                    {currentLang !== 'hr' && translatedReviews[i] && review.textEn ? review.textEn : review.text}
+                  </span>
+                </p>
+                {currentLang !== 'hr' && review.textEn && (
+                  <button 
+                    onClick={() => toggleTranslation(i)}
+                    className="mt-4 text-xs font-semibold text-[#d4af37] hover:text-[#ffdf73] transition-colors duration-300 self-start inline-flex items-center"
+                  >
+                    {translatedReviews[i] ? m.home_reviews_see_original() : m.home_reviews_see_translation()}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="video-nastup" className="video-showcase pt-10 pb-10 sm:pb-30 scroll-mt-[80px]">
         <div className="container relative px-4 sm:px-6 mx-auto">
           <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
@@ -291,6 +409,7 @@ export default function Home() {
                 title="DJ Vrana - Atmosfera s Nastupa"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="w-full h-full relative z-10"
               ></iframe>
             </div>
@@ -302,6 +421,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       <section className="bg-[#121212] py-16 md:py-24 px-4 text-center border-t border-[#d4af37]/10 w-full relative z-20">
         <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
@@ -532,3 +652,29 @@ function ServicesPremium() {
       </div>
   );
 }
+
+
+
+const getTimeAgo = (date: Date, locale: string) => {
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+  const now = new Date();
+  const diffInDays = Math.floor((date.getTime() - now.getTime()) / (1000 * 3600 * 24));
+  const diffInMonths = (date.getFullYear() - now.getFullYear()) * 12 + date.getMonth() - now.getMonth();
+  
+  if (diffInMonths <= 0) {
+    if (diffInDays > -7) {
+      return rtf.format(diffInDays, 'day');
+    }
+    const weeks = Math.floor(diffInDays / 7);
+    if (weeks > -4) {
+        return rtf.format(weeks, 'week');
+    }
+  }
+  
+  if (diffInMonths > -12) {
+    return rtf.format(diffInMonths, 'month');
+  }
+  
+  const years = Math.floor(diffInMonths / 12);
+  return rtf.format(years, 'year');
+};

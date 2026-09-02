@@ -15,6 +15,7 @@ import "./styles.css";
 import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
 import * as m from '~/paraglide/messages.js';
 import { useEffect, useState } from "react";
+import FloatingContactButton from "~/components/floating-contact-button/FloatingContactButton";
 
 export function meta({ params }: Route.MetaArgs) {
   const ogLocale = params.locale === 'en' ? 'en_US' : 'hr_HR';
@@ -106,6 +107,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="bg-[#0a0a0a] text-white selection:bg-[#d4af37]/30 selection:text-[#d4af37]">
         {children}
+        <FloatingContactButton />
         <ScrollRestoration />
         <Scripts />
       </body>

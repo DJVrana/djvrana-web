@@ -30,13 +30,15 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground, { SectionDivider } from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "usluge", 
-    m.services_meta_title(), 
-    m.services_meta_desc(),
-    m.services_meta_keywords()
-  )
+    m.services_meta_title({}, { locale }), 
+    m.services_meta_desc({}, { locale }),
+    m.services_meta_keywords({}, { locale }),
+    locale
+  );
 }
 
 const PremiumDJUsluge: React.FC = () => {

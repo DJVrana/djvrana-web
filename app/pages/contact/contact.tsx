@@ -14,12 +14,14 @@ import { getLocale } from '~/paraglide/runtime.js';
 import { getMultilingualMeta } from '~/utils/seo/seo';
 import SectionBackground, { SectionDivider } from '~/components/ui/SectionBackground';
 
-export function meta({ location }: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "kontakt", 
-    m.contact_meta_title(), 
-    m.contact_meta_desc(),
-    m.contact_meta_keywords()
+    m.contact_meta_title({}, { locale }), 
+    m.contact_meta_desc({}, { locale }),
+    m.contact_meta_keywords({}, { locale }),
+    locale
   );
 }
 

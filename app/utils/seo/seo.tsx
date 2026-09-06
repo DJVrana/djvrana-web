@@ -1,8 +1,8 @@
 import { getLocale } from '~/paraglide/runtime.js';
 
-export function getMultilingualMeta(path: string, title: string, description: string, keywords: string) {
+export function getMultilingualMeta(path: string, title: string, description: string, keywords: string, locale?: string) {
   const domain = "https://djvrana.com";
-  const currentLang = getLocale();
+  const currentLang = locale || (typeof getLocale === 'function' ? getLocale() : 'hr');
 
   const cleanPath = path.replace(/^\/|\/$/g, '');
   const pathSuffix = cleanPath ? `/${cleanPath}/` : '/';
@@ -37,7 +37,7 @@ export function getMultilingualMeta(path: string, title: string, description: st
     // Alternate links
     { tagName: "link", rel: "alternate", hrefLang: "hr", href: urlHr },
     { tagName: "link", rel: "alternate", hrefLang: "en", href: urlEn },
-    { tagName: "link", rel: "alternate", hrefLang: "x-default", href: urlEn }, // x-default govori Googleu da je 'en' glavni jezik ako korisnik dolazi iz npr. Njemačke
+    { tagName: "link", rel: "alternate", hrefLang: "x-default", href: urlHr },
     
     // Canonical link
     { tagName: "link", rel: "canonical", href: currentUrl }

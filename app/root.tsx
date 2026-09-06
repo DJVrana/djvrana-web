@@ -14,7 +14,7 @@ import "./styles.css";
 
 import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
 import * as m from '~/paraglide/messages.js';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FloatingContactButton from "~/components/floating-contact-button/floatingContactButton";
 
 export function meta({ params }: Route.MetaArgs) {
@@ -68,7 +68,9 @@ export function HydrateFallback() {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const params = useParams();
-  const [mounted, setMounted] = useState(false);
+
+  // @ts-ignore
+  const lang = (params.locale && locales.includes(params.locale)) ? params.locale : baseLocale;
 
   useEffect(() => {
     const urlLocale = window.location.pathname.split('/')[1];
@@ -76,29 +78,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     // @ts-ignore
     const locale: "hr" | "en" = locales.includes(urlLocale) ? urlLocale : baseLocale;
     setLocale(locale);
-
-    setMounted(true);
   }, [params]);
 
-  if (!mounted) {
-    return (
-      <html lang={baseLocale}>
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <Links />
-        </head>
-        <body className="bg-[#0a0a0a] text-white">
-          <HydrateFallback />
-          <Scripts />
-        </body>
-      </html>
-    );
-  }
-
   return (
-    // @ts-ignore
-    <html lang={locales.includes(params.locale) ? params.locale : baseLocale}>
+    <html lang={lang}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -26,12 +26,14 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "dj-za-korporativni-dogadaj", 
-    m.corporate_events_meta_title(), 
-    m.corporate_events_meta_desc(),
-    m.corporate_events_meta_keywords()
+    m.corporate_events_meta_title({}, { locale }), 
+    m.corporate_events_meta_desc({}, { locale }),
+    m.corporate_events_meta_keywords({}, { locale }),
+    locale
   );
 }
 

@@ -26,13 +26,15 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "dj-za-vjencanja", 
-    m.weddings_meta_title(), 
-    m.weddings_meta_desc(),
-    m.weddings_meta_keywords()
-  )
+    m.weddings_meta_title({}, { locale }), 
+    m.weddings_meta_desc({}, { locale }),
+    m.weddings_meta_keywords({}, { locale }),
+    locale
+  );
 }
 
 export default function Vjencanja() {

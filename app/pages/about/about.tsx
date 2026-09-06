@@ -29,12 +29,14 @@ import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
 import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 
-export function meta({ }: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+    const locale = params?.locale === 'en' ? 'en' : 'hr';
     return getMultilingualMeta(
         "o-meni",
-        m.about_meta_title(),
-        m.about_meta_desc(),
-        m.about_meta_keywords()
+        m.about_meta_title({}, { locale }),
+        m.about_meta_desc({}, { locale }),
+        m.about_meta_keywords({}, { locale }),
+        locale
     );
 }
 

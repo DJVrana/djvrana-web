@@ -32,12 +32,14 @@ import { getMultilingualMeta } from "~/utils/seo/seo";
 import { getLocale } from "~/paraglide/runtime";
 import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "", 
-    m.home_meta_title(), 
-    m.home_meta_desc(),
-    m.home_meta_keywords()
+    m.home_meta_title({}, { locale }), 
+    m.home_meta_desc({}, { locale }),
+    m.home_meta_keywords({}, { locale }),
+    locale
   );
 }
 

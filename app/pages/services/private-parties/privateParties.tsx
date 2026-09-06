@@ -26,13 +26,15 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "dj-za-proslave", 
-    m.private_parties_meta_title(), 
-    m.private_parties_meta_desc(),
-    m.private_parties_meta_keywords()
-  )
+    m.private_parties_meta_title({}, { locale }), 
+    m.private_parties_meta_desc({}, { locale }),
+    m.private_parties_meta_keywords({}, { locale }),
+    locale
+  );
 }
 
 export default function PrivatneProslave() {

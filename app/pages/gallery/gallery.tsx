@@ -46,12 +46,14 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "galerija", 
-    m.gallery_meta_title(), 
-    m.gallery_meta_desc(),
-    m.gallery_meta_keywords()
+    m.gallery_meta_title({}, { locale }), 
+    m.gallery_meta_desc({}, { locale }),
+    m.gallery_meta_keywords({}, { locale }),
+    locale
   );
 }
 

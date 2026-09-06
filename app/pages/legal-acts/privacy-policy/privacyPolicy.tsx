@@ -9,12 +9,14 @@ import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+    const locale = params?.locale === 'en' ? 'en' : 'hr';
     return getMultilingualMeta(
         "politika-privatnosti", 
-        m.pp_meta_title(), 
-        m.pp_meta_desc(),
-        m.pp_meta_keywords()
+        m.pp_meta_title({}, { locale }), 
+        m.pp_meta_desc({}, { locale }),
+        m.pp_meta_keywords({}, { locale }),
+        locale
     );
 }
 

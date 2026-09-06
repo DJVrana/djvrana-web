@@ -10,12 +10,14 @@ import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
 import { getLocale } from '~/paraglide/runtime';
 import SectionBackground from '~/components/ui/SectionBackground';
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
+  const locale = params?.locale === 'en' ? 'en' : 'hr';
   return getMultilingualMeta(
     "uvjeti-koristenja", 
-    m.tac_meta_title(), 
-    m.tac_meta_desc(),
-    m.tac_meta_keywords()
+    m.tac_meta_title({}, { locale }), 
+    m.tac_meta_desc({}, { locale }),
+    m.tac_meta_keywords({}, { locale }),
+    locale
   );
 }
 

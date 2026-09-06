@@ -9,7 +9,9 @@
 }
 
 .hero-bg-img {
-  background-image: url(../../assets/images/hero-img.webp);
+  background-image: 
+    linear-gradient(rgba(10, 10, 10, 0.72), rgba(10, 10, 10, 0.84)),
+    url(../../assets/images/hero-img.webp);
   background-size: cover;
   background-position: center;
 }

@@ -5,6 +5,7 @@ import Footer from "../../components/footer/footer";
 import "../../styles.css";
 import "./home.scss";
 import { Link } from "react-router";
+import SectionBackground from "~/components/ui/SectionBackground";
 
 import aboutImg from '../../assets/images/about.webp'
 import serviceImg01 from '../../assets/images/service01.webp';
@@ -164,11 +165,11 @@ export default function Home() {
       />
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       
-       <section className="hero">
+       <section className="hero relative overflow-hidden">
         <div className="hero-wrapper relative isolate min-h-[100svh]">
           <div className="hero-bg-img relative min-h-[100svh] overflow-hidden flex flex-col items-center justify-center pt-24 md:pt-32 px-4 pb-20 font-sans">
-
-            <div className="flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full">
+            <SectionBackground variant="hero" intensity="high" />
+            <div className="flex flex-col items-center text-center max-w-4xl mx-auto mt-12 w-full relative z-10">
               <header className="flex flex-col items-center text-center w-full">
                 <div className="hero-badge mb-4">{m.home_hero_badge()}</div>
 
@@ -206,18 +207,17 @@ export default function Home() {
                 </div>
               </header>
             </div>
+            {/* Seamless bottom feather into page content */}
+            <div className="absolute bottom-0 inset-x-0 h-32 md:h-52 bg-gradient-to-t from-[var(--color-bg-primary,#131313)] via-[var(--color-bg-primary,#131313)]/75 to-transparent pointer-events-none z-10" />
           </div>
         </div>
       </section>
 
-      <section className="about">
+      <section className="about relative overflow-hidden">
         <div className="relative">
-          <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-40px] left-[50px] [animation-delay:0s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
+          <SectionBackground variant="about" />
           
-          <div className="container relative min-h-screen flex items-center justify-center py-[60px] sm:py-[80px] px-4 sm:px-6 text-white font-sans mx-auto">
+          <div className="container relative min-h-screen flex items-center justify-center py-[60px] sm:py-[80px] px-4 sm:px-6 text-white font-sans mx-auto z-10">
             <div className="relative z-10 max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-[40px] lg:gap-[80px] items-center text-center lg:text-left">
               
               <div className="relative max-w-[350px] sm:max-w-[450px] lg:max-w-none w-full mx-auto lg:mx-0">
@@ -294,31 +294,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="services">
-        <div className="container px-4 sm:px-6 mx-auto">
-          <div className="py-20 sm:py-30">
-            <div className="relative min-h-screen bg-night">
-              <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
-              
-              <div className="relative mx-auto w-full">
-                <header className="mx-auto max-w-2xl text-center section-header scroll-animate px-4">
-                  <p className="section-subtitle">{m.home_services_subtitle()}</p>
-                  <h2 className="text-balance text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-                    {m.home_services_title()}
-                  </h2>
-                  <p className="mx-auto mt-4 sm:mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-                    {m.home_services_desc()}
-                  </p>
-                </header>
-                <ServicesPremium />
-              </div>
-            </div>
-          </div>
+      <section className="services relative py-20 sm:py-30 overflow-hidden">
+        <SectionBackground variant="services" />
+        
+        <div className="container px-4 sm:px-6 mx-auto relative z-10">
+          <header className="mx-auto max-w-2xl text-center section-header scroll-animate px-4">
+            <p className="section-subtitle">{m.home_services_subtitle()}</p>
+            <h2 className="text-balance text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+              {m.home_services_title()}
+            </h2>
+            <p className="mx-auto mt-4 sm:mt-5 max-w-xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
+              {m.home_services_desc()}
+            </p>
+          </header>
+          <ServicesPremium />
         </div>
       </section>
 
       <section className="reviews-section relative pt-10 pb-10 sm:pb-30 overflow-hidden">
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[radial-gradient(circle,rgba(212,175,55,0.07),transparent)] blur-[100px] rounded-full z-0 pointer-events-none'></div>
+        <SectionBackground variant="reviews" />
 
         <div className="container relative px-4 sm:px-6 mx-auto z-10">
           <header className="section-header scroll-animate text-center mx-auto mb-10 sm:mb-16 px-4">
@@ -387,9 +381,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="video-nastup" className="video-showcase pt-10 pb-10 sm:pb-30 scroll-mt-[80px]">
-        <div className="container relative px-4 sm:px-6 mx-auto">
-          <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern animate-grid"></div>
+      <section id="video-nastup" className="video-showcase pt-10 pb-10 sm:pb-30 scroll-mt-[80px] relative overflow-hidden">
+        <SectionBackground variant="video" />
+        <div className="container relative px-4 sm:px-6 mx-auto z-10">
           
           <header className="section-header scroll-animate text-center mx-auto mb-10 sm:mb-16 px-4">
             <p className="section-subtitle">{m.home_video_subtitle()}</p>
@@ -423,8 +417,10 @@ export default function Home() {
       </section>
 
 
-      <section className="bg-[#121212] py-16 md:py-24 px-4 text-center border-t border-[#d4af37]/10 w-full relative z-20">
-        <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+      <section className="py-16 md:py-24 px-4 text-center w-full relative z-20 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[85%] max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent z-10" />
+        <SectionBackground variant="contact" intensity="medium" />
+        <div className="container mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">{m.home_cta_title()}</h2>
           <p className="text-base md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto">
             {m.home_cta_desc()}

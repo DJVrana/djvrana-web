@@ -24,6 +24,7 @@ import * as m from '~/paraglide/messages.js';
 import { LocalizedLink } from '~/utils/localizedLink/localizedLink';
 import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
+import SectionBackground from '~/components/ui/SectionBackground';
 
 export function meta({}: Route.MetaArgs) {
   return getMultilingualMeta(
@@ -83,24 +84,23 @@ export default function PrivatneProslave() {
       
       <div className="min-h-screen text-white font-sans overflow-x-hidden">
         
-        <section className="text-center mb-16 relative private-parties-hero-bg-img py-30 md:py-40 px-4">
-          <div className="hero-badge">{m.private_parties_hero_badge()}</div>
-          <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
-            {m.private_parties_hero_title()}
-          </h1>
-          <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
-            {m.private_parties_hero_desc()}
-          </p>
+        <section className="text-center mb-16 relative private-parties-hero-bg-img py-30 md:py-40 px-4 overflow-hidden">
+          <SectionBackground variant="hero" intensity="subtle" />
+          <div className="relative z-10">
+            <div className="hero-badge">{m.private_parties_hero_badge()}</div>
+            <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold bg-gradient-to-br from-[#d4af37] via-[#f4e5a0] to-[#d4af37] bg-clip-text text-transparent mb-5 tracking-tight">
+              {m.private_parties_hero_title()}
+            </h1>
+            <p className="text-lg md:text-xl text-[#a0a0a0] max-w-[700px] mx-auto leading-[1.8]">
+              {m.private_parties_hero_desc()}
+            </p>
+          </div>
         </section>
 
-        <section className="private-parties px-4 md:px-0">
-          <div className="container mx-auto">
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mb-20">
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
-
+        <section className="private-parties relative py-12 md:py-20 px-4 md:px-0 overflow-hidden">
+          <SectionBackground variant="showcase" subType="parties" intensity="medium" />
+          <div className="container mx-auto relative z-10">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mb-20 p-6 sm:p-10 rounded-3xl overflow-hidden border border-[#d4af37]/15 bg-gradient-to-br from-[#111111]/90 to-[#0a0a0a]/95 backdrop-blur-md shadow-2xl shadow-black/60">
               <div className="relative lg:max-w-none w-full order-2 md:order-1">
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
@@ -115,7 +115,6 @@ export default function PrivatneProslave() {
                       aria-label={m.private_parties_video_aria()}
                     >
                       <source src={service} type="video/mp4" />
-                      <track kind='captions' src="" srcLang='hr' label={m.private_parties_video_track()}></track>
                       {m.private_parties_video_fallback()}
                     </video>
                   </div>
@@ -138,17 +137,15 @@ export default function PrivatneProslave() {
               </div>
             </div>
 
-            <div className="scroll-animate relative bg-gradient-to-br from-[rgba(212,175,55,0.05)] to-[rgba(10,10,10,0.8)] border border-[#d4af37]/10 rounded-[20px] p-6 sm:p-10 md:p-[60px_40px] mt-10">
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-              <header>
+            <div className="scroll-animate relative bg-gradient-to-br from-[#111111]/90 to-[#0a0a0a]/95 backdrop-blur-md border border-[#d4af37]/15 rounded-3xl p-6 sm:p-10 md:p-[60px_40px] mt-10 overflow-hidden shadow-2xl shadow-black/60">
+              <header className="relative z-10">
                 <p className="section-subtitle text-center">{m.private_parties_features_subtitle()}</p>
                 <h2 className="text-[1.5rem] md:text-[1.75rem] mb-10 text-center text-white font-semibold">
                   {m.private_parties_features_title()}
                 </h2>
               </header>
               
-              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[20px] md:gap-[30px]">
+              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[20px] md:gap-[30px] relative z-10">
 
                 <div className="p-6 md:p-[30px] hover:bg-[#111111] border border-[#d4af37]/15 rounded-2xl transition-all duration-300 ease hover:-translate-y-[5px] hover:border-[#d4af37] hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
                   <div className="relative block text-[#d4af37] h-12 w-12 shrink-0 rounded-2xl border border-white/10 bg-white/1 mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">
@@ -225,12 +222,7 @@ export default function PrivatneProslave() {
               </div>
             </div>
 
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mt-20 mb-10">
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-              <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
-
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[60px] items-center mt-20 mb-10 p-6 sm:p-10 rounded-3xl overflow-hidden border border-[#d4af37]/15 bg-gradient-to-br from-[#111111]/90 to-[#0a0a0a]/95 backdrop-blur-md shadow-2xl shadow-black/60">
               <div className="relative lg:max-w-none w-full order-2 md:order-2">
                 <div className="relative p-1 bg-gradient-to-br from-[#d4af37] to-[#8b7355] rounded-[20px] animate-frame-glow">
                   <div className="bg-[#1a1a1a] rounded-[16px] overflow-hidden relative">
@@ -263,9 +255,8 @@ export default function PrivatneProslave() {
         </section>
 
         <section className="py-16 md:py-24 px-4 md:px-0 relative overflow-hidden">
-          <div className="scroll-animate">
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[600px] h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[150px] left-[-100px] [animation-delay:0s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[500px] h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+          <SectionBackground variant="video" />
+          <div className="scroll-animate relative z-10">
             <div className="container mx-auto">
               <div className="max-w-3xl mx-auto text-center">
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">{m.private_parties_cta_title()}</h2>

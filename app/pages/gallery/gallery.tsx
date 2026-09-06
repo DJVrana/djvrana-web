@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Footer from '~/components/footer/footer';
 import Navbar from '~/components/navbar/navbar';
 import type { Route } from './+types/gallery';
@@ -43,6 +44,7 @@ import { faAngleLeft, faAngleRight, faChevronRight, faXmark } from '@fortawesome
 import * as m from '~/paraglide/messages.js';
 import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
+import SectionBackground from '~/components/ui/SectionBackground';
 
 export function meta({}: Route.MetaArgs) {
   return getMultilingualMeta(
@@ -79,6 +81,14 @@ export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<string>('galerija');
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const galleryData: GalleryItem[] = [
     { id: 1, category: 'club', title: m.gallery_img_1_title(), description: m.gallery_img_1_desc(), image: gallery01, thumbnailImage: galleryThumbnail01 },
@@ -143,7 +153,7 @@ export default function Gallery() {
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
   };
 
   const navigateLightbox = useCallback((direction: number) => {
@@ -215,11 +225,10 @@ export default function Gallery() {
         />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 
-        <section className="relative pt-24 md:pt-40 mb-16 md:mb-30 px-4 md:px-0">
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-100px] [animation-delay:0s]"></div>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-150px] [animation-delay:5s]"></div>
+        <section className="relative pt-24 md:pt-40 mb-16 md:mb-30 px-4 md:px-0 overflow-hidden">
+          <SectionBackground variant="video" />
         
-          <div className='container mx-auto'>
+          <div className='container mx-auto relative z-10'>
             <header>
                   <div className="relative text-center pt-8 pb-12">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
@@ -259,10 +268,10 @@ export default function Gallery() {
           </div>
         </section>
 
-        <section id='photo' className='gallery relative mb-16 md:mb-20 scroll-mt-[120px] px-4 md:px-0'>
-          <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
+        <section id='photo' className='gallery relative mb-16 md:mb-20 scroll-mt-[120px] px-4 md:px-0 overflow-hidden'>
+          <SectionBackground variant="services" />
           
-          <div className="text-white font-sans">
+          <div className="text-white font-sans relative z-10">
             <div className="container mx-auto">
 
               <header className="relative text-center pt-8 pb-8 md:pb-12">
@@ -318,61 +327,63 @@ export default function Gallery() {
               </div>
 
             </div>
-
-          {lightboxOpen && (
-              <div 
-              className="fixed inset-0 bg-black/98 z-[9999] flex items-center justify-center p-2 md:p-6 backdrop-blur-xl"
-              onClick={(e) => {
-                  if (e.target === e.currentTarget) closeLightbox();
-              }}
-              >
-              <div className="relative max-w-[1200px] w-full flex flex-col items-center animate-in fade-in zoom-in-95 duration-300">
-                  
-                  <button 
-                    onClick={closeLightbox}
-                    aria-label={m.gallery_aria_close()}
-                    className="absolute top-4 right-4 md:absolute md:top-4 md:right-8 bg-[#d4af37] text-[#0a0a0a] w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center hover:bg-[#e6c04e] hover:rotate-90 transition-all duration-300 z-50 shadow-lg"
-                  >
-                      <FontAwesomeIcon icon={faXmark} className="text-[18px] md:text-[24px]" />
-                  </button>
-
-                  <div className="relative flex items-center justify-center w-full group">
-                    <button 
-                      onClick={() => navigateLightbox(-1)}
-                      aria-label={m.gallery_aria_prev()}
-                      className="absolute left-2 md:left-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg"
-                    >
-                      <FontAwesomeIcon icon={faAngleLeft} className="text-[16px] md:text-[24px]" />
-                    </button>
-
-                    <img 
-                      src={filteredData[currentIndex]?.image} 
-                      alt={filteredData[currentIndex]?.title}
-                      className="max-w-full max-h-[60vh] md:max-h-[85vh] rounded-xl shadow-[0_24px_64px_rgba(0,0,0,0.8)] border md:border-2 border-[#d4af37]/30 select-none object-contain"
-                    />
-
-                    <button 
-                      onClick={() => navigateLightbox(1)}
-                      aria-label={m.gallery_aria_next()}
-                      className="absolute right-2 md:right-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg"
-                    >
-                      <FontAwesomeIcon icon={faAngleRight} className="text-[16px] md:text-[24px]" />
-                    </button>
-                  </div>
-
-                  <div className="relative mt-4 md:mt-6 text-center px-4 max-w-2xl">
-                    <h3 className="text-lg md:text-2xl mb-1 text-[#d4af37] font-semibold">
-                        {filteredData[currentIndex]?.title}
-                    </h3>
-                    <p className="text-xs md:text-base text-[#b8b8b8]">
-                        {filteredData[currentIndex]?.description}
-                    </p>
-                  </div>
-              </div>
-              </div>
-          )}
           </div>
         </section>
+
+        {lightboxOpen && isMounted && createPortal(
+          <div 
+            className="fixed inset-0 bg-black/98 z-[100000] flex items-center justify-center p-2 md:p-6 backdrop-blur-xl"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeLightbox();
+            }}
+          >
+            <div className="relative max-w-[1200px] w-full flex flex-col items-center animate-in fade-in zoom-in-95 duration-300">
+              
+              <button 
+                onClick={closeLightbox}
+                aria-label={m.gallery_aria_close()}
+                className="absolute top-4 right-4 md:absolute md:top-4 md:right-8 bg-[#d4af37] text-[#0a0a0a] w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center hover:bg-[#e6c04e] hover:rotate-90 transition-all duration-300 z-50 shadow-lg cursor-pointer"
+              >
+                  <FontAwesomeIcon icon={faXmark} className="text-[18px] md:text-[24px]" />
+              </button>
+
+              <div className="relative flex items-center justify-center w-full group">
+                <button 
+                  onClick={() => navigateLightbox(-1)}
+                  aria-label={m.gallery_aria_prev()}
+                  className="absolute left-2 md:left-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg cursor-pointer"
+                >
+                  <FontAwesomeIcon icon={faAngleLeft} className="text-[16px] md:text-[24px]" />
+                </button>
+
+                <img 
+                  src={filteredData[currentIndex]?.image} 
+                  alt={filteredData[currentIndex]?.title}
+                  className="max-w-full max-h-[60vh] md:max-h-[85vh] rounded-xl shadow-[0_24px_64px_rgba(0,0,0,0.8)] border md:border-2 border-[#d4af37]/30 select-none object-contain"
+                />
+
+                <button 
+                  onClick={() => navigateLightbox(1)}
+                  aria-label={m.gallery_aria_next()}
+                  className="absolute right-2 md:right-16 bg-[#d4af37]/90 text-[#0a0a0a] w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center md:hover:bg-[#d4af37] md:hover:scale-110 transition-all duration-300 backdrop-blur-md z-50 shadow-lg cursor-pointer"
+                >
+                  <FontAwesomeIcon icon={faAngleRight} className="text-[16px] md:text-[24px]" />
+                </button>
+              </div>
+
+              <div className="relative mt-4 md:mt-6 text-center px-4 max-w-2xl">
+                <h3 className="text-lg md:text-2xl mb-1 text-[#d4af37] font-semibold">
+                    {filteredData[currentIndex]?.title}
+                </h3>
+                <p className="text-xs md:text-base text-[#b8b8b8]">
+                    {filteredData[currentIndex]?.description}
+                </p>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+
         <Footer />
     </main>
   );

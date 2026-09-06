@@ -12,6 +12,7 @@ import type { Route } from './+types/contact';
 import * as m from '~/paraglide/messages.js';
 import { getLocale } from '~/paraglide/runtime.js';
 import { getMultilingualMeta } from '~/utils/seo/seo';
+import SectionBackground, { SectionDivider } from '~/components/ui/SectionBackground';
 
 export function meta({ location }: Route.MetaArgs) {
   return getMultilingualMeta(
@@ -219,14 +220,11 @@ const PremiumContact: React.FC = () => {
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
         
         <div className="min-h-screen text-gray-300 font-sans selection:bg-[rgba(212,175,55,0.3)] selection:text-[rgba(212,175,55,1)] relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section className='contact-form relative pt-28 md:pt-40'>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-50px] left-[-50px] md:left-[-100px] [animation-delay:0s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-[radial-gradient(circle,#8b7355,transparent)] bottom-[-150px] right-[-50px] md:right-[-150px] [animation-delay:5s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[50%] right-[10%] [animation-delay:10s]"></div>
-            <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-[radial-gradient(circle,#8b7355,transparent)] top-[50%] left-[0] [animation-delay:10s]"></div>
+          <section className='contact-form relative pt-28 md:pt-40 pb-16 md:pb-24 overflow-hidden'>
+            <SectionBackground variant="contact" />
             
-            <header>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <header>
                 <div className="relative text-center pt-8 pb-12 md:pb-24">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] md:w-[200px] h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-br from-[#d4af37] to-white bg-clip-text text-transparent tracking-tight leading-tight">
@@ -236,9 +234,9 @@ const PremiumContact: React.FC = () => {
                       {m.contact_header_subtitle()}
                     </p>
                 </div>
-            </header>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+              </header>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
                 <div className="space-y-10 md:space-y-12">
                     <div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
@@ -521,12 +519,16 @@ const PremiumContact: React.FC = () => {
               </form>
                     </div>
                 </div>
+              </div>
             </div>
         </section>
 
-        <section id="cesta-pitanja" className='faq pb-20 md:pb-40 scroll-mt-[100px] md:scroll-mt-[120px]'>
-            <div className="mt-20 md:mt-32 max-w-4xl mx-auto relative">
-                <div className="absolute rounded-full blur-[120px] opacity-15 pointer-events-none animate-float w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[radial-gradient(circle,#d4af37,transparent)] top-[-150px] left-[-200px] [animation-delay:0s]"></div>
+        <SectionDivider className="my-8 md:my-12" />
+
+        <section id="cesta-pitanja" className='faq py-20 md:py-36 scroll-mt-[100px] md:scroll-mt-[120px] relative overflow-hidden'>
+            <SectionBackground variant="reviews" />
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="max-w-4xl mx-auto">
                 
                 <header className="mx-auto max-w-2xl text-center mb-12 md:mb-20">
                     <p className="section-subtitle text-sm md:text-base">{m.contact_faq_subtitle()}</p>
@@ -569,10 +571,10 @@ const PremiumContact: React.FC = () => {
                     </div>
                     ))}
                 </div>
+              </div>
             </div>
         </section>
 
-        </div>
         </div>
         <Footer />
     </main>

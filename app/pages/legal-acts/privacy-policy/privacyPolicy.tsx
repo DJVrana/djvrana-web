@@ -7,6 +7,7 @@ import type { Route } from './+types/privacyPolicy';
 import * as m from '~/paraglide/messages.js';
 import { getMultilingualMeta } from '~/utils/seo/seo';
 import { getLocale } from '~/paraglide/runtime';
+import SectionBackground from '~/components/ui/SectionBackground';
 
 export function meta({}: Route.MetaArgs) {
     return getMultilingualMeta(
@@ -51,8 +52,9 @@ const currentLang = getLocale();
             dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} 
         />
         <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-        <div className="min-h-screen pt-20 text-white font-sans">
-        <div className="max-w-[900px] mx-auto px-6 py-20">
+        <div className="min-h-screen pt-20 text-white font-sans relative overflow-hidden">
+        <SectionBackground variant="legal" intensity="subtle" />
+        <div className="max-w-[900px] mx-auto px-6 py-20 relative z-10">
             <header className="text-center mb-20 relative pb-10 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-[2px] after:bg-gradient-to-r after:from-transparent after:via-[#d4af37] after:to-transparent">
             <h1 className="text-4xl pb-1 md:text-5xl font-light tracking-widest mb-4 bg-gradient-to-br from-white to-[#f4e5a0] bg-clip-text text-transparent">
                 {m.pp_title()}

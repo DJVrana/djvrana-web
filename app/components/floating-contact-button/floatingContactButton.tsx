@@ -34,7 +34,7 @@ function FloatingContactButton() {
           className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-[#25D366]/40 hover:shadow-xl transition-all duration-300 group"
           title="Pošalji poruku na WhatsApp"
         >
-          <FontAwesomeIcon icon={faWhatsapp} className="text-xl" />
+          <FontAwesomeIcon icon={faWhatsapp} className="text-xl w-5 h-5 shrink-0" />
           <span className="font-semibold text-sm">WhatsApp</span>
         </a>
         
@@ -44,13 +44,15 @@ function FloatingContactButton() {
           className="md:hidden flex items-center gap-2 bg-gradient-to-r from-[color:var(--color-accent-gold)] to-[#ffdf73] text-black px-4 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-[color:var(--color-accent-gold)]/40 hover:shadow-xl transition-all duration-300 group"
           title="Nazovi direktno"
         >
-          <FontAwesomeIcon icon={faPhone} className="text-lg" />
+          <FontAwesomeIcon icon={faPhone} className="text-lg w-4 h-4 shrink-0" />
           <span className="font-semibold text-sm">098 958 2676</span>
         </a>
       </div>
 
       <div className="relative flex items-center justify-center">
-        {!isOpen && <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--color-accent-gold)] to-[#ffdf73] rounded-full animate-ping opacity-60"></div>}
+        {!isOpen && (
+          <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--color-accent-gold)] to-[#ffdf73] rounded-full animate-ping-subtle pointer-events-none"></div>
+        )}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-tr from-[color:var(--color-accent-gold)] to-[#ffdf73] text-black rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center hover:scale-110 transition-transform duration-300 relative z-10"
@@ -58,7 +60,7 @@ function FloatingContactButton() {
         >
           <FontAwesomeIcon 
             icon={isOpen ? faTimes : faCommentDots} 
-            className={`text-2xl transition-transform duration-300 ${isOpen ? 'rotate-90 scale-110' : 'rotate-0 scale-100'}`}
+            className={`w-6 h-6 text-2xl transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-90 scale-110' : 'rotate-0 scale-100'}`}
           />
         </button>
       </div>

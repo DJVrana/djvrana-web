@@ -445,7 +445,23 @@ body::selection {
   }
 }
 
+@keyframes pingSubtle {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  65%, 100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
 /* Reusable Animation Utility Classes */
+.animate-ping-subtle {
+  animation: pingSubtle 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
 .animate-float-slow {
   animation: floatSlow 18s ease-in-out infinite;
   will-change: transform;
@@ -640,6 +656,7 @@ body::selection {
   .animate-vu-seg-b,
   .animate-vu-peak,
   .animate-audio-wave-flow,
+  .animate-ping-subtle,
   .animate-ember-rise {
     animation: none !important;
   }

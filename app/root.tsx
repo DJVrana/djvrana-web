@@ -11,6 +11,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./styles.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+config.autoAddCss = false;
 
 import { setLocale, baseLocale, locales } from "~/paraglide/runtime.js";
 import * as m from '~/paraglide/messages.js';
